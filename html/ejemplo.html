@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Enviar Nota</title>
+</head>
+<body>
+    <h1>Enviar Nota a Google Sheets</h1>
+    <button onclick="enviarNota()">Enviar Nota</button>
+
+    <script>
+        function enviarNota() {
+            fetch("https://script.google.com/macros/s/AKfycbzaKDjHayomE9eYy9HRQ9UJvbJPZTCFc8BH45Qr6obmLP_g3-fI0Xqh2rw4YV2KcIWX/exec", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    usuario: "Juan",
+                    puntaje: 90
+                })
+            })
+            .then(response => response.text())
+            .then(data => alert("Nota enviada: " + data))
+            .catch(error => console.error("Error:", error));
+        }
+    </script>
+</body>
+</html>
