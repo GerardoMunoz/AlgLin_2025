@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enviar a Google Forms</title>
+</head>
+<body>
+    <h1>Guardar Nota</h1>
+    <input type="text" id="nombre" placeholder="Nombre">
+    <input type="number" id="nota" placeholder="Nota">
+    <button onclick="enviarDatos()">Enviar</button>
+
+    <script>
+        function enviarDatos() {
+            const nombre = document.getElementById("nombre").value;
+            const nota = document.getElementById("nota").value;
+
+            // 🔹 Reemplaza con tu Google Form URL
+            const formURL = "https://docs.google.com/forms/d/e/1FAIpQLSekanMap5Exd-nCKKYla6HffWfrgFDEhisZ-uEXPcYaj3lN9A/formResponse";
+
+            const formData = new FormData();
+            formData.append("entry.123456789", nombre); // ID del campo de Nombre
+            formData.append("entry.987654321", nota);   // ID del campo de Nota
+
+            fetch(formURL, {
+                method: "POST",
+                mode: "no-cors",
+                body: formData
+            }).then(() => {
+                alert("Datos enviados con éxito.");
+            }).catch(error => console.error("Error:", error));
+        }
+    </script>
+</body>
+</html>
