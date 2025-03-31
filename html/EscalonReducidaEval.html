@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evaluación de Matrices</title>
+</head>
+<body>
+    <h1>Evaluación de Matrices</h1>
+    <input type="text" id="nombre" placeholder="Nombre">
+    <div id="questions"></div>
+    <button onclick="enviarRespuestas()">Enviar</button>
+
+    <script>
+        const matrices = {
+            "M": [[-1, 0, 1, 2], [0, 0, -3, 4], [0, 0, 0, 0]],
+            "N": [[1, -6, 0, 2], [0, 0, 1, 4], [0, 0, 0, 0]],
+            "P": [[0, 2, -6], [0, -1, 1]],
+            "A": [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 0, 0]],
+            "B": [[1, 0, -6], [0, 1, 0], [0, 0, -1]],
+            "C": [[1, 0, 1], [0, 0, 1], [0, 0, 1]],
+            "D": [[1, 1, 0, 2], [0, 0, 1, 3], [0, 0, 1, 4]],
+            "E": [[0, 0], [1, 0]],
+            "F": [[1, 7, 0, 9], [0, 0, 1, -8], [0, 0, 0, 1]],
+            "G": [[1, 0, -1, 0], [0, 1, 0, 0], [0, 0, 1, 0]],
+            "H": [[1, 0, 0], [0, 0, 1], [0, 0, -2]]
+        };
+
+        const preguntasTexto = `
+            Los renglones de ceros están agrupados al final o no hay renglones de ceros? Afirmativo, Negativo
+            La matriz cumple la propiedad E1? Afirmativo, Negativo
+            Cada elemento delantero está a la derecha de los elementos delanteros de los renglones de arriba? Afirmativo, Negativo
+            La matriz cumple E2? Afirmativo, Negativo
+            La matriz está en forma escalón? Afirmativo, Negativo
+            Indíque el número de pivotes? 0,1,2,3,4,5,6
+            Indíque el número de variables delanteras? 0,1,2,3,4,5,6
+            Indíque el número de variables libres? 0,1,2,3,4,5,6
+            Cáda pivote es un uno delantero? Afirmativo, Negativo
+            La matriz cumple E3? Afirmativo, Negativo
+            La matriz está en forma Escalonada? Afirmativo, Negativo
+            La matriz cumple E4? Afirmativo, Negativo
+            La matriz está en forma Escalonada Reducida? Afirmativo, Negativo
+        `;
+
+        function generateQuestions() {
+            let output = "";
+            const preguntas = preguntasTexto.trim().split('\n');
+            preguntas.forEach(pregunta => {
+                const parts = pregunta.split('?');
+                const questionText = parts[0].trim();
+                const options = parts[1].trim().split(',').map(opt => opt.trim());
+
+                output += `<p><strong>${questionText}:</strong><br>`;
+                options.forEach(option => {
+                    output += `<input type="radio" name="${questionText}" value="${option}"> ${option} `;
+                });
+                output += "</p>";
+            });
+            document.getElementById("questions").innerHTML = output;
+        }
+
+        function enviarRespuestas() {
+            const fechaActual = new Date();
+            const fechaLimite = new Date("2025-03-31");
+            console.log(fechaActual,fechaLimite)
+         // Comparar solo el año, mes y día
+            const formatoFecha = (fecha) => fecha.toISOString().split('T')[0];
+
+            if (formatoFecha(fechaActual) !== formatoFecha(fechaLimite)) {  
+                alert("Fuera de fecha, no se pueden enviar respuestas.");
+                return;
+            }
+            
+            const nombre = document.getElementById("nombre").value;
+            let respuestas = "";
+            const preguntas = preguntasTexto.trim().split('\n');
+            preguntas.forEach(pregunta => {
+                const parts = pregunta.split('?');
+                const questionText = parts[0].trim();
+                const selectedOption = document.querySelector(`input[name='${questionText}']:checked`);
+                respuestas += selectedOption ? selectedOption.value + ", " : "Sin respuesta, ";
+            });
+            respuestas = respuestas.slice(0, -2);
+
+            const formURL = "https://docs.google.com/forms/d/e/1FAIpQLSekanMap5Exd-nCKKYla6HffWfrgFDEhisZ-uEXPcYaj3lN9A/formResponse";
+            const formData = new FormData();
+            formData.append("entry.1373660141", nombre);
+            formData.append("entry.952712086", respuestas);
+
+            fetch(formURL, {
+                method: "POST",
+                mode: "no-cors",
+                body: formData
+            }).then(() => {
+                alert("Respuestas enviadas con éxito.");
+            }).catch(error => console.error("Error:", error));
+        }
+
+        window.onload = generateQuestions;
+    </script>
+</body>
+</html>
