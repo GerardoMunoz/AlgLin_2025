@@ -40,6 +40,8 @@
             La matriz está en forma Escalonada? Afirmativo, Negativo
             La matriz cumple E4? Afirmativo, Negativo
             La matriz está en forma Escalonada Reducida? Afirmativo, Negativo
+            El sistema de ecuaciones es? Inconsistente, Consistente
+            El conjunto solución? Es vacío, Tiene sólo un elemento, Tiene infinitas soluciones
         `;
 
         function generateQuestions() {
@@ -63,7 +65,7 @@
             const fechaActual = new Date();
             const fechaLimite = new Date("2025-03-31");
             console.log(fechaActual,fechaLimite)
-         // Comparar solo el año, mes y día
+            // Comparar solo el año, mes y día
             const formatoFecha = (fecha) => fecha.toISOString().split('T')[0];
 
             if (formatoFecha(fechaActual) !== formatoFecha(fechaLimite)) {  
