@@ -59,7 +59,7 @@
 
             applyOperation(opStr) {
                 let op = this.parseOperation(opStr);
-                console.log("Op",op);
+                //console.log("Op",op);
                 let newMatrix = this.matrix.map(row => [...row]);
                 if (op.type === "swap") {
                     [newMatrix[op.row1], newMatrix[op.row2]] = [newMatrix[op.row2], newMatrix[op.row1]];
