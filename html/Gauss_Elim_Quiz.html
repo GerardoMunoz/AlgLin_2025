@@ -44,8 +44,10 @@
     <input type="text" id="operation" placeholder="Ingrese operación (Ej: R1<->R2)" style="display:none;">
     <button id="handleOperation1" onclick="handleOperation()" style="display:none;">Aplicar Operación</button>
     <button id="handleSuggestion1" onclick="handleSuggestion()" style="display:none;">Sugerencia</button>
-
-
+    <input type="text" id="nombre" placeholder="Nombre" style="display:none;">
+    <input type="text" id="codigo" placeholder="Código" style="display:none;">
+    <button id="enviarOperaciones1" onclick="enviarOperaciones()" style="display:none;">Enviar Operaciones</button>
+    
     <script>
         class MatrixGame {
             constructor(matrix) {
@@ -140,7 +142,33 @@
             alert("Funcionalidad de sugerencia aún en desarrollo");
         }
         
+function enviarOperaciones() {
+    if (operacionesAplicadas.length === 0) {
+        alert("No hay operaciones para enviar.");
+        return;
+    }
+    let nombreInput = document.getElementById("nombre");
+    let codigoInput = document.getElementById("codigo");
+    const operacionesTexto = operacionesAplicadas.join('\n');
 
+    const formURL = "https://docs.google.com/forms/d/e/1FAIpQLSdq-y90C6FZTOq10fkWvoz9spigyQ9R1z6r1nc-5Vm_DqVDdA/formResponse";
+    const formData = new FormData();
+
+    // Replace this entry ID with the correct field for operations in your Google Form
+    formData.append("entry.155816829", "Eliminación Gauss");
+    formData.append("entry.516472959", nombreInput.value);
+    formData.append("entry.519404034", codigoInput.value);
+    formData.append("entry.1237481299", operacionesTexto);
+    fetch(formURL, {
+        method: "POST",
+        mode: "no-cors",
+        body: formData
+    }).then(() => {
+        alert("Operaciones enviadas con éxito.");
+    }).catch(error => {
+        console.error("Error al enviar operaciones:", error);
+    });
+}
 
 let matrixData = [];
 let operacionesAplicadas = [];
@@ -155,6 +183,9 @@ function mostrarMatrizInicial() {
     document.getElementById("operation").style.display = "block";
     document.getElementById("handleOperation1").style.display = "block";
     document.getElementById("handleSuggestion1").style.display = "block";
+    document.getElementById("nombre").style.display = "block";
+    document.getElementById("codigo").style.display = "block";
+    document.getElementById("enviarOperaciones1").style.display = "block";
 
     // Mostramos la matriz original
     document.getElementById("matrices").innerHTML = createMatrixHTML(matrixData);
