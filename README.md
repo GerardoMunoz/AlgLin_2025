@@ -5,6 +5,7 @@
   * Quiz https://gerardomunoz.github.io/AlgLin_2025/html/EscalonReducidaEval.html
 4. https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/Eliminacion_Gauss.ipynb
   * Práctica https://gerardomunoz.github.io/AlgLin_2025/html/Gauss_Elim.html
+  * Quiz https://gerardomunoz.github.io/AlgLin_2025/html/Gauss_Elim_Quiz.html
 5. https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/Inversa.ipynb
 6. https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/Producto_Cruz.ipynb
 
