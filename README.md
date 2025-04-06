@@ -6,7 +6,7 @@
 4. https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/Eliminacion_Gauss.ipynb
   * Práctica https://gerardomunoz.github.io/AlgLin_2025/html/Gauss_Elim.html
 5. https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/Inversa.ipynb
-6. https://github.com/GerardoMunoz/AlgLin_2025/blob/main/Producto_Cruz.ipynb
+6. https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/Producto_Cruz.ipynb
 
 ---
 # Bibliografía
