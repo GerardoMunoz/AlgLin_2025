@@ -44,7 +44,7 @@
     <input type="text" id="operation" placeholder="Ingrese operación (Ej: R1<->R2)" style="display:none;">
     <button id="handleOperation1" onclick="handleOperation()" style="display:none;">Aplicar Operación</button>
     <button id="handleSuggestion1" onclick="handleSuggestion()" style="display:none;">Sugerencia</button>
-
+ <div id="operacionesAplicadas"></div>
 
     <script>
         class MatrixGame {
@@ -128,7 +128,7 @@
                 matricesDiv.innerHTML += `<p>${operationInput}</p>`;
                 matricesDiv.innerHTML += createMatrixHTML(newMatrix); // Agrega la nueva matriz debajo
                 
-                operacionesAplicadas.push(operationInput)
+                operacionesAplicadas.innerHTML += '<p>'+operationInput+'</p>'
                 
                 matrixData = newMatrix;
             } catch (e) {
@@ -143,13 +143,14 @@
 
 
 let matrixData = [];
-let operacionesAplicadas = [];
+//let operacionesAplicadas = [];
 
 function mostrarMatrizInicial() {
     const matrixData_str = document.getElementById("cambioUsuario").value;
+    operacionesAplicadas= document.getElementById("operacionesAplicadas")
 
     matrixData = JSON.parse(matrixData_str); //195
-    operacionesAplicadas = ["[[" + matrixData.map(row => row.join(',')).join('],[') + "]]"];
+    operacionesAplicadas.innerHTML += ["[[" + matrixData.map(row => row.join(',')).join('],[') + "]]"];
     // Ocultamos la pregunta inicial
     document.getElementById("preguntaInicial").style.display = "none";
     document.getElementById("operation").style.display = "block";
