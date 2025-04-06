@@ -9,7 +9,7 @@
 
 ---
 # Bibliografía
-* Algunas definiciones, ejemplos y teoremas de ´ Algebra Lineal orientados a
+* Algunas definiciones, ejemplos y teoremas de Álgebra Lineal orientados a
 Ingenieros
 > https://github.com/GerardoMunoz/AlgLin_2025/blob/main/docs/TrLin_084.pdf
 
