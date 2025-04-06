@@ -14,5 +14,5 @@
 Ingenieros
 > https://github.com/GerardoMunoz/AlgLin_2025/blob/main/docs/TrLin_084.pdf
 
-* Álgebra lineal con aplicaciones, George Nakos, David Joyner
-> https://drive.google.com/file/d/1cSh8KMsk4vavRO62gcH9bZ059NDG1v6z/view?usp=sharing
+* Álgebra lineal con aplicaciones, George Nakos, David Joyner[
+> https://github.com/GerardoMunoz/AlgLin_2025/blob/main/docs/algebra-lineal-con-aplicaciones-george-nakospdf.pdf
