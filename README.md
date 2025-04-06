@@ -6,3 +6,12 @@
 4. https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/Eliminacion_Gauss.ipynb
   * Práctica https://gerardomunoz.github.io/AlgLin_2025/html/Gauss_Elim.html
 5. https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/Inversa.ipynb
+
+---
+# Bibliografía
+* Algunas definiciones, ejemplos y teoremas de ´ Algebra Lineal orientados a
+Ingenieros
+> https://github.com/GerardoMunoz/AlgLin_2025/blob/main/docs/TrLin_084.pdf
+
+* Álgebra lineal con aplicaciones, George Nakos, David Joyner
+> https://drive.google.com/file/d/1cSh8KMsk4vavRO62gcH9bZ059NDG1v6z/view?usp=sharing
