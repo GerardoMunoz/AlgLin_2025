@@ -19,33 +19,54 @@
     </style>
 </head>
 <body>
-    <h1>Operaciones con Matrices</h1>
+    <h1>MatrixGame</h1>
 
     <!-- Sección para preguntar si quiere modificar algo -->
     <div id="preguntaInicial">
-        <p>¿Deseas cambiar algo antes de comenzar?</p>
+        <p>To use the <code>MatrixGame</code> class, initialize it with a matrix (a 2D array of numbers).</p>
         <textarea id="cambioUsuario" name="cambioUsuario" rows="5" cols="33">
 [[0, 3, -6, -4, -3, -5],
-[-1, 3, -10, -4, -4, -2],
+[-2, 6, -20, -8, -8, -4],
 [4, -9, 34, 0, 1, -21],
 [2, -6, 20, 2, 8, -8]]
 </textarea>
-        <button onclick="mostrarMatrizInicial()">Mostrar Matriz</button>
+        <button onclick="mostrarMatrizInicial()">Show Matrix</button>
     </div>
+    <div id="ciclo" style="display:none;">
+<div class="instructions">
+  <h2>How to Use the <code>MatrixGame</code> Class</h2>
+  <p>
+     You can then apply row operations by providing operation strings to the <code>applyOperation()</code> method. The rows start from <code>R1</code>.
+  </p>
+  <p>
+    Supported operations include:
+    <ul>
+      <li><strong>Row swapping:</strong> <code>R1 &lt;-&gt; R2</code></li>
+      <li><strong>Row scaling:</strong> <code>-0.5R1 -&gt; R1</code></li>
+      <li><strong>Linear combinations:</strong> <code>R3 - 4R1 -&gt; R3</code></li>
+    </ul>
+  </p>
+  <p>
+    Decimal numbers are fully supported (e.g., <code>0.5R1 + 1.25R2 -&gt; R2</code>), but exact fractions like <code>1/3</code> are not recognized.
+  </p>
+  <p>
+    Due to floating-point limitations, very small values close to zero may still appear. To improve readability, all results are automatically rounded to <strong>4 decimal places</strong> after each operation. However, intermediate results may temporarily show more than 4 decimals before rounding.
+  </p>
+</div>
 
     <!-- Aquí se mostrarán las matrices -->
     <div id="matrices"></div>
     <div id="operationsLog"></div>
 
     <!-- Resto del formulario y botones -->
-    <!-- (esto se queda como ya lo tenías) -->
+
     <div id="matrices"></div>
     <div id="operationsLog"></div>
-    <input type="text" id="operation" placeholder="Ingrese operación (Ej: R1<->R2)" style="display:none;">
-    <button id="handleOperation1" onclick="handleOperation()" style="display:none;">Aplicar Operación</button>
-    <button id="handleSuggestion1" onclick="handleSuggestion()" style="display:none;">Sugerencia</button>
+    <input type="text" id="operation" placeholder="Ingrese operación (Ej: R1<->R2)">
+    <button id="handleOperation1" onclick="handleOperation()">Aplicar Operación</button>
+    <button id="handleSuggestion1" onclick="handleSuggestion()" >Sugerencia</button>
  <div id="operacionesAplicadas"></div>
-
+    </div>
     <script>
         class MatrixGame {
             constructor(matrix) {
@@ -87,14 +108,18 @@
                 if (op.type === "swap") {
                     [newMatrix[op.row1], newMatrix[op.row2]] = [newMatrix[op.row2], newMatrix[op.row1]];
                 } else if (op.type === "scale") {
-                    newMatrix[op.row] = newMatrix[op.row].map(val => val * op.scalar);
+                    newMatrix[op.row] = newMatrix[op.row].map(val => round4(val * op.scalar));
                 } else if (op.type === "add") {
                     for (let i = 0; i < newMatrix[0].length; i++) {
-                        newMatrix[op.targetRow][i] = op.scalar1 * newMatrix[op.row1][i] + op.scalar2 * newMatrix[op.row2][i];
+                        newMatrix[op.targetRow][i] = round4(op.scalar1 * newMatrix[op.row1][i] + op.scalar2 * newMatrix[op.row2][i]);
                     }
                 }
                 return newMatrix;
             }
+        }
+        
+        function round4(value) {
+            return Math.round(value * 10000) / 10000;
         }
 
         function createBracketSVG(isLeft, height) {
@@ -156,9 +181,10 @@ function mostrarMatrizInicial() {
     operacionesAplicadas.innerHTML += ["[[" + matrixData.map(row => row.join(',')).join('],[') + "]]"];
     // Ocultamos la pregunta inicial
     document.getElementById("preguntaInicial").style.display = "none";
-    document.getElementById("operation").style.display = "block";
-    document.getElementById("handleOperation1").style.display = "block";
-    document.getElementById("handleSuggestion1").style.display = "block";
+    //document.getElementById("operation").style.display = "block";
+    //document.getElementById("handleOperation1").style.display = "block";
+    //document.getElementById("handleSuggestion1").style.display = "block";
+    document.getElementById("ciclo").style.display = "block";
 
     // Mostramos la matriz original
     document.getElementById("matrices").innerHTML = createMatrixHTML(matrixData);
