@@ -186,7 +186,7 @@ function enviarOperaciones() {
     formData.append("entry.155816829", "Eliminación Gauss");
     formData.append("entry.516472959", nombreInput.value);
     formData.append("entry.519404034", codigoInput.value);
-    formData.append("entry.1237481299", operacionesTexto);
+    formData.append("entry.1237481299", operacionesTexto+["[[" + matrixData.map(row => row.join(',')).join('],[') + "]]"]);
     fetch(formURL, {
         method: "POST",
         mode: "no-cors",
