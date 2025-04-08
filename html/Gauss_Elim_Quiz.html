@@ -64,6 +64,8 @@
                 if (swapMatch) {
                     return { type: "swap", row1: parseInt(swapMatch[1]) - 1, row2: parseInt(swapMatch[2]) - 1 };
                 } else if (addMatch) {
+		    if (addMatch[1]=="-")addMatch[1]="-1";
+                    if (addMatch[3]=="-")addMatch[3]="-1";
                     return {
                         type: "add",
                         scalar1: parseFloat(addMatch[1]) || 1,
@@ -73,6 +75,7 @@
                         targetRow: parseInt(addMatch[5]) - 1
                     };
                 } else if (scaleMatch) {
+		    if (scaleMatch[1]=="-")scaleMatch[1]="-1";
                     return { type: "scale", scalar: parseFloat(scaleMatch[1]) || 1, row: parseInt(scaleMatch[2]) - 1 };
                 } else {
                     throw new Error("Operación no válida");
