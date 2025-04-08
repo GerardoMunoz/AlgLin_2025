@@ -59,7 +59,7 @@
                 opStr = opStr.toLowerCase().replace(/\s+/g, "");
                 let swapMatch = opStr.match(/r(\d+)<->r(\d+)/);
                 let scaleMatch = opStr.match(/(-?\d*\.?\d*)r(\d+)->r(\d+)/);
-                let addMatch = opStr.match(/(-?\d*\.?\d*)r(\d+)[+-](-?\d*\.?\d*)r(\d+)->r(\d+)/);
+                let addMatch = opStr.match(/(-?\d*\.?\d*)r(\d+)([-+]\d*\.?\d*)r(\d+)->r(\d+)/);
 	
                 if (swapMatch) {
                     return { type: "swap", row1: parseInt(swapMatch[1]) - 1, row2: parseInt(swapMatch[2]) - 1 };
