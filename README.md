@@ -1,14 +1,16 @@
 # AlgLin_2025
-1. https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/Op_Matrices.ipynb
-2. https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/SistemaDeEcuaciones.ipynb
-3. https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/Matriz_Escalon_Reducida.ipynb
+1. https://github.com/GerardoMunoz/AlgLin_2025/blob/main/Producto_Punto.pdf
+2. https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/Op_Matrices.ipynb
+3. https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/SistemaDeEcuaciones.ipynb
+4. https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/Matriz_Escalon_Reducida.ipynb
   * Quiz https://gerardomunoz.github.io/AlgLin_2025/html/EscalonReducidaEval.html
-4. https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/Eliminacion_Gauss.ipynb
+5. https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/Eliminacion_Gauss.ipynb
   * Práctica desde el renglón cero con sugerencias (Python) https://colab.research.google.com/github/GerardoMunoz/AlgoritmoDeGauss/blob/master/AlgoritmoDeGauss.ipynb
   * Práctica desde el renglón uno  (JS) https://gerardomunoz.github.io/AlgLin_2025/html/Gauss_Elim.html
   * Quiz https://gerardomunoz.github.io/AlgLin_2025/html/Gauss_Elim_Quiz.html
-5. https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/Inversa.ipynb
-6. https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/Producto_Cruz.ipynb
+6. https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/Inversa.ipynb
+7. https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/Producto_Cruz.ipynb
+8. https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/Determinante_nxn.ipynb
 
 ---
 # Bibliografía
