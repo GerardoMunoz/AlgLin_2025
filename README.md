@@ -18,7 +18,16 @@
 7. https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/Producto_Cruz.ipynb
    * Nakos pg 120, Ejercicios 2.6: 4, 9, 11, 15 
 8. https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/Determinante_nxn.ipynb
-
+9. Rectas y planos
+  * https://github.com/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/Planos.pdf
+  * https://github.com/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/Rectas.pdf
+  * https://github.com/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/Rectas2D.md
+  * https://github.com/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/Rectas3D.md
+  * https://github.com/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/Planos3D.md
+10. Espacio vectorial  
+  
+  
+  
 ---
 # Bibliografía
 * Algunas definiciones, ejemplos y teoremas de Álgebra Lineal orientados a
