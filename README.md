@@ -30,12 +30,13 @@
 10. Espacio vectorial
     * Espacio Vectorial: Definición https://www.youtube.com/watch?v=GJFxGEDOJDc
     * Espacio Vectorial: Subespacios https://www.youtube.com/watch?v=t6FrWHtcRVY
+    * $\mathbb{R}^n$: Subespacio, Dimensión, Rango, Nulidad, Independencia lineal https://www.youtube.com/watch?v=ogbzmgje0x0
     * ![](https://raw.githubusercontent.com/GerardoMunoz/AlgLin_2025/main/imgs/Generado.PNG)
     * ---
     * ![](https://raw.githubusercontent.com/GerardoMunoz/AlgLin_2025/main/imgs/Nulo.PNG)
     * $\mathbb{R}^n$: Espacio nulo y espacios columna y generado https://www.youtube.com/watch?v=X89iuatAPKg
     * Visualización en $\mathbb{R}^2$ y $\mathbb{R}^3$: Espacio Generado y Nulo https://www.youtube.com/watch?v=GkM5XGaKCmc&t=286s
-    * $\mathbb{R}^n$: Subespacio, Dimensión, Rango, Nulidad, Independencia lineal https://www.youtube.com/watch?v=ogbzmgje0x0
+   
 11. Base
     * Espacio Vectorial: Base https://www.youtube.com/watch?v=e08JDxr0YgE
     * $\mathbb{R}^n$: Coordenadas https://www.youtube.com/watch?v=5doHic1C9L0
