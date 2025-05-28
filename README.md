@@ -25,6 +25,8 @@
   * https://github.com/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/Rectas3D.md
   * https://github.com/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/Planos3D.md
   * https://github.com/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/Distancias.md
+  * La intersección de rectas y planos se puede encontrar solucionando el sistema de ecuaciones lineales formado por la unión de ambos sistemas de ecuaciones
+  * Otro forma es igualando las ecuaciones vectoriales manteniendo los parámetros diferentes ¿Qué sucede si un par de parámetros son iguales?
 10. Espacio vectorial  
   
   
