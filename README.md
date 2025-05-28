@@ -37,7 +37,9 @@
     * Espacio Vectorial: Base https://www.youtube.com/watch?v=e08JDxr0YgE
     * $\mathbb{R}^n$: Coordenadas https://www.youtube.com/watch?v=5doHic1C9L0
     * $\mathbb{R}^n$: Proyección https://www.youtube.com/watch?v=j9zYnCVCtlw
+12. Bases orotgonales
     * $\mathbb{R}^n$: Gram Shmidt https://www.youtube.com/watch?v=Zs6Gd3iQPCM
+    * Visualización en $\mathbb{R}^2$ y $\mathbb{R}^3$: Subespacios Ortogonales https://www.youtube.com/watch?v=vBoksCOvlCA
   
   
   
