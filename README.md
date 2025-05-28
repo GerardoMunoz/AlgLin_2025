@@ -28,12 +28,12 @@
   * La intersección de rectas y planos se puede encontrar solucionando el sistema de ecuaciones lineales formado por la unión de ambos sistemas de ecuaciones
   * Otro forma es igualando las ecuaciones vectoriales manteniendo los parámetros diferentes ¿Qué sucede si un par de parámetros son iguales?
 10. Espacio vectorial
+    * Espacio Vectorial: Definición https://www.youtube.com/watch?v=GJFxGEDOJDc
+    * Espacio Vectorial: Subespacios https://www.youtube.com/watch?v=t6FrWHtcRVY
     * $\mathbb{R}^n$: Espacio nulo y espacios columna y generado https://www.youtube.com/watch?v=X89iuatAPKg
     * Visualización en $\mathbb{R}^2$ y $\mathbb{R}^3$: Espacio Generado y Nulo https://www.youtube.com/watch?v=GkM5XGaKCmc&t=286s
     * $\mathbb{R}^n$: Subespacio, Dimensión, Rango, Nulidad, Independencia lineal https://www.youtube.com/watch?v=ogbzmgje0x0
-    * Espacio Vectorial: Definición https://www.youtube.com/watch?v=GJFxGEDOJDc
-    * Espacio Vectorial: Subespacios https://www.youtube.com/watch?v=t6FrWHtcRVY
-    * Espacios Vectoriales: Base https://www.youtube.com/watch?v=e08JDxr0YgE
+    * Espacio Vectorial: Base https://www.youtube.com/watch?v=e08JDxr0YgE
   
   
   
