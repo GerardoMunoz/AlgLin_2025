@@ -33,9 +33,11 @@
     * $\mathbb{R}^n$: Espacio nulo y espacios columna y generado https://www.youtube.com/watch?v=X89iuatAPKg
     * Visualización en $\mathbb{R}^2$ y $\mathbb{R}^3$: Espacio Generado y Nulo https://www.youtube.com/watch?v=GkM5XGaKCmc&t=286s
     * $\mathbb{R}^n$: Subespacio, Dimensión, Rango, Nulidad, Independencia lineal https://www.youtube.com/watch?v=ogbzmgje0x0
+11. Base
     * Espacio Vectorial: Base https://www.youtube.com/watch?v=e08JDxr0YgE
     * $\mathbb{R}^n$: Coordenadas https://www.youtube.com/watch?v=5doHic1C9L0
     * $\mathbb{R}^n$: Proyección https://www.youtube.com/watch?v=j9zYnCVCtlw
+    * $\mathbb{R}^n$: Gram Shmidt https://www.youtube.com/watch?v=Zs6Gd3iQPCM
   
   
   
