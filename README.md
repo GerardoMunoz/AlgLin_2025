@@ -24,6 +24,7 @@
   * https://github.com/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/Rectas2D.md
   * https://github.com/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/Rectas3D.md
   * https://github.com/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/Planos3D.md
+  * https://github.com/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/Distancias.md
 10. Espacio vectorial  
   
   
