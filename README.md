@@ -39,3 +39,4 @@ Ingenieros
 
 * Álgebra lineal con aplicaciones, George Nakos, David Joyner, 1999
 > https://github.com/GerardoMunoz/AlgLin_2025/blob/main/docs/algebra-lineal-con-aplicaciones-george-nakospdf.pdf
+> https://github.com/GerardoMunoz/AlgLin_2025/blob/main/docs/Nakos_Joyner_Content.pdf
