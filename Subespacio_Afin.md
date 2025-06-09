@@ -4,7 +4,7 @@
 Un **subespacio afín** de un subespacio vectorial $V$ de $\mathbb{R}^n$ es un conjunto de la forma:
 
 $$
-A =  \{ p + v \mid v \in V \}
+A = set(  \{ p + v \mid v \in V \} )
 $$
 
 donde:
