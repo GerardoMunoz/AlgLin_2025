@@ -1,9 +1,9 @@
 # Subespacio Afín
 
 
-Un **subespacio afín** de un subespacio vectorial $V$ de $\mathbb{R}^n$ es un conjunto de la forma:
+Un **subespacio afín** $A$ de un subespacio vectorial $V$ de $\mathbb{R}^n$ es un conjunto de la forma:
 
-A = { p + v | v ∈ V }
+$A =$ { $p + v \mid v \in V$ }
 
 
 
