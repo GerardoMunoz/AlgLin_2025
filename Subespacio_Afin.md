@@ -17,7 +17,7 @@ donde:
 ##  Propiedades clave
 
 - $A$ es **paralelo** al subespacio $V$
-- Si $p \in A$, entonces $A = V$ y es un subespacio vectorial
+- Si $\vec{0} \in A$, entonces $A = V$ y es un subespacio vectorial
 - En general, un **subespacio afín no contiene al origen**
 - No es cerrado bajo combinaciones lineales, pero sí bajo **combinaciones afines** (incluyendo un 1 al vector)
 - Dada una transformación matricial $T_A$.  La **preimagen** (o conjunto de soluciones) de un punto del codominio  
