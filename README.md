@@ -58,7 +58,7 @@
     * https://www.youtube.com/watch?v=pN5sirpdH8A&list=PL1mPu0A4F0dCqISAjxkhkVVQ4QEKmKAQj&index=30&pp=iAQB
     * https://www.youtube.com/watch?v=klBoGhi68ho&list=PL1mPu0A4F0dCqISAjxkhkVVQ4QEKmKAQj&index=31&pp=iAQB
  14. Transformaciones Matriciales
-    * 
+    * https://gerardomunoz.github.io/AlgLin_2025/html/ResumenRepresentaciones.html
     * https://www.youtube.com/watch?v=43o5TGxo-lM&list=PL1mPu0A4F0dCqISAjxkhkVVQ4QEKmKAQj&index=21&pp=iAQB
     * https://www.youtube.com/watch?v=mSUGKNTg8bw&list=PL1mPu0A4F0dCqISAjxkhkVVQ4QEKmKAQj&index=16&pp=iAQB
     * https://www.youtube.com/watch?v=1vslbOh_Kq4&list=PL1mPu0A4F0dCqISAjxkhkVVQ4QEKmKAQj&index=41&pp=iAQB
