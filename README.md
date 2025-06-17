@@ -52,7 +52,7 @@
     * $\mathbb{R}^n$: Gram Shmidt https://www.youtube.com/watch?v=Zs6Gd3iQPCM
     * Visualización en $\mathbb{R}^2$ y $\mathbb{R}^3$: Subespacios Ortogonales https://www.youtube.com/watch?v=vBoksCOvlCA
 13. Transformaciones Lineales
-    * https://github.com/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/Clase15_Repr5_2_TransfLineales.ipynb
+    * https://colab.research.google.com/github/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/Clase15_Repr5_2_TransfLineales.ipynb
     * https://www.youtube.com/watch?v=b6YnZ31eW60&list=PL1mPu0A4F0dCqISAjxkhkVVQ4QEKmKAQj&index=27&pp=iAQB
     * https://www.youtube.com/watch?v=LPI90K-WutY&list=PL1mPu0A4F0dCqISAjxkhkVVQ4QEKmKAQj&index=29&pp=iAQB
     * https://www.youtube.com/watch?v=pN5sirpdH8A&list=PL1mPu0A4F0dCqISAjxkhkVVQ4QEKmKAQj&index=30&pp=iAQB
