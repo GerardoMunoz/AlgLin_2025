@@ -1,5 +1,6 @@
 # AlgLin_2025
 -1. https://colab.research.google.com/github/GerardoMunoz/Curso_Python/blob/main/ConjNum.ipynb
+
 0. https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/cuestionarios/complexity_features_equation.ipynb 
    * Operaciones algebraicas
 1. https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/Op_Matrices.ipynb
@@ -80,6 +81,7 @@ Ingenieros
 * Álgebra lineal con aplicaciones, George Nakos, David Joyner, 1999
 > https://github.com/GerardoMunoz/AlgLin_2025/blob/main/docs/algebra-lineal-con-aplicaciones-george-nakospdf.pdf
 > https://github.com/GerardoMunoz/AlgLin_2025/blob/main/docs/Nakos_Joyner_Content.pdf
+
 
 
 
