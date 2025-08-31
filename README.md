@@ -10,6 +10,7 @@
 2. https://github.com/GerardoMunoz/AlgLin_2025/blob/main/Producto_Punto.pdf
    * Nakos pg 88-89, Ejercicios 2.1: Los 26 primeros puntos
    * https://youtu.be/v7TdmlJkiuA?t=89 desde el minuto 1:29
+   * https://www.youtube.com/watch?v=nmihQVPWjoA hasta el minuto 15:14
 3. https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/SistemaDeEcuaciones.ipynb
    * Nakos pg 12-13, Ejercicios 1.1: 1,2,3,4,5,15
 5. https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/Matriz_Escalon_Reducida.ipynb
@@ -81,6 +82,7 @@ Ingenieros
 * Álgebra lineal con aplicaciones, George Nakos, David Joyner, 1999
 > https://github.com/GerardoMunoz/AlgLin_2025/blob/main/docs/algebra-lineal-con-aplicaciones-george-nakospdf.pdf
 > https://github.com/GerardoMunoz/AlgLin_2025/blob/main/docs/Nakos_Joyner_Content.pdf
+
 
 
 
