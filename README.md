@@ -12,11 +12,14 @@
    * https://www.youtube.com/watch?v=nmihQVPWjoA hasta el minuto 15:14
 3. https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/SistemaDeEcuaciones.ipynb
    * Nakos pg 12-13, Ejercicios 1.1: 1,2,3,4,5,15
+   * https://www.youtube.com/watch?v=9lPTl4KnR7A
 5. https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/Matriz_Escalon_Reducida.ipynb
    * Nakos pg 26-29, Ejercicios 1.2: 1,2,3,45,47
+   * https://www.youtube.com/watch?v=XWiNhq3UrbM
    * Quiz https://gerardomunoz.github.io/AlgLin_2025/html/EscalonReducidaEval.html
 4. https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/Eliminacion_Gauss.ipynb
    * Nakos pg 30, Ejercicios 1.2: 53a
+   * https://www.youtube.com/watch?v=X0SP84nzolY
    * Práctica desde el renglón cero con sugerencias (Python) https://colab.research.google.com/github/GerardoMunoz/AlgoritmoDeGauss/blob/master/AlgoritmoDeGauss.ipynb
    * Práctica desde el renglón uno  (JS) https://gerardomunoz.github.io/AlgLin_2025/html/Gauss_Elim.html
    * Quiz https://gerardomunoz.github.io/AlgLin_2025/html/Gauss_Elim_Quiz.html
@@ -81,6 +84,7 @@ Ingenieros
 * Álgebra lineal con aplicaciones, George Nakos, David Joyner, 1999
 > https://github.com/GerardoMunoz/AlgLin_2025/blob/main/docs/algebra-lineal-con-aplicaciones-george-nakospdf.pdf
 > https://github.com/GerardoMunoz/AlgLin_2025/blob/main/docs/Nakos_Joyner_Content.pdf
+
 
 
 
