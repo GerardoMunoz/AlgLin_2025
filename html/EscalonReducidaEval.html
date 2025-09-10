@@ -8,6 +8,7 @@
 <body>
     <h1>Evaluación de Matrices</h1>
     <input type="text" id="nombre" placeholder="Nombre">
+    <input type="text" id="codigo" placeholder="Código">
     <div id="questions"></div>
     <button onclick="enviarRespuestas()">Enviar</button>
 
@@ -74,6 +75,7 @@
             }
             
             const nombre = document.getElementById("nombre").value;
+            const codigo = document.getElementById("codigo").value;
             let respuestas = "";
             const preguntas = preguntasTexto.trim().split('\n');
             preguntas.forEach(pregunta => {
@@ -84,10 +86,12 @@
             });
             respuestas = respuestas.slice(0, -2);
 
-            const formURL = "https://docs.google.com/forms/d/e/1FAIpQLSekanMap5Exd-nCKKYla6HffWfrgFDEhisZ-uEXPcYaj3lN9A/formResponse";
+            const formURL = "https://docs.google.com/forms/d/e/1FAIpQLSfYYRnyhmv2NXlx8qawRoB3zp6GVtfoTPn7DrZ8ux4e9s3B1A/formResponse";
+            //const formURL = "https://docs.google.com/forms/d/e/1FAIpQLSekanMap5Exd-nCKKYla6HffWfrgFDEhisZ-uEXPcYaj3lN9A/formResponse";
             const formData = new FormData();
-            formData.append("entry.1373660141", nombre);
-            formData.append("entry.952712086", respuestas);
+            formData.append("entry.2137402683", nombre);
+            formData.append("entry.1829567558", codigo);
+            formData.append("entry.21841074", respuestas);
 
             fetch(formURL, {
                 method: "POST",
