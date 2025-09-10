@@ -24,12 +24,12 @@
    * Práctica desde el renglón cero con sugerencias (Python) https://colab.research.google.com/github/GerardoMunoz/AlgoritmoDeGauss/blob/master/AlgoritmoDeGauss.ipynb
    * Práctica desde el renglón uno  (JS) https://gerardomunoz.github.io/AlgLin_2025/html/Gauss_Elim.html
    * Quiz https://gerardomunoz.github.io/AlgLin_2025/html/Gauss_Elim_Quiz.html
-5. https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/Inversa.ipynb
-   * Nakos pg 179, Ejercicios 3.2: 15
-6. https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/Producto_Cruz.ipynb
+5. https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/Producto_Cruz.ipynb
    * Nakos pg 120, Ejercicios 2.6: 4, 9, 11, 15 
-7. https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/Determinante_nxn.ipynb
-8. Rectas y planos
+6. https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/Determinante_nxn.ipynb
+7. https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/Inversa.ipynb
+   * Nakos pg 179, Ejercicios 3.2: 15
+9. Rectas y planos
   * https://github.com/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/Planos.pdf
   * https://github.com/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/Rectas.pdf
   * https://github.com/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/Rectas2D.md
@@ -85,6 +85,7 @@ Ingenieros
 * Álgebra lineal con aplicaciones, George Nakos, David Joyner, 1999
 > https://github.com/GerardoMunoz/AlgLin_2025/blob/main/docs/algebra-lineal-con-aplicaciones-george-nakospdf.pdf
 > https://github.com/GerardoMunoz/AlgLin_2025/blob/main/docs/Nakos_Joyner_Content.pdf
+
 
 
 
