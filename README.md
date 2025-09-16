@@ -27,7 +27,8 @@
 5. https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/Producto_Cruz.ipynb
    * Nakos pg 120, Ejercicios 2.6: 4, 9, 11, 15 
 6. https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/Determinante_nxn.ipynb
-7. https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/Inversa.ipynb
+   * https://www.youtube.com/watch?v=Yf6AWmp13aI
+8. https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/Inversa.ipynb
    * Nakos pg 179, Ejercicios 3.2: 15
 9. Rectas y planos
   * https://github.com/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/Planos.pdf
@@ -85,6 +86,7 @@ Ingenieros
 * Álgebra lineal con aplicaciones, George Nakos, David Joyner, 1999
 > https://github.com/GerardoMunoz/AlgLin_2025/blob/main/docs/algebra-lineal-con-aplicaciones-george-nakospdf.pdf
 > https://github.com/GerardoMunoz/AlgLin_2025/blob/main/docs/Nakos_Joyner_Content.pdf
+
 
 
 
