@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Determinant 3x3 App</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    .matrix-container { display: inline-block; padding: 10px; border-left: 3px solid black; border-right: 3px solid black; margin: 10px 0; }
+    .matrix-row { display: flex; }
+    .matrix-input { width: 40px; text-align: center; margin: 2px; cursor: pointer; }
+    .steps { margin-top: 20px; }
+    .step { margin: 10px 0; padding: 10px; background: #f0f0f0; border-radius: 6px; }
+    .term { display: flex; align-items: center; margin: 5px 0; }
+    .minor { margin-left: 10px; }
+    .sign-btn { width: 40px; }
+    .final-section { margin-top: 20px; padding: 10px; background: #e8e8e8; border-radius: 6px; }
+  </style>
+</head>
+<body>
+  <h2>Determinant Calculator (3×3)</h2>
+
+  <label for="matrixData">Paste 3×3 list-of-lists (optional): </label>
+  <input type="text" id="matrixData" placeholder="[[1,2,3],[4,5,6],[7,8,9]]" style="width:300px;">
+  <button onclick="generateMatrix()">Generate Matrix</button>
+
+  <div id="matrix-area"></div>
+
+  <div class="steps" id="steps"></div>
+
+  <div class="final-section">
+    <label for="finalExpr">Write your final expression: </label>
+    <input type="text" id="finalExpr" style="width:400px;">
+    <button onclick="checkExpression()">Check</button>
+    <div id="checkResult"></div>
+  </div>
+
+  <div class="final-section">
+    <h3>Send your response</h3>
+    <label>Name: </label><input type="text" id="nombre"><br>
+    <label>Code: </label><input type="text" id="codigo"><br>
+    <button onclick="enviarOperaciones()">Send</button>
+  </div>
+
+  <script>
+    let matrixData = [];
+    let expansionTerms = [];
+
+    function generateMatrix() {
+      const input = document.getElementById('matrixData').value;
+      try {
+        matrixData = JSON.parse(input);
+        if (!Array.isArray(matrixData) || matrixData.length !== 3 || matrixData.some(r => r.length !== 3)) {
+          throw new Error("Invalid size");
+        }
+      } catch {
+        matrixData = Array.from({length:3}, () => Array.from({length:3}, () => Math.floor(Math.random()*7)-3));
+      }
+
+      const container = document.getElementById('matrix-area');
+      container.innerHTML = '';
+
+      const matrixWrapper = document.createElement('div');
+      matrixWrapper.className = 'matrix-container';
+
+      for (let i=0;i<3;i++){
+        const rowDiv=document.createElement('div');
+        rowDiv.className='matrix-row';
+        for (let j=0;j<3;j++){
+          const input=document.createElement('input');
+          input.type='number';
+          input.className='matrix-input';
+          input.value=matrixData[i][j];
+          //input.addEventListener('click',()=>fillMinor(i,j));
+          rowDiv.appendChild(input);
+        }
+        matrixWrapper.appendChild(rowDiv);
+      }
+      container.appendChild(matrixWrapper);
+
+      expandCofactor();
+    }
+
+    function expandCofactor(){
+      const stepsDiv=document.getElementById('steps');
+      stepsDiv.innerHTML='';
+      expansionTerms=[];
+
+      const step=document.createElement('div');
+      step.className='step';
+
+      for(let k=0;k<3;k++){
+        const term=document.createElement('div');
+        term.className='term';
+
+        const signBtn=document.createElement('button');
+        signBtn.className='sign-btn';
+        signBtn.textContent='+';
+        signBtn.onclick=()=>{ signBtn.textContent=(signBtn.textContent==='+')?'-':'+'; };
+        term.appendChild(signBtn);
+
+        const coeff=document.createElement('input');
+        coeff.type='number';
+        coeff.className='matrix-input';
+        coeff.value='';
+        term.appendChild(coeff);
+
+        const minor=document.createElement('div');
+        minor.className='matrix-container minor';
+        const minorInputs=[];
+        for(let i=0;i<2;i++){
+          const rowDiv=document.createElement('div');
+          rowDiv.className='matrix-row';
+          for(let j=0;j<2;j++){
+            const inp=document.createElement('input');
+            inp.type='number';
+            inp.className='matrix-input';
+            inp.value='';
+            rowDiv.appendChild(inp);
+            minorInputs.push(inp);
+          }
+          minor.appendChild(rowDiv);
+        }
+        term.appendChild(minor);
+        step.appendChild(term);
+
+        expansionTerms.push({ signBtn, coeff, minorInputs });
+      }
+
+      stepsDiv.appendChild(step);
+    }
+
+    function fillMinor(row,col){
+      expansionTerms[col].coeff.value = matrixData[row][col];
+      let minorVals=[];
+      for (let i=0;i<3;i++){
+        if(i===row) continue;
+        for (let j=0;j<3;j++){
+          if(j===col) continue;
+          minorVals.push(matrixData[i][j]);
+        }
+      }
+      expansionTerms[col].minorInputs.forEach((inp,idx)=>{
+        inp.value=minorVals[idx];
+      });
+    }
+
+    function checkExpression(){
+      const expr=document.getElementById('finalExpr').value;
+      const result=document.getElementById('checkResult');
+      try{
+        if(/^[0-9+\-*/() ]+$/.test(expr)){
+          eval(expr);
+          result.textContent="✅ Expression valid";
+        } else {
+          throw new Error("Invalid characters");
+        }
+      }catch(e){
+        result.textContent="❌ Syntax error: "+e.message;
+      }
+    }
+
+    function buildStepsString(){
+      let parts=[];
+      expansionTerms.forEach(term=>{
+        const sign=term.signBtn.textContent;
+        const coeff=term.coeff.value || "";
+        const vals=term.minorInputs.map(inp=>inp.value||"");
+        if(vals.length===4){
+          parts.push(`${sign}(${coeff})*det(${vals.join(',')})`);
+        }
+      });
+      return parts.join('');
+    }
+
+    function enviarOperaciones(){
+      let nombreInput=document.getElementById("nombre");
+      let codigoInput=document.getElementById("codigo");
+      let finalInput=document.getElementById("finalExpr");
+      const stepsStr=buildStepsString();
+
+      const formURL="https://docs.google.com/forms/d/e/1FAIpQLSdq-y90C6FZTOq10fkWvoz9spigyQ9R1z6r1nc-5Vm_DqVDdA/formResponse";
+      const formData=new FormData();
+
+      formData.append("entry.155816829","Expansión Cofactores");
+      formData.append("entry.516472959",nombreInput.value);
+      formData.append("entry.519404034",codigoInput.value);
+      formData.append("entry.1237481299",stepsStr+" FinalExpr="+finalInput.value+" [["+matrixData.map(r=>r.join(',')).join('],[')+"]]");
+
+      fetch(formURL,{ method:"POST", mode:"no-cors", body:formData })
+      .then(()=>{ alert("Operaciones enviadas con éxito."); })
+      .catch(error=>{ console.error("Error al enviar operaciones:",error); });
+    }
+  </script>
+</body>
+</html>
