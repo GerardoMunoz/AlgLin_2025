@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Three.js — Geometry Inputs</title>
+  <style>
+    body { margin: 0; overflow: hidden; }
+    #ui {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: rgba(0,0,0,0.7);
+      color: white;
+      padding: 10px;
+      border-radius: 8px;
+      font-family: sans-serif;
+      font-size: 14px;
+      max-width: 280px;
+    }
+    input {
+      width: 200px;
+      margin-bottom: 5px;
+    }
+    button {
+      margin-bottom: 10px;
+      display: block;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.126.1/build/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.126.1/examples/js/controls/OrbitControls.js"></script>
+</head>
+<body>
+  <div id="ui">
+    <h3>Geometry Input</h3>
+
+    <!-- Point -->
+    <label>Point (x,y,z):</label><br>
+    <input id="pointInput" value="1,1,1"><br>
+    <button id="addPoint">Add Point</button>
+
+    <!-- Arrow -->
+    <label>Arrow direction (x,y,z):</label><br>
+    <input id="arrowInput" value="1,0,0"><br>
+    <button id="addArrow">Add Arrow</button>
+
+    <!-- Line -->
+    <label>Line (p1;x,y,z) – (p2;x,y,z):</label><br>
+    <input id="lineInput" value="0,0,0;2,2,0"><br>
+    <button id="addLine">Add Line</button>
+
+    <!-- Plane -->
+    <label>Plane equation (a,b,c,d):</label><br>
+    <input id="planeInput" value="0,1,0,-2"><br>
+    <button id="addPlane">Add Plane</button>
+  </div>
+
+  <script type="module">
+    // === Scene setup ===
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
+
+    const controls = new THREE.OrbitControls(camera, renderer.domElement);
+    scene.add(new THREE.AxesHelper(5));
+
+    camera.position.set(5, 5, 5);
+    camera.lookAt(0, 0, 0);
+
+    // === Functions to create objects ===
+    function parseVec3(str) {
+      const nums = str.split(",").map(Number);
+      return new THREE.Vector3(nums[0], nums[1], nums[2]);
+    }
+
+    function addPoint(pos) {
+      const geom = new THREE.SphereGeometry(0.1, 16, 16);
+      const mat = new THREE.MeshBasicMaterial({ color: 0xffff00 });
+      const sphere = new THREE.Mesh(geom, mat);
+      sphere.position.copy(pos);
+      scene.add(sphere);
+    }
+
+    function addArrow(dir, origin = new THREE.Vector3(0,0,0)) {
+      const arrow = new THREE.ArrowHelper(dir.clone().normalize(), origin, dir.length(), 0xff00ff);
+      scene.add(arrow);
+    }
+
+    function addLine(p1, p2) {
+      const geom = new THREE.BufferGeometry().setFromPoints([p1, p2]);
+      const mat = new THREE.LineBasicMaterial({ color: 0x00ffff });
+      const line = new THREE.Line(geom, mat);
+      scene.add(line);
+    }
+
+    function addPlane(a, b, c, d) {
+      const plane = new THREE.Plane(new THREE.Vector3(a, b, c), d);
+
+      // Convert to PlaneHelper for visualization
+      const helper = new THREE.PlaneHelper(plane, 5, 0xff8800);
+      scene.add(helper);
+    }
+
+    // === Event listeners ===
+    document.getElementById("addPoint").addEventListener("click", () => {
+      const v = parseVec3(document.getElementById("pointInput").value);
+      addPoint(v);
+    });
+
+    document.getElementById("addArrow").addEventListener("click", () => {
+      const v = parseVec3(document.getElementById("arrowInput").value);
+      addArrow(v);
+    });
+
+    document.getElementById("addLine").addEventListener("click", () => {
+      const vals = document.getElementById("lineInput").value.split(";");
+      const p1 = parseVec3(vals[0]);
+      const p2 = parseVec3(vals[1]);
+      addLine(p1, p2);
+    });
+
+    document.getElementById("addPlane").addEventListener("click", () => {
+      const vals = document.getElementById("planeInput").value.split(",").map(Number);
+      addPlane(vals[0], vals[1], vals[2], vals[3]);
+    });
+
+    // === Animate ===
+    function animate() {
+      requestAnimationFrame(animate);
+      controls.update();
+      renderer.render(scene, camera);
+    }
+    animate();
+
+    // Resize
+    window.addEventListener("resize", () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+  </script>
+</body>
+</html>
