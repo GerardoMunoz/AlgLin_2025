@@ -385,7 +385,7 @@
       //const sup = [0,1,2].map(i=>document.getElementById('s_up_'+i).value||'').join(',');
       //parts.push(`Sarrus_down:${sdown}`); parts.push(`Sarrus_up:${sup}`);
       // Gauss ops
-      parts.push('Gauss_ops:' + document.getElementById('appliedOps').innerText.replace(/\n/g, ';'));
+      parts.push('Gauss_ops:' + document.getElementById('appliedOps').innerText.replace(/\n/g, ','));
       return parts.join(';');
     }
 
@@ -406,7 +406,19 @@
       formData.append("entry.155816829", "Cramer");
       formData.append("entry.516472959", nombreInput.value);
       formData.append("entry.519404034", codigoInput.value);
-      formData.append("entry.1237481299", ("Pregunta:"+aug+";"+finalExpr0.value + ";"+finalExpr1.value + ";"+finalExpr2.value + ";"+finalExpr3.value+";"+ document.getElementById('studentA').value+";"+ document.getElementById('studentA1').value+";"+ document.getElementById('studentA2').value+";"+ document.getElementById('studentA3').value+";"+ document.getElementById('solx').value + ',' + document.getElementById('soly').value + ',' + document.getElementById('solz').value+" ; "+buildStepsForForm()) );
+      formData.append("entry.1237481299", ("Pregunta:"+aug+";"+
+                                            "|A|pre:"+finalExpr0.value + ";"+
+                                            "|A1|pre:"+finalExpr1.value + ";"+
+                                            "|A2|pre:"+finalExpr2.value + ";"+
+                                            "|A3|pre:"+finalExpr3.value+";"+ 
+                                            "|A|:"+document.getElementById('studentA').value+";"+ 
+                                            "|A1|:"+document.getElementById('studentA1').value+";"+ 
+                                            "|A2|:"+document.getElementById('studentA2').value+";"+ 
+                                            "|A3|:"+document.getElementById('studentA3').value+";"+ 
+                                            "x:"+document.getElementById('solx').value + ';' + 
+                                            "y:"+document.getElementById('soly').value + ';' + 
+                                            "z:"+document.getElementById('solz').value+" ; "+
+                                            "cofactores:"+buildStepsForForm()) );
       console.log("buildStepsForForm"+":"+aug);// getElementById(finalExpr3)
       fetch(formURL, {
         method: "POST",
