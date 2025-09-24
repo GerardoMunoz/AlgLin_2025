@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Enviar Datos a Google Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+    }
+    input {
+      width: 300px;
+      padding: 8px;
+      margin-top: 5px;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      border: none;
+      background-color: #007bff;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 6px;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Formulario de Envío</h2>
+  <form id="formulario" onsubmit="event.preventDefault(); enviarOperaciones();">
+    <label for="title">Título:</label>
+    <input type="text" id="title" name="title" required>
+
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" name="nombre" required>
+
+    <label for="codigo">Código:</label>
+    <input type="text" id="codigo" name="codigo" required>
+
+    <label for="answer">Respuesta:</label>
+    <input type="text" id="answer" name="answer" required>
+
+    <button type="submit">Enviar</button>
+  </form>
+
+  <script>
+    function enviarOperaciones() {
+      let titleInput = document.getElementById("title");
+      let nombreInput = document.getElementById("nombre");
+      let codigoInput = document.getElementById("codigo");
+      let answerInput = document.getElementById("answer");
+
+      const formURL = "https://docs.google.com/forms/d/e/1FAIpQLSdq-y90C6FZTOq10fkWvoz9spigyQ9R1z6r1nc-5Vm_DqVDdA/formResponse";
+      const formData = new FormData();
+
+      // IDs de entrada según Google Form
+      formData.append("entry.155816829", titleInput.value); 
+      formData.append("entry.516472959", nombreInput.value);
+      formData.append("entry.519404034", codigoInput.value);
+      formData.append("entry.1237481299", answerInput.value); 
+
+      fetch(formURL, {
+        method: "POST",
+        mode: "no-cors",
+        body: formData
+      }).then(() => {
+        alert("Operaciones enviadas con éxito.");
+        document.getElementById("formulario").reset();
+      }).catch(error => {
+        console.error("Error al enviar operaciones:", error);
+        alert("Hubo un error al enviar los datos.");
+      });
+    }
+  </script>
+</body>
+</html>
