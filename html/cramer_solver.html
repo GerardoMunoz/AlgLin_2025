@@ -406,8 +406,8 @@
       formData.append("entry.155816829", "Cramer");
       formData.append("entry.516472959", nombreInput.value);
       formData.append("entry.519404034", codigoInput.value);
-      formData.append("entry.1237481299", finalExpr0.value + ";"+finalExpr1.value + ";"+finalExpr2.value + ";"+finalExpr3.value+" ; "+buildStepsForForm()+";"+ document.getElementById('studentA').value+";"+ document.getElementById('studentA1').value+";"+ document.getElementById('studentA2').value+";"+ document.getElementById('studentA3').value+";"+ document.getElementById('solx').value + ',' + document.getElementById('soly').value + ',' + document.getElementById('solz').value );
-      //console.log("buildStepsForForm"+":"+buildStepsForForm());// getElementById(finalExpr3)
+      formData.append("entry.1237481299", ("Pregunta:"+aug+";"+finalExpr0.value + ";"+finalExpr1.value + ";"+finalExpr2.value + ";"+finalExpr3.value+";"+ document.getElementById('studentA').value+";"+ document.getElementById('studentA1').value+";"+ document.getElementById('studentA2').value+";"+ document.getElementById('studentA3').value+";"+ document.getElementById('solx').value + ',' + document.getElementById('soly').value + ',' + document.getElementById('solz').value+" ; "+buildStepsForForm()) );
+      console.log("buildStepsForForm"+":"+aug);// getElementById(finalExpr3)
       fetch(formURL, {
         method: "POST",
         mode: "no-cors",
