@@ -42,7 +42,7 @@
   * La intersección de rectas y planos se puede encontrar solucionando el sistema de ecuaciones lineales formado por la unión de ambos sistemas de ecuaciones
   * Otro forma es igualando las ecuaciones vectoriales manteniendo los parámetros diferentes ¿Qué sucede si un par de parámetros son iguales?
   * https://gerardomunoz.github.io/AlgLin_2025/html/Geom3D_Quiz.html
-9. Espacio vectorial
+10. Espacio vectorial
     * Espacio Vectorial: Definición https://www.youtube.com/watch?v=GJFxGEDOJDc
     * Espacio Vectorial: Subespacios https://www.youtube.com/watch?v=t6FrWHtcRVY
        * https://colab.research.google.com/github/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/Fasores.ipynb   
@@ -51,9 +51,10 @@
     * ---
     * ![](https://raw.githubusercontent.com/GerardoMunoz/AlgLin_2025/main/imgs/Nulo.PNG)
     * $\mathbb{R}^n$: Espacio nulo y espacios columna y generado https://www.youtube.com/watch?v=X89iuatAPKg
+      * https://colab.research.google.com/github/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/Subespacios_Nulo_Columna.ipynb
     * Visualización en $\mathbb{R}^2$ y $\mathbb{R}^3$: Espacio Generado y Nulo https://www.youtube.com/watch?v=GkM5XGaKCmc&t=286s
    
-10. Base
+11. Base
     * Espacio Vectorial: Base https://www.youtube.com/watch?v=e08JDxr0YgE
     * $\mathbb{R}^n$: Coordenadas https://www.youtube.com/watch?v=5doHic1C9L0
     * ![](https://raw.githubusercontent.com/GerardoMunoz/AlgLin_2025/main/imgs/Coord.png)
@@ -64,16 +65,16 @@
 
     * 
     * $\mathbb{R}^n$: Proyección https://www.youtube.com/watch?v=j9zYnCVCtlw
-11. Bases orotgonales
+12. Bases orotgonales
     * $\mathbb{R}^n$: Gram Shmidt https://www.youtube.com/watch?v=Zs6Gd3iQPCM
     * Visualización en $\mathbb{R}^2$ y $\mathbb{R}^3$: Subespacios Ortogonales https://www.youtube.com/watch?v=vBoksCOvlCA
-12. Transformaciones Lineales
+13. Transformaciones Lineales
     * https://colab.research.google.com/github/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/Clase15_Repr5_2_TransfLineales.ipynb
     * https://www.youtube.com/watch?v=b6YnZ31eW60&list=PL1mPu0A4F0dCqISAjxkhkVVQ4QEKmKAQj&index=27&pp=iAQB
     * https://www.youtube.com/watch?v=LPI90K-WutY&list=PL1mPu0A4F0dCqISAjxkhkVVQ4QEKmKAQj&index=29&pp=iAQB
     * https://www.youtube.com/watch?v=pN5sirpdH8A&list=PL1mPu0A4F0dCqISAjxkhkVVQ4QEKmKAQj&index=30&pp=iAQB
     * https://www.youtube.com/watch?v=klBoGhi68ho&list=PL1mPu0A4F0dCqISAjxkhkVVQ4QEKmKAQj&index=31&pp=iAQB
- 13. Transformaciones Matriciales
+ 14. Transformaciones Matriciales
     * https://gerardomunoz.github.io/AlgLin_2025/html/ResumenRepresentaciones.html
     * https://www.youtube.com/watch?v=43o5TGxo-lM&list=PL1mPu0A4F0dCqISAjxkhkVVQ4QEKmKAQj&index=21&pp=iAQB
     * https://www.youtube.com/watch?v=mSUGKNTg8bw&list=PL1mPu0A4F0dCqISAjxkhkVVQ4QEKmKAQj&index=16&pp=iAQB
@@ -92,6 +93,7 @@ Ingenieros
 > https://github.com/GerardoMunoz/AlgLin_2025/blob/main/docs/Nakos_Joyner_Content.pdf
 # Quiz
 https://gerardomunoz.github.io/AlgLin_2025/html/Quiz.html
+
 
 
 
