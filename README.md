@@ -53,6 +53,7 @@
     * $\mathbb{R}^n$: Espacio nulo y espacios columna y generado https://www.youtube.com/watch?v=X89iuatAPKg
     * Visualización en $\mathbb{R}^2$ y $\mathbb{R}^3$: Espacio Generado y Nulo https://www.youtube.com/watch?v=GkM5XGaKCmc&t=286s
       * https://colab.research.google.com/github/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/AL10_EspacioGenerado.ipynb
+      * https://www.geogebra.org/3d/x6prkafa
       * https://colab.research.google.com/github/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/Subespacios_Nulo_Columna.ipynb
    
 11. Base
@@ -94,6 +95,7 @@ Ingenieros
 > https://github.com/GerardoMunoz/AlgLin_2025/blob/main/docs/Nakos_Joyner_Content.pdf
 # Quiz
 https://gerardomunoz.github.io/AlgLin_2025/html/Quiz.html
+
 
 
 
