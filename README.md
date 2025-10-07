@@ -45,7 +45,8 @@
 10. Espacio vectorial
     * Espacio Vectorial: Definición https://www.youtube.com/watch?v=GJFxGEDOJDc
     * Espacio Vectorial: Subespacios https://www.youtube.com/watch?v=t6FrWHtcRVY
-       * https://colab.research.google.com/github/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/Fasores.ipynb   
+       * https://colab.research.google.com/github/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/Fasores.ipynb
+       * https://colab.research.google.com/github/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/AL11_SubespRn_Co_Nu.ipynb 
     * $\mathbb{R}^n$: Subespacio, Dimensión, Rango, Nulidad, Independencia lineal https://www.youtube.com/watch?v=ogbzmgje0x0
     * ![](https://raw.githubusercontent.com/GerardoMunoz/AlgLin_2025/main/imgs/Generado.PNG)
     * ---
@@ -55,6 +56,7 @@
       * https://colab.research.google.com/github/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/AL10_EspacioGenerado.ipynb
       * https://www.geogebra.org/3d/x6prkafa
       * https://colab.research.google.com/github/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/Subespacios_Nulo_Columna.ipynb
+      * https://colab.research.google.com/github/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/Espacio_generado_2022.ipynb
    
 11. Base
     * Espacio Vectorial: Base https://www.youtube.com/watch?v=e08JDxr0YgE
@@ -95,6 +97,7 @@ Ingenieros
 > https://github.com/GerardoMunoz/AlgLin_2025/blob/main/docs/Nakos_Joyner_Content.pdf
 # Quiz
 https://gerardomunoz.github.io/AlgLin_2025/html/Quiz.html
+
 
 
 
