@@ -73,7 +73,7 @@
     * Visualización en $\mathbb{R}^2$ y $\mathbb{R}^3$: Subespacios Ortogonales https://www.youtube.com/watch?v=vBoksCOvlCA
 13. Proyeccón y Pseudoinversas   
     * $\mathbb{R}^n$: Proyección https://www.youtube.com/watch?v=j9zYnCVCtlw
-    * PDF
+    * https://github.com/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/proy.pdf
     * https://github.com/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/proy.ipynb
     * https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/Inversa.ipynb
     * https://colab.research.google.com/github/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/AL12_Inv.ipynb
@@ -102,6 +102,7 @@ Ingenieros
 > https://github.com/GerardoMunoz/AlgLin_2025/blob/main/docs/Nakos_Joyner_Content.pdf
 # Quiz
 https://gerardomunoz.github.io/AlgLin_2025/html/Quiz.html
+
 
 
 
