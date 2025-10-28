@@ -77,18 +77,22 @@
     * https://github.com/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/proy.ipynb
     * https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/Inversa.ipynb
     * https://colab.research.google.com/github/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/AL12_Inv.ipynb
-14. Transformaciones Lineales
+14. Transformaciones Matriciales
+    * https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/Transformaci%C3%B3n_Matricial.ipynb
+    * https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/Obtener_Tr_Matricial.ipynb
+    * https://gerardomunoz.github.io/AlgLin_2025/html/ResumenRepresentaciones.html
+    * https://www.youtube.com/watch?v=43o5TGxo-lM&list=PL1mPu0A4F0dCqISAjxkhkVVQ4QEKmKAQj&index=21&pp=iAQB
+    * https://www.youtube.com/watch?v=mSUGKNTg8bw&list=PL1mPu0A4F0dCqISAjxkhkVVQ4QEKmKAQj&index=16&pp=iAQB
+    * https://www.youtube.com/watch?v=1vslbOh_Kq4&list=PL1mPu0A4F0dCqISAjxkhkVVQ4QEKmKAQj&index=41&pp=iAQB
+
+15. Transformaciones Lineales
     * https://colab.research.google.com/github/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/Clase15_Repr5_2_TransfLineales.ipynb
     * https://www.youtube.com/watch?v=b6YnZ31eW60&list=PL1mPu0A4F0dCqISAjxkhkVVQ4QEKmKAQj&index=27&pp=iAQB
     * https://www.youtube.com/watch?v=LPI90K-WutY&list=PL1mPu0A4F0dCqISAjxkhkVVQ4QEKmKAQj&index=29&pp=iAQB
     * https://www.youtube.com/watch?v=pN5sirpdH8A&list=PL1mPu0A4F0dCqISAjxkhkVVQ4QEKmKAQj&index=30&pp=iAQB
     * https://www.youtube.com/watch?v=klBoGhi68ho&list=PL1mPu0A4F0dCqISAjxkhkVVQ4QEKmKAQj&index=31&pp=iAQB
- 15. Transformaciones Matriciales
-    * https://gerardomunoz.github.io/AlgLin_2025/html/ResumenRepresentaciones.html
-    * https://www.youtube.com/watch?v=43o5TGxo-lM&list=PL1mPu0A4F0dCqISAjxkhkVVQ4QEKmKAQj&index=21&pp=iAQB
-    * https://www.youtube.com/watch?v=mSUGKNTg8bw&list=PL1mPu0A4F0dCqISAjxkhkVVQ4QEKmKAQj&index=16&pp=iAQB
-    * https://www.youtube.com/watch?v=1vslbOh_Kq4&list=PL1mPu0A4F0dCqISAjxkhkVVQ4QEKmKAQj&index=41&pp=iAQB
-    * SVD
+
+16 Vectores propios, SVD y PCA 
      
   
 ---
@@ -102,6 +106,7 @@ Ingenieros
 > https://github.com/GerardoMunoz/AlgLin_2025/blob/main/docs/Nakos_Joyner_Content.pdf
 # Quiz
 https://gerardomunoz.github.io/AlgLin_2025/html/Quiz.html
+
 
 
 
