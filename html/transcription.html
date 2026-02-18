@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mobile Matrix Exam Sender</title>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f4f6f8;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 15px;
+      box-sizing: border-box;
+    }
+
+    h2 {
+      margin: 10px 0 10px 0;
+      text-align: center;
+    }
+
+    form {
+      width: 100%;
+      max-width: 600px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+
+    textarea {
+      height: 150px;
+      resize: none;
+      overflow-y: auto;
+      font-family: monospace;
+    }
+
+    .render-area {
+      width: 100%;
+      max-width: 600px;
+      margin-top: 15px;
+      background: white;
+      border-radius: 12px;
+      padding: 15px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      max-height: 250px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .examples {
+      width: 100%;
+      max-width: 600px;
+      background: #ffffff;
+      margin-top: 15px;
+      padding: 12px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+    .examples code {
+      display: block;
+      background: #f1f3f5;
+      padding: 6px;
+      border-radius: 6px;
+      margin: 4px 0;
+      overflow-x: auto;
+    }
+
+    button {
+      padding: 12px;
+      font-size: 16px;
+      border-radius: 10px;
+      border: none;
+      background: #2563eb;
+      color: white;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h2 id="examTitle">Exam</h2>
+
+  <form id="formulario" onsubmit="event.preventDefault(); enviarOperaciones();">
+    <input type="hidden" id="title" />
+    <input type="text" id="nombre" placeholder="Student Name" required />
+    <input type="text" id="codigo" placeholder="Student Code" required />
+    <textarea id="answer" placeholder="Write operations (one per line)…" required></textarea>
+    <button type="submit">Send</button>
+  </form>
+
+  <div id="render" class="render-area"></div>
+
+  <div class="examples">
+    <strong>Linear Algebra Examples (one per line):</strong>
+
+    <code>\begin{bmatrix}1 & 2 & 3\\4 & 5 & 6\\7 & 8 & 9\end{bmatrix}</code>
+    <code>\pmatrix{1 & 2 & 3}</code>
+    <code>\pmatrix{1\\2\\3}</code>
+    <code>\sqrt{a^2 + b^2}</code>
+    <code>\|A\|</code>
+    <code>\vec{v} = (v_1, v_2, v_3)</code>
+    <code>A^{-1}</code>
+    <code>A^T</code>
+    <code>A\vec{x} = \vec{b}</code>
+  </div>
+
+  <script>
+    const answerInput = document.getElementById("answer");
+    const renderArea = document.getElementById("render");
+    const titleInput = document.getElementById("title");
+    const examTitle = document.getElementById("examTitle");
+
+    const params = new URLSearchParams(window.location.search);
+    const examName = params.get("exam") || "Exam";
+    titleInput.value = examName;
+    examTitle.textContent = examName;
+
+    function renderFormulas() {
+      const lines = answerInput.value
+        .split("\n")
+        .map(line => line.trim())
+        .filter(line => line.length > 0);
+
+      renderArea.innerHTML = "";
+
+      lines.forEach(line => {
+        const div = document.createElement("div");
+        div.innerHTML = `\\(${line}\\)`;
+        renderArea.appendChild(div);
+      });
+
+      if (window.MathJax) MathJax.typesetPromise();
+
+      answerInput.scrollTop = answerInput.scrollHeight;
+      renderArea.scrollTop = 0;
+    }
+
+    answerInput.addEventListener("input", renderFormulas);
+
+    function enviarOperaciones() {
+      let nombreInput = document.getElementById("nombre");
+      let codigoInput = document.getElementById("codigo");
+
+      const formURL = "https://docs.google.com/forms/d/e/1FAIpQLSdq-y90C6FZTOq10fkWvoz9spigyQ9R1z6r1nc-5Vm_DqVDdA/formResponse";
+      const formData = new FormData();
+
+      formData.append("entry.155816829", titleInput.value);
+      formData.append("entry.516472959", nombreInput.value);
+      formData.append("entry.519404034", codigoInput.value);
+      formData.append("entry.1237481299", answerInput.value);
+
+      fetch(formURL, {
+        method: "POST",
+        mode: "no-cors",
+        body: formData
+      }).then(() => {
+        alert("Operaciones enviadas con éxito.");
+        document.getElementById("formulario").reset();
+        renderArea.innerHTML = "";
+      }).catch(error => {
+        console.error("Error al enviar operaciones:", error);
+        alert("Hubo un error al enviar los datos.");
+      });
+    }
+  </script>
+
+</body>
+</html>
