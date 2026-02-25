@@ -69,10 +69,10 @@
             // Comparar solo el año, mes y día
             const formatoFecha = (fecha) => fecha.toISOString().split('T')[0];
 
-            if (formatoFecha(fechaActual) !== formatoFecha(fechaLimite)) {  
-                alert("Fuera de fecha, no se pueden enviar respuestas.");
-                return;
-            }
+            //if (formatoFecha(fechaActual) !== formatoFecha(fechaLimite)) {  
+            //    alert("Fuera de fecha, no se pueden enviar respuestas.");
+            //    return;
+            //}
             
             const nombre = document.getElementById("nombre").value;
             const codigo = document.getElementById("codigo").value;
@@ -106,3 +106,4 @@
     </script>
 </body>
 </html>
+
