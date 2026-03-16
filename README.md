@@ -24,14 +24,15 @@
    * Práctica desde el renglón cero con sugerencias (Python) https://colab.research.google.com/github/GerardoMunoz/AlgoritmoDeGauss/blob/master/AlgoritmoDeGauss.ipynb
    * Práctica desde el renglón uno  (JS) https://gerardomunoz.github.io/AlgLin_2025/html/Gauss_Elim.html
    * Quiz https://gerardomunoz.github.io/AlgLin_2025/html/Gauss_Elim_Quiz.html
-5. https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/Producto_Cruz.ipynb
+5. https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/Inversa.ipynb
+   * Nakos pg 179, Ejercicios 3.2: 15
+6. https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/Producto_Cruz.ipynb
    * Nakos pg 120, Ejercicios 2.6: 4, 9, 11, 15 
-6. https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/Determinante_nxn.ipynb
+7. https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/Determinante_nxn.ipynb
    * Video: https://www.youtube.com/watch?v=Yf6AWmp13aI
    * Quiz: https://gerardomunoz.github.io/AlgLin_2025/html/determinant_solver.html
    * Quiz: https://gerardomunoz.github.io/AlgLin_2025/html/cramer_solver.html
-8. https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/Inversa.ipynb
-   * Nakos pg 179, Ejercicios 3.2: 15
+
 9. Rectas y planos
   * https://github.com/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/Planos.pdf
   * https://github.com/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/Rectas.pdf
