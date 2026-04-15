@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Evaluación de Matriz</title>
+
+<style>
+    table { border-collapse: collapse; margin: 10px 0; }
+    td { border: 1px solid black; padding: 8px; text-align: center; }
+</style>
+</head>
+<body>
+
+<h2>Matriz:</h2>
+<div id="matriz"></div>
+
+<input type="text" id="nombre" placeholder="Nombre">
+<input type="text" id="codigo" placeholder="Código">
+
+<h2>Preguntas</h2>
+<div id="preguntas"></div>
+
+<button onclick="enviarRespuestas()">Enviar</button>
+
+<script>
+// ================= MATRIZ DESDE URL =================
+function getMatriz() {
+    const params = new URLSearchParams(window.location.search);
+    const matrizStr = params.get("matriz");
+    if (!matrizStr) return [];
+
+    return matrizStr.split(";").map(f =>
+        f.split(",").map(Number)
+    );
+}
+
+function mostrarMatriz(matriz) {
+    if (matriz.length === 0) {
+        document.getElementById("matriz").innerHTML = "No hay matriz";
+        return;
+    }
+
+    let html = "<table>";
+    matriz.forEach(fila => {
+        html += "<tr>";
+        fila.forEach(val => {
+            html += `<td>${val}</td>`;
+        });
+        html += "</tr>";
+    });
+    html += "</table>";
+
+    document.getElementById("matriz").innerHTML = html;
+}
+
+// ================= PREGUNTAS =================
+const preguntas = [
+
+    // ===== SISTEMAS =====
+    "¿El sistema Ax=b es consistente?",
+    "¿El sistema tiene solución única?",
+    "¿El sistema tiene infinitas soluciones?",
+    "¿Ax=b tiene solución única para todo b?",
+
+    // ===== PIVOTES / RANGO / NULIDAD =====
+    "¿Cuántos pivotes tiene la matriz? (0-6)",
+    "¿Tiene pivote en cada fila y columna?",
+    "¿Número de variables libres? (0-6)",
+    "¿rango(A) = m?",
+    "¿nulidad(A) = 0?",
+
+    // ===== ESPACIO COLUMNA =====
+    "¿Nu(A) = {0}?",
+    "¿Col(A) = R^m?",
+    "¿Las columnas generan R^m?",
+
+    // ===== INDEPENDENCIA LINEAL =====
+    "¿Las columnas son linealmente independientes?",
+    "¿Ninguna columna es combinación lineal de otra?",
+
+    // ===== MATRIZ INVERTIBLE =====
+    "¿A es invertible?",
+    "¿det(A) ≠ 0?"
+];
+
+// ================= GENERAR =================
+function generarPreguntas() {
+    let html = "";
+
+    preguntas.forEach((p, i) => {
+
+        // opciones distintas según tipo
+        if (p.includes("(0-6)")) {
+            html += `<p><strong>${p}</strong><br>`;
+            for (let j = 0; j <= 6; j++) {
+                html += `<input type="radio" name="q${i}" value="${j}"> ${j} `;
+            }
+        } else {
+            html += `<p><strong>${p}</strong><br>
+            <input type="radio" name="q${i}" value="Verdadero"> Verdadero
+            <input type="radio" name="q${i}" value="Falso"> Falso`;
+        }
+
+        html += "</p>";
+    });
+
+    document.getElementById("preguntas").innerHTML = html;
+}
+
+// ================= ENVIAR =================
+function enviarRespuestas() {
+
+    const nombre = document.getElementById("nombre").value;
+    const codigo = document.getElementById("codigo").value;
+    const params = new URLSearchParams(window.location.search);
+    const matrizStr = params.get("matriz");
+
+    let respuestas = "";
+
+    preguntas.forEach((p, i) => {
+        const sel = document.querySelector(`input[name="q${i}"]:checked`);
+        respuestas += sel ? sel.value + ", " : "Sin respuesta, ";
+    });
+
+    respuestas = respuestas.slice(0, -2);
+
+    const formURL = "https://docs.google.com/forms/d/e/1FAIpQLSdq-y90C6FZTOq10fkWvoz9spigyQ9R1z6r1nc-5Vm_DqVDdA/formResponse";
+   const formData = new FormData();
+     // Replace this entry ID with the correct field for operations in your Google Form
+    formData.append("entry.155816829", "Col_Nul "+matrizStr);
+    formData.append("entry.516472959",nombre);
+    formData.append("entry.519404034", codigo);
+    formData.append("entry.1237481299", respuestas);
+
+    
+
+    fetch(formURL, {
+        method: "POST",
+        mode: "no-cors",
+        body: formData
+    }).then(() => {
+        alert("Respuestas enviadas");
+    }).catch(err => console.error(err));
+}
+
+// ================= INIT =================
+const matriz = getMatriz();
+mostrarMatriz(matriz);
+generarPreguntas();
+
+</script>
+
+</body>
+</html>
