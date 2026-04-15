@@ -48,17 +48,13 @@
     * Espacio Vectorial: Subespacios https://www.youtube.com/watch?v=t6FrWHtcRVY
        * https://colab.research.google.com/github/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/Fasores.ipynb
        * https://colab.research.google.com/github/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/AL11_SubespRn_Co_Nu.ipynb 
-    * $\mathbb{R}^n$: Subespacio, Dimensión, Rango, Nulidad, Independencia lineal https://www.youtube.com/watch?v=ogbzmgje0x0
-    * ![](https://raw.githubusercontent.com/GerardoMunoz/AlgLin_2025/main/imgs/Generado.PNG)
-    * ---
-    * ![](https://raw.githubusercontent.com/GerardoMunoz/AlgLin_2025/main/imgs/Nulo.PNG)
-    * $\mathbb{R}^n$: Espacio nulo y espacios columna y generado https://www.youtube.com/watch?v=X89iuatAPKg
-    * Visualización en $\mathbb{R}^2$ y $\mathbb{R}^3$: Espacio Generado y Nulo https://www.youtube.com/watch?v=GkM5XGaKCmc&t=286s
-      * https://colab.research.google.com/github/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/AL10_EspacioGenerado.ipynb
-      * https://www.geogebra.org/3d/x6prkafa
-      * https://colab.research.google.com/github/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/Subespacios_Nulo_Columna.ipynb
-      * https://colab.research.google.com/github/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/Espacio_generado_2022.ipynb
-   
+    * $\mathbb{R}^n$: Subespacio, Dimensión, Rango, Nulidad, Independencia lineal
+      * https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/SubespaciosCoNu_Base.ipynb   
+      * ![](https://raw.githubusercontent.com/GerardoMunoz/AlgLin_2025/main/imgs/Generado.PNG)
+      * ![](https://raw.githubusercontent.com/GerardoMunoz/AlgLin_2025/main/imgs/Nulo.PNG)
+      * https://www.youtube.com/watch?v=ogbzmgje0x0
+      * $\mathbb{R}^n$: Espacio nulo y espacios columna y generado https://www.youtube.com/watch?v=X89iuatAPKg
+      * Visualización en $\mathbb{R}^2$ y $\mathbb{R}^3$: Espacio Generado y Nulo https://www.youtube.com/watch?v=GkM5XGaKCmc&t=286s
 11. Base
     * Espacio Vectorial: Base https://www.youtube.com/watch?v=e08JDxr0YgE
     * $\mathbb{R}^n$: Coordenadas https://www.youtube.com/watch?v=5doHic1C9L0
