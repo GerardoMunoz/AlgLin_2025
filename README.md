@@ -54,6 +54,7 @@
       * ![](https://raw.githubusercontent.com/GerardoMunoz/AlgLin_2025/main/imgs/Nulo.PNG)
       * https://www.youtube.com/watch?v=ogbzmgje0x0
       * $\mathbb{R}^n$: Espacio nulo y espacios columna y generado https://www.youtube.com/watch?v=X89iuatAPKg
+      * https://gerardomunoz.github.io/AlgLin_2025/html/Co_Nu_eval.html
 11. Base
     * Espacio Vectorial: Base https://www.youtube.com/watch?v=e08JDxr0YgE
     * $\mathbb{R}^n$: Coordenadas https://www.youtube.com/watch?v=5doHic1C9L0
