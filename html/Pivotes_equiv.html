@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Equivalencias de Matrices</title>
+
+<style>
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+td, th {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+}
+th {
+    background-color: #f2f2f2;
+}
+</style>
+</head>
+<body>
+
+<h2>Equivalencias</h2>
+
+<input type="text" id="nombre" placeholder="Nombre"><br><br>
+<input type="text" id="codigo" placeholder="Código"><br><br>
+
+<table>
+    <tr>
+        <th>Concidere que A es una matriz de mxn</th>
+        <th colspan="2">A tiene un l-pivote en cada:</th>
+    </tr>
+    <tr>
+        <th></th>
+        <th>Renglón</th>
+        <th>Columna</th>
+    </tr>
+
+    <!-- FILAS -->
+</table>
+
+<br>
+<button onclick="enviar()">Enviar</button>
+
+<script>
+
+// AFIRMACIONES
+
+
+const afirmaciones = [
+"El sistema homogéneo Ax = 0 tiene solución única",
+"El sistema Ax = b es consistente para todo b ∈ R^m",
+"El sistema Ax = b tiene solución única para todo b ∈ R^m",
+"Las columnas de A son linealmente independientes",
+"Las columnas de A no son linealmente dependientes", 
+"Ninguna columna de A es combinación lineal de las otras",
+"Cualquier vector de R^m puede escribirse como combinación lineal de las columnas de A",
+"La combinación lineal de las columnas de A que produce el vector cero es única",
+"Las columnas de A forman una base de R^m",
+"El espacio generado por las columnas de A es todo R^m",
+"A es una matriz cuadrada con m pivotes",
+"El sistema Ax = b tiene solución x = A^{-1}b",
+"Col(A) = R^m",
+"rango(A) = m",
+"Nu(A) = {0}",
+"nulidad(A) = 0",
+"A es equivalente a la matriz identidad",
+"A es una matriz invertible",
+"El determinante de A es distinto de cero"
+];
+
+// GENERAR TABLA
+function generarTabla() {
+    const table = document.querySelector("table");
+
+    afirmaciones.forEach((texto, i) => {
+        const row = document.createElement("tr");
+
+        row.innerHTML = `
+            <td>${texto}</td>
+            <td><input type="checkbox" name="r${i}" value="renglon"></td>
+            <td><input type="checkbox" name="r${i}" value="columna"></td>
+        `;
+
+        table.appendChild(row);
+    });
+}
+
+// ENVIAR
+function enviar() {
+
+    const nombre = document.getElementById("nombre").value;
+    const codigo = document.getElementById("codigo").value;
+
+    let respuestas = "";
+
+    afirmaciones.forEach((texto, i) => {
+        const checks = document.querySelectorAll(`input[name="r${i}"]:checked`);
+
+        let seleccion = [];
+        checks.forEach(c => seleccion.push(c.value));
+
+        respuestas += `${texto}: ${seleccion.join("-") || "ninguno"} | `;
+    });
+
+    respuestas = respuestas.slice(0, -3);
+
+
+    const formURL = "https://docs.google.com/forms/d/e/1FAIpQLSdq-y90C6FZTOq10fkWvoz9spigyQ9R1z6r1nc-5Vm_DqVDdA/formResponse";
+   const formData = new FormData();
+     // Replace this entry ID with the correct field for operations in your Google Form
+    formData.append("entry.155816829", "Pivotes");
+    formData.append("entry.516472959",nombre);
+    formData.append("entry.519404034", codigo);
+    formData.append("entry.1237481299", respuestas);
+
+
+//    const formURL = "https://docs.google.com/forms/d/e/1FAIpQLSfYYRnyhmv2NXlx8qawRoB3zp6GVtfoTPn7DrZ8ux4e9s3B1A/formResponse";
+
+//    const formData = new FormData();
+//    formData.append("entry.2137402683", nombre);
+//    formData.append("entry.1829567558", codigo);
+//    formData.append("entry.21841074", respuestas);
+
+    fetch(formURL, {
+        method: "POST",
+        mode: "no-cors",
+        body: formData
+    }).then(() => {
+        alert("Respuestas enviadas");
+    }).catch(err => console.error(err));
+}
+
+// INIT
+generarTabla();
+
+</script>
+
+</body>
+</html>
