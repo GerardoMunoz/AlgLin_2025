@@ -57,19 +57,17 @@ function mostrarMatriz(matriz) {
 const preguntas = [
 
     // ===== SISTEMAS =====
-    "¿El sistema Ax=b es consistente?",
-    "¿El sistema tiene solución única?",
-    "¿El sistema tiene infinitas soluciones?",
+    "¿El sistema Ax=b es consistente para todo b?",
+    "¿El sistema homogéneo [A:0] tiene solución única?",
+    "¿El sistema homogéneo [A:0] tiene infinitas soluciones?",
     "¿Ax=b tiene solución única para todo b?",
 
     // ===== PIVOTES / RANGO / NULIDAD =====
     "¿Cuántos pivotes tiene la matriz? (0-6)",
     "¿Tiene pivote en cada fila y columna?",
-    "¿Número de variables libres? (0-6)",
+    "¿Número de variables libres del sistema homogéneo [A:0]? (0-6)",
     "¿rango(A) = m?",
     "¿nulidad(A) = 0?",
-
-    // ===== ESPACIO COLUMNA =====
     "¿Nu(A) = {0}?",
     "¿Col(A) = R^m?",
     "¿Las columnas generan R^m?",
