@@ -81,6 +81,7 @@
     * Composición de transformaciones matriciales (al conmutar puede variar, pero el determinante (si lo hay) no varia)
     * https://www.youtube.com/watch?v=mSUGKNTg8bw&list=PL1mPu0A4F0dCqISAjxkhkVVQ4QEKmKAQj&index=16&pp=iAQB
     * https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/Obtener_Tr_Matricial.ipynb
+    * Funciones inyectivas, sobreyectivas, biyectivas.
     * https://gerardomunoz.github.io/AlgLin_2025/html/ResumenRepresentaciones.html
     * https://www.youtube.com/watch?v=43o5TGxo-lM&list=PL1mPu0A4F0dCqISAjxkhkVVQ4QEKmKAQj&index=21&pp=iAQB
     * https://colab.research.google.com/github/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/PS10_TransfAfin.ipynb
