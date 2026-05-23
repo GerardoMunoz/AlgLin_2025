@@ -14,4 +14,4 @@ Nombre __________________________________ Código ___________________
 * $A_4$ para pasar de $B_1$ a $E_{Pm{-1}}$
 * $A_5$ para pasar de $B_1$ a $B_2$
 
-4. Encuentre la matriz $A_6$ de la transformación de la pregunta 1, usando la base $B_3$ para el dominio y la base $B_1$ para el codominio. 
+4. Encuentre la matriz $A_6$ de la transformación de la pregunta 1, usando la base $B_3$ para el dominio y la base $B_2$ para el codominio. 
