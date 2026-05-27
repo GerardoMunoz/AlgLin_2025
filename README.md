@@ -111,6 +111,15 @@ Ingenieros
 # Quiz
 https://gerardomunoz.github.io/AlgLin_2025/html/Quiz.html
 
+# Ejercicio
+* ![](https://raw.githubusercontent.com/GerardoMunoz/AlgLin_2025/main/imgs/ImagenDerecha.PNG)
+* ![](https://raw.githubusercontent.com/GerardoMunoz/AlgLin_2025/main/imgs/ImagenIzquierda.PNG)
+* ![](https://raw.githubusercontent.com/GerardoMunoz/AlgLin_2025/main/imgs/PuntosRetinas.PNG)
+* ![](https://raw.githubusercontent.com/GerardoMunoz/AlgLin_2025/main/imgs/ProfundidadObjeto.PNG)
+
+
+
+
 
 
 
