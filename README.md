@@ -6,6 +6,7 @@
    * Nakos pg 167-168, Ejercicios 3.1: 4,10,11
    * https://www.youtube.com/watch?v=GkM5XGaKCmc hasta el minuto 4:46
    * https://youtu.be/E4FOOJ0CBiY?t=363 desde el minuto 6:03
+   * Practica https://gerardomunoz.github.io/AlgLin_2025/html/MatMul_noquiz.html
    * Quiz https://gerardomunoz.github.io/AlgLin_2025/html/MatMul.html
 2. https://github.com/GerardoMunoz/AlgLin_2025/blob/main/Producto_Punto.pdf
    * Nakos pg 88-89, Ejercicios 2.2: Los 17 primeros puntos
