@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,11 +34,11 @@
     }
 
     .cell {
-      width: 100px;
+      width: 120px;
       height: 35px;
       text-align: center;
       margin: 3px;
-      font-size: 15px;
+      font-size: 14px;
       box-sizing: border-box;
     }
 
@@ -51,6 +50,18 @@
       font-size: 16px;
       box-sizing: border-box;
       border: 1px solid #aaa;
+      padding-top: 7px;
+    }
+
+    .calculated-cell {
+      width: 75px;
+      height: 35px;
+      text-align: center;
+      margin: 3px;
+      font-size: 16px;
+      box-sizing: border-box;
+      border: 1px solid #888;
+      background: #f3f3f3;
       padding-top: 7px;
     }
 
@@ -109,6 +120,12 @@
       font-size: 14px;
       color: #555;
     }
+
+    .calculated-section {
+      margin-top: 30px;
+      padding-top: 15px;
+      border-top: 1px solid #ddd;
+    }
   </style>
 </head>
 
@@ -129,7 +146,7 @@
 
     <p class="note">
       Example:
-      <code>2*3 + 4*5 + 1*6</code>
+      <code>-2*(-3) + 4*5 - 1*6</code>
     </p>
 
     <p class="note">
@@ -138,6 +155,11 @@
 
     <p class="note">
       Do not use '=' and use parentheses with negatives, i.e. 3*(-2).
+    </p>
+
+    <p class="note">
+      The gray matrix below will automatically show the
+      numerical result of each expression you enter.
     </p>
 
   </div>
@@ -170,10 +192,10 @@
 
 
   <!-- =====================================================
-       STUDENT ANSWER
+       STUDENT EXPRESSIONS
        ===================================================== -->
 
-  <h3>Enter your calculation</h3>
+  <h3>Enter your calculations</h3>
 
   <p class="note">
     Each box represents one element of the resulting 2×4 matrix.
@@ -181,6 +203,26 @@
 
   <div id="answer"></div>
 
+
+  <!-- =====================================================
+       LIVE CALCULATED MATRIX
+       ===================================================== -->
+
+  <div class="calculated-section">
+
+    <h3>Your calculated result</h3>
+
+    <p class="note">
+      This matrix is read-only and shows the numerical
+      value of each expression as you type.
+    </p>
+
+    <div id="calculatedResult"></div>
+
+  </div>
+
+
+  <br>
 
   <button onclick="checkAnswer()">
     Check Answer
@@ -363,7 +405,7 @@
 
 
     // =====================================================
-    // CREATE ANSWER MATRIX
+    // CREATE STUDENT ANSWER MATRIX
     // =====================================================
 
     function createAnswerMatrix() {
@@ -381,8 +423,6 @@
       matrixDiv.className =
         "matrix";
 
-
-      // Result is 2 × 4
 
       for (let i = 0; i < 2; i++) {
 
@@ -407,6 +447,30 @@
           input.placeholder =
             `C${i + 1}${j + 1}`;
 
+
+          // -------------------------------------------------
+          // UPDATE CALCULATED CELL EVERY TIME THE STUDENT
+          // TYPES SOMETHING
+          // -------------------------------------------------
+
+          input.addEventListener(
+            "input",
+            function () {
+
+              updateCalculatedCell(
+                i,
+                j
+              );
+
+              checked = false;
+
+              document.getElementById(
+                "result"
+              ).textContent = "";
+            }
+          );
+
+
           row.appendChild(input);
         }
 
@@ -415,6 +479,139 @@
 
       container.appendChild(
         matrixDiv
+      );
+    }
+
+
+    // =====================================================
+    // CREATE READ-ONLY CALCULATED MATRIX
+    // =====================================================
+
+    function createCalculatedMatrix() {
+
+      const container =
+        document.getElementById(
+          "calculatedResult"
+        );
+
+      container.innerHTML = "";
+
+      const matrixDiv =
+        document.createElement("div");
+
+      matrixDiv.className =
+        "matrix";
+
+
+      for (let i = 0; i < 2; i++) {
+
+        const row =
+          document.createElement("div");
+
+        row.className = "row";
+
+        for (let j = 0; j < 4; j++) {
+
+          const cell =
+            document.createElement("div");
+
+          cell.className =
+            "calculated-cell";
+
+          cell.id =
+            `calculated_${i}_${j}`;
+
+          cell.textContent = "";
+
+          row.appendChild(cell);
+        }
+
+        matrixDiv.appendChild(row);
+      }
+
+      container.appendChild(
+        matrixDiv
+      );
+    }
+
+
+    // =====================================================
+    // UPDATE ONE CALCULATED CELL
+    // =====================================================
+
+    function updateCalculatedCell(
+      i,
+      j
+    ) {
+
+      const input =
+        document.getElementById(
+          `C_${i}_${j}`
+        );
+
+      const output =
+        document.getElementById(
+          `calculated_${i}_${j}`
+        );
+
+
+      const expression =
+        input.value.trim();
+
+
+      if (expression === "") {
+
+        output.textContent = "";
+
+        return;
+      }
+
+
+      try {
+
+        const value =
+          evaluateExpression(
+            expression
+          );
+
+
+        output.textContent =
+          formatNumber(value);
+
+      }
+
+      catch (error) {
+
+        output.textContent = "?";
+      }
+
+    }
+
+
+    // =====================================================
+    // FORMAT NUMBER
+    // =====================================================
+
+    function formatNumber(
+      value
+    ) {
+
+      /*
+       * Avoid showing unnecessary
+       * floating-point decimals.
+       */
+
+      if (
+        Math.abs(value - Math.round(value))
+        < 0.0000001
+      ) {
+
+        return Math.round(value);
+      }
+
+
+      return Number(
+        value.toFixed(6)
       );
     }
 
@@ -507,6 +704,7 @@
 
       C = multiply(A, B);
 
+
       displayMatrix(
         A,
         "matrixA"
@@ -518,6 +716,8 @@
       );
 
       createAnswerMatrix();
+
+      createCalculatedMatrix();
     }
 
 
@@ -536,20 +736,12 @@
         3,
         4
       );
+
     }
 
 
     // =====================================================
     // EVALUATE STUDENT EXPRESSION
-    //
-    // Only basic mathematical expressions are accepted.
-    //
-    // Examples:
-    //
-    // 1*2+3*4+5*6
-    // (1*2)+(3*4)+(5*6)
-    // -2*3 + 4*5 - 1*6
-    //
     // =====================================================
 
     function evaluateExpression(
@@ -563,6 +755,7 @@
 
 
       if (expression === "") {
+
         throw new Error(
           "Empty expression"
         );
@@ -587,20 +780,13 @@
 
 
       /*
-       * Do not allow consecutive
-       * operators such as:
-       *
-       * 2++3
-       * 2**3
-       * 2//3
+       * Reject dangerous or malformed
+       * operator sequences.
        */
 
       if (
-        /[+\-*/]{2,}/.test(
-          expression.replace(
-            /(^|[(])-/g,
-            "$1"
-          )
+        /(\*{2,}|\/{2,}|\+{2,})/.test(
+          expression
         )
       ) {
 
@@ -611,8 +797,8 @@
 
 
       /*
-       * Use Function only after
-       * strict character validation.
+       * Evaluate after strict
+       * character validation.
        */
 
       const value =
@@ -674,11 +860,6 @@
             const correctValue =
               C[i][j];
 
-
-            /*
-             * Small tolerance for
-             * decimal calculations.
-             */
 
             if (
               Math.abs(
@@ -757,7 +938,7 @@
 
 
     // =====================================================
-    // GET EVALUATED STUDENT VALUES
+    // GET STUDENT CALCULATED VALUES
     // =====================================================
 
     function getStudentValues() {
@@ -779,8 +960,10 @@
           try {
 
             row.push(
-              evaluateExpression(
-                expression
+              formatNumber(
+                evaluateExpression(
+                  expression
+                )
               )
             );
 
@@ -849,8 +1032,11 @@
 
 
       return {
+
         correct: correct,
+
         total: total,
+
         percentage:
           (correct / total) * 100
       };
@@ -858,7 +1044,7 @@
 
 
     // =====================================================
-    // SUBMIT TO SAME GOOGLE FORM
+    // SUBMIT TO GOOGLE FORM
     // =====================================================
 
     function enviarOperaciones() {
@@ -898,8 +1084,7 @@
 
 
       /*
-       * This object contains everything
-       * that will be sent to Google Forms.
+       * Everything sent to Google Forms.
        */
 
       const payload = {
@@ -914,29 +1099,26 @@
           B: "3x4",
 
           C: "2x4"
+
         },
 
+        matrixA:
+          A,
 
-        matrixA: A,
-
-        matrixB: B,
-
+        matrixB:
+          B,
 
         studentExpressions:
           expressions,
 
-
         studentValues:
           studentValues,
-
 
         correctResult:
           C,
 
-
         score:
           `${grading.correct}/${grading.total}`,
-
 
         percentage:
           grading.percentage
@@ -944,7 +1126,7 @@
 
 
       // ===================================================
-      // SAME GOOGLE FORM USED FOR CRAMER
+      // SAME GOOGLE FORM AS CRAMER
       // ===================================================
 
       const formURL =
@@ -954,10 +1136,6 @@
       const formData =
         new FormData();
 
-
-      /*
-       * Same entry IDs from your Cramer exam.
-       */
 
       formData.append(
         "entry.155816829",
@@ -1016,6 +1194,7 @@
           `<p style="color:red;">
             ❌ Error submitting the exercise.
           </p>`;
+
       });
 
     }
@@ -1032,4 +1211,3 @@
 </body>
 
 </html>
-```
