@@ -1,0 +1,1031 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Matrix Multiplication Exam</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 20px;
+    }
+
+    .matrices {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .matrix {
+      border-left: 3px solid black;
+      border-right: 3px solid black;
+      padding: 5px;
+      display: inline-block;
+    }
+
+    .row {
+      display: flex;
+    }
+
+    .cell {
+      width: 100px;
+      height: 35px;
+      text-align: center;
+      margin: 3px;
+      font-size: 15px;
+      box-sizing: border-box;
+    }
+
+    .display-cell {
+      width: 45px;
+      height: 35px;
+      text-align: center;
+      margin: 3px;
+      font-size: 16px;
+      box-sizing: border-box;
+      border: 1px solid #aaa;
+      padding-top: 7px;
+    }
+
+    .symbol {
+      font-size: 30px;
+      font-weight: bold;
+    }
+
+    button {
+      padding: 8px 15px;
+      margin: 10px 5px 10px 0;
+      cursor: pointer;
+    }
+
+    input[type="text"] {
+      padding: 8px;
+      margin: 5px;
+    }
+
+    #answer {
+      margin-top: 20px;
+    }
+
+    .correct {
+      background: #c8f7c5;
+      border: 2px solid green;
+    }
+
+    .incorrect {
+      background: #ffc7c7;
+      border: 2px solid red;
+    }
+
+    .result-message {
+      margin-top: 15px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .instructions {
+      background: #f3f3f3;
+      padding: 12px;
+      border-radius: 6px;
+      margin-bottom: 20px;
+    }
+
+    .student-info {
+      margin-top: 25px;
+    }
+
+    .student-info input {
+      width: 180px;
+    }
+
+    .note {
+      font-size: 14px;
+      color: #555;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h2>Matrix Multiplication</h2>
+
+  <div class="instructions">
+
+    <p>
+      Calculate:
+      <strong>C = A × B</strong>
+    </p>
+
+    <p>
+      Enter a <strong>sum of products</strong> in each box.
+    </p>
+
+    <p class="note">
+      Example:
+      <code>2*3 + 4*5 + 1*6</code>
+    </p>
+
+    <p class="note">
+      You can use +, -, *, / and parentheses.
+    </p>
+
+  </div>
+
+
+  <!-- =====================================================
+       MATRICES
+       ===================================================== -->
+
+  <h3>Matrix A × Matrix B</h3>
+
+  <div class="matrices">
+
+    <div>
+      <strong>A</strong>
+      <div id="matrixA"></div>
+    </div>
+
+    <div class="symbol">×</div>
+
+    <div>
+      <strong>B</strong>
+      <div id="matrixB"></div>
+    </div>
+
+  </div>
+
+
+  <hr>
+
+
+  <!-- =====================================================
+       STUDENT ANSWER
+       ===================================================== -->
+
+  <h3>Enter your calculation</h3>
+
+  <p class="note">
+    Each box represents one element of the resulting 2×4 matrix.
+  </p>
+
+  <div id="answer"></div>
+
+
+  <button onclick="checkAnswer()">
+    Check Answer
+  </button>
+
+
+  <div id="result" class="result-message"></div>
+
+
+  <!-- =====================================================
+       STUDENT INFORMATION
+       ===================================================== -->
+
+  <div class="student-info">
+
+    <h3>Student information</h3>
+
+    <input
+      type="text"
+      id="nombre"
+      placeholder="Name"
+    >
+
+    <input
+      type="text"
+      id="codigo"
+      placeholder="Code"
+    >
+
+    <br>
+
+    <button onclick="enviarOperaciones()">
+      Submit
+    </button>
+
+  </div>
+
+
+  <div id="submitMessage"></div>
+
+
+  <script>
+
+    // =====================================================
+    // GLOBAL VARIABLES
+    // =====================================================
+
+    let A = [];
+    let B = [];
+    let C = [];
+
+    let checked = false;
+
+
+    // =====================================================
+    // RANDOM INTEGER BETWEEN -5 AND 5
+    // =====================================================
+
+    function randomNumber() {
+
+      return Math.floor(
+        Math.random() * 11
+      ) - 5;
+
+    }
+
+
+    // =====================================================
+    // RANDOM MATRIX
+    // =====================================================
+
+    function randomMatrix(rows, cols) {
+
+      return Array.from(
+        { length: rows },
+        () =>
+          Array.from(
+            { length: cols },
+            () => randomNumber()
+          )
+      );
+
+    }
+
+
+    // =====================================================
+    // MATRIX MULTIPLICATION
+    // =====================================================
+
+    function multiply(A, B) {
+
+      const rows = A.length;
+      const common = A[0].length;
+      const cols = B[0].length;
+
+      let result = [];
+
+      for (let i = 0; i < rows; i++) {
+
+        result[i] = [];
+
+        for (let j = 0; j < cols; j++) {
+
+          let sum = 0;
+
+          for (let k = 0; k < common; k++) {
+
+            sum +=
+              A[i][k] *
+              B[k][j];
+
+          }
+
+          result[i][j] = sum;
+        }
+      }
+
+      return result;
+    }
+
+
+    // =====================================================
+    // DISPLAY MATRIX
+    // =====================================================
+
+    function displayMatrix(
+      matrix,
+      containerId
+    ) {
+
+      const container =
+        document.getElementById(
+          containerId
+        );
+
+      container.innerHTML = "";
+
+      const matrixDiv =
+        document.createElement("div");
+
+      matrixDiv.className =
+        "matrix";
+
+      for (
+        let i = 0;
+        i < matrix.length;
+        i++
+      ) {
+
+        const row =
+          document.createElement("div");
+
+        row.className = "row";
+
+        for (
+          let j = 0;
+          j < matrix[i].length;
+          j++
+        ) {
+
+          const cell =
+            document.createElement("div");
+
+          cell.className =
+            "display-cell";
+
+          cell.textContent =
+            matrix[i][j];
+
+          row.appendChild(cell);
+        }
+
+        matrixDiv.appendChild(row);
+      }
+
+      container.appendChild(
+        matrixDiv
+      );
+    }
+
+
+    // =====================================================
+    // CREATE ANSWER MATRIX
+    // =====================================================
+
+    function createAnswerMatrix() {
+
+      const container =
+        document.getElementById(
+          "answer"
+        );
+
+      container.innerHTML = "";
+
+      const matrixDiv =
+        document.createElement("div");
+
+      matrixDiv.className =
+        "matrix";
+
+
+      // Result is 2 × 4
+
+      for (let i = 0; i < 2; i++) {
+
+        const row =
+          document.createElement("div");
+
+        row.className = "row";
+
+        for (let j = 0; j < 4; j++) {
+
+          const input =
+            document.createElement("input");
+
+          input.type = "text";
+
+          input.className =
+            "cell";
+
+          input.id =
+            `C_${i}_${j}`;
+
+          input.placeholder =
+            `C${i + 1}${j + 1}`;
+
+          row.appendChild(input);
+        }
+
+        matrixDiv.appendChild(row);
+      }
+
+      container.appendChild(
+        matrixDiv
+      );
+    }
+
+
+    // =====================================================
+    // LOAD MATRICES FROM URL
+    // =====================================================
+
+    function loadFromURL() {
+
+      const params =
+        new URLSearchParams(
+          window.location.search
+        );
+
+      const aParam =
+        params.get("A");
+
+      const bParam =
+        params.get("B");
+
+
+      if (aParam && bParam) {
+
+        try {
+
+          const parsedA =
+            JSON.parse(aParam);
+
+          const parsedB =
+            JSON.parse(bParam);
+
+
+          // Validate A = 2 × 3
+
+          if (
+            !Array.isArray(parsedA) ||
+            parsedA.length !== 2 ||
+            parsedA.some(
+              row =>
+                !Array.isArray(row) ||
+                row.length !== 3
+            )
+          ) {
+
+            throw new Error(
+              "Invalid matrix A"
+            );
+          }
+
+
+          // Validate B = 3 × 4
+
+          if (
+            !Array.isArray(parsedB) ||
+            parsedB.length !== 3 ||
+            parsedB.some(
+              row =>
+                !Array.isArray(row) ||
+                row.length !== 4
+            )
+          ) {
+
+            throw new Error(
+              "Invalid matrix B"
+            );
+          }
+
+
+          A = parsedA;
+          B = parsedB;
+
+        }
+
+        catch (error) {
+
+          console.log(
+            "Invalid URL matrices. Generating random matrices."
+          );
+
+          generateRandomMatrices();
+        }
+
+      } else {
+
+        generateRandomMatrices();
+
+      }
+
+
+      C = multiply(A, B);
+
+      displayMatrix(
+        A,
+        "matrixA"
+      );
+
+      displayMatrix(
+        B,
+        "matrixB"
+      );
+
+      createAnswerMatrix();
+    }
+
+
+    // =====================================================
+    // RANDOM MATRICES
+    // =====================================================
+
+    function generateRandomMatrices() {
+
+      A = randomMatrix(
+        2,
+        3
+      );
+
+      B = randomMatrix(
+        3,
+        4
+      );
+    }
+
+
+    // =====================================================
+    // EVALUATE STUDENT EXPRESSION
+    //
+    // Only basic mathematical expressions are accepted.
+    //
+    // Examples:
+    //
+    // 1*2+3*4+5*6
+    // (1*2)+(3*4)+(5*6)
+    // -2*3 + 4*5 - 1*6
+    //
+    // =====================================================
+
+    function evaluateExpression(
+      expression
+    ) {
+
+      expression =
+        expression
+          .trim()
+          .replace(/\s+/g, "");
+
+
+      if (expression === "") {
+        throw new Error(
+          "Empty expression"
+        );
+      }
+
+
+      /*
+       * Only numbers, decimal points,
+       * parentheses and arithmetic operators.
+       */
+
+      if (
+        !/^[0-9+\-*/().]+$/.test(
+          expression
+        )
+      ) {
+
+        throw new Error(
+          "Invalid characters"
+        );
+      }
+
+
+      /*
+       * Do not allow consecutive
+       * operators such as:
+       *
+       * 2++3
+       * 2**3
+       * 2//3
+       */
+
+      if (
+        /[+\-*/]{2,}/.test(
+          expression.replace(
+            /(^|[(])-/g,
+            "$1"
+          )
+        )
+      ) {
+
+        throw new Error(
+          "Invalid expression"
+        );
+      }
+
+
+      /*
+       * Use Function only after
+       * strict character validation.
+       */
+
+      const value =
+        Function(
+          '"use strict"; return (' +
+          expression +
+          ')'
+        )();
+
+
+      if (
+        !Number.isFinite(value)
+      ) {
+
+        throw new Error(
+          "Invalid numerical result"
+        );
+      }
+
+
+      return value;
+    }
+
+
+    // =====================================================
+    // CHECK ANSWER
+    // =====================================================
+
+    function checkAnswer() {
+
+      let correct = 0;
+      const total = 8;
+
+
+      for (let i = 0; i < 2; i++) {
+
+        for (let j = 0; j < 4; j++) {
+
+          const input =
+            document.getElementById(
+              `C_${i}_${j}`
+            );
+
+
+          input.classList.remove(
+            "correct",
+            "incorrect"
+          );
+
+
+          try {
+
+            const studentValue =
+              evaluateExpression(
+                input.value
+              );
+
+
+            const correctValue =
+              C[i][j];
+
+
+            /*
+             * Small tolerance for
+             * decimal calculations.
+             */
+
+            if (
+              Math.abs(
+                studentValue -
+                correctValue
+              ) < 0.000001
+            ) {
+
+              input.classList.add(
+                "correct"
+              );
+
+              correct++;
+
+            } else {
+
+              input.classList.add(
+                "incorrect"
+              );
+            }
+
+          }
+
+          catch (error) {
+
+            input.classList.add(
+              "incorrect"
+            );
+          }
+        }
+      }
+
+
+      const percentage =
+        (correct / total) * 100;
+
+
+      document.getElementById(
+        "result"
+      ).textContent =
+        `Score: ${correct}/${total} ` +
+        `(${percentage}%)`;
+
+
+      checked = true;
+    }
+
+
+    // =====================================================
+    // GET STUDENT EXPRESSIONS
+    // =====================================================
+
+    function getStudentExpressions() {
+
+      let expressions = [];
+
+      for (let i = 0; i < 2; i++) {
+
+        let row = [];
+
+        for (let j = 0; j < 4; j++) {
+
+          row.push(
+            document.getElementById(
+              `C_${i}_${j}`
+            ).value
+          );
+
+        }
+
+        expressions.push(row);
+      }
+
+      return expressions;
+    }
+
+
+    // =====================================================
+    // GET EVALUATED STUDENT VALUES
+    // =====================================================
+
+    function getStudentValues() {
+
+      let values = [];
+
+      for (let i = 0; i < 2; i++) {
+
+        let row = [];
+
+        for (let j = 0; j < 4; j++) {
+
+          const expression =
+            document.getElementById(
+              `C_${i}_${j}`
+            ).value;
+
+
+          try {
+
+            row.push(
+              evaluateExpression(
+                expression
+              )
+            );
+
+          }
+
+          catch (error) {
+
+            row.push(
+              "INVALID"
+            );
+          }
+
+        }
+
+        values.push(row);
+      }
+
+      return values;
+    }
+
+
+    // =====================================================
+    // CALCULATE SCORE
+    // =====================================================
+
+    function calculateScore() {
+
+      let correct = 0;
+      const total = 8;
+
+
+      for (let i = 0; i < 2; i++) {
+
+        for (let j = 0; j < 4; j++) {
+
+          const expression =
+            document.getElementById(
+              `C_${i}_${j}`
+            ).value;
+
+
+          try {
+
+            const value =
+              evaluateExpression(
+                expression
+              );
+
+
+            if (
+              Math.abs(
+                value - C[i][j]
+              ) < 0.000001
+            ) {
+
+              correct++;
+            }
+
+          }
+
+          catch (error) {
+            // Incorrect
+          }
+        }
+      }
+
+
+      return {
+        correct: correct,
+        total: total,
+        percentage:
+          (correct / total) * 100
+      };
+    }
+
+
+    // =====================================================
+    // SUBMIT TO SAME GOOGLE FORM
+    // =====================================================
+
+    function enviarOperaciones() {
+
+      if (!checked) {
+
+        alert(
+          "Please check your answer before submitting."
+        );
+
+        return;
+      }
+
+
+      const nombre =
+        document.getElementById(
+          "nombre"
+        ).value || "";
+
+
+      const codigo =
+        document.getElementById(
+          "codigo"
+        ).value || "";
+
+
+      const expressions =
+        getStudentExpressions();
+
+
+      const studentValues =
+        getStudentValues();
+
+
+      const grading =
+        calculateScore();
+
+
+      /*
+       * This object contains everything
+       * that will be sent to Google Forms.
+       */
+
+      const payload = {
+
+        exercise:
+          "Matrix Multiplication",
+
+        dimensions: {
+
+          A: "2x3",
+
+          B: "3x4",
+
+          C: "2x4"
+        },
+
+
+        matrixA: A,
+
+        matrixB: B,
+
+
+        studentExpressions:
+          expressions,
+
+
+        studentValues:
+          studentValues,
+
+
+        correctResult:
+          C,
+
+
+        score:
+          `${grading.correct}/${grading.total}`,
+
+
+        percentage:
+          grading.percentage
+      };
+
+
+      // ===================================================
+      // SAME GOOGLE FORM USED FOR CRAMER
+      // ===================================================
+
+      const formURL =
+        "https://docs.google.com/forms/d/e/1FAIpQLSdq-y90C6FZTOq10fkWvoz9spigyQ9R1z6r1nc-5Vm_DqVDdA/formResponse";
+
+
+      const formData =
+        new FormData();
+
+
+      /*
+       * Same entry IDs from your Cramer exam.
+       */
+
+      formData.append(
+        "entry.155816829",
+        "Matrix Multiplication"
+      );
+
+
+      formData.append(
+        "entry.516472959",
+        nombre
+      );
+
+
+      formData.append(
+        "entry.519404034",
+        codigo
+      );
+
+
+      formData.append(
+        "entry.1237481299",
+        JSON.stringify(payload)
+      );
+
+
+      fetch(
+        formURL,
+        {
+          method: "POST",
+          mode: "no-cors",
+          body: formData
+        }
+      )
+
+      .then(() => {
+
+        document.getElementById(
+          "submitMessage"
+        ).innerHTML =
+          `<p style="color:green;">
+            ✅ Submitted successfully.
+          </p>`;
+
+      })
+
+      .catch(error => {
+
+        console.error(
+          "Submission error:",
+          error
+        );
+
+        document.getElementById(
+          "submitMessage"
+        ).innerHTML =
+          `<p style="color:red;">
+            ❌ Error submitting the exercise.
+          </p>`;
+      });
+
+    }
+
+
+    // =====================================================
+    // START
+    // =====================================================
+
+    loadFromURL();
+
+  </script>
+
+</body>
+
+</html>
+```
