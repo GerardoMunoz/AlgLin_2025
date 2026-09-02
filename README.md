@@ -8,14 +8,10 @@
    * https://youtu.be/E4FOOJ0CBiY?t=363 desde el minuto 6:03
    * Practica https://gerardomunoz.github.io/AlgLin_2025/html/MatMul_noquiz.html
    * Quiz https://gerardomunoz.github.io/AlgLin_2025/html/MatMul.html
-2. https://github.com/GerardoMunoz/AlgLin_2025/blob/main/Producto_Punto.pdf
-   * Nakos pg 88-89, Ejercicios 2.2: Los 17 primeros puntos
-   * https://youtu.be/v7TdmlJkiuA?t=89 desde el minuto 1:29
-   * https://www.youtube.com/watch?v=nmihQVPWjoA hasta el minuto 15:14
-3. https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/SistemaDeEcuaciones.ipynb
+2. https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/SistemaDeEcuaciones.ipynb
    * Nakos pg 12-13, Ejercicios 1.1: 1,2,3,4,5,15
    * https://www.youtube.com/watch?v=9lPTl4KnR7A
-5. https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/Matriz_Escalon_Reducida.ipynb
+3. https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/Matriz_Escalon_Reducida.ipynb
    * Nakos pg 26-29, Ejercicios 1.2: 1,2,3,45,47
    * https://www.youtube.com/watch?v=XWiNhq3UrbM
    * Quiz https://gerardomunoz.github.io/AlgLin_2025/html/EscalonReducidaEval.html
@@ -28,9 +24,13 @@
    * Quiz https://gerardomunoz.github.io/AlgLin_2025/html/Gauss_Elim_Quiz.html
 5. https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/Inversa.ipynb
    * Nakos pg 179, Ejercicios 3.2: 15
-6. https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/Producto_Cruz.ipynb
+6. https://github.com/GerardoMunoz/AlgLin_2025/blob/main/Producto_Punto.pdf
+   * Nakos pg 88-89, Ejercicios 2.2: Los 17 primeros puntos
+   * https://youtu.be/v7TdmlJkiuA?t=89 desde el minuto 1:29
+   * https://www.youtube.com/watch?v=nmihQVPWjoA hasta el minuto 15:14
+7. https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/Producto_Cruz.ipynb
    * Nakos pg 120, Ejercicios 2.6: 4, 9, 11, 15 
-7. https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/Determinante_nxn.ipynb
+8. https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/Determinante_nxn.ipynb
    * Video: https://www.youtube.com/watch?v=Yf6AWmp13aI
    * Quiz: https://gerardomunoz.github.io/AlgLin_2025/html/determinant_solver.html
    * Quiz: https://gerardomunoz.github.io/AlgLin_2025/html/cramer_solver.html
