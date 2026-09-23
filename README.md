@@ -45,6 +45,7 @@
   * La intersección de rectas y planos se puede encontrar solucionando el sistema de ecuaciones lineales formado por la unión de ambos sistemas de ecuaciones
   * Otro forma es igualando las ecuaciones vectoriales manteniendo los parámetros diferentes ¿Qué sucede si un par de parámetros son iguales?
   * https://gerardomunoz.github.io/AlgLin_2025/html/Geom3D_Quiz.html
+  * * https://gerardomunoz.github.io/AlgLin_2025/html/visual_gauss.html
 10. Espacio vectorial
     * Espacio Vectorial: Definición https://www.youtube.com/watch?v=GJFxGEDOJDc
     * Espacio Vectorial: Subespacios https://www.youtube.com/watch?v=t6FrWHtcRVY
