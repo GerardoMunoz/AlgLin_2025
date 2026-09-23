@@ -1,0 +1,2280 @@
+```html
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>MatrixGame + Planos 3D</title>
+
+
+<style>
+
+/* =========================================================
+   ESTILOS GENERALES
+========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   APLICACIÓN
+========================================================= */
+
+#app {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+}
+
+
+/* =========================================================
+   PANEL IZQUIERDO
+========================================================= */
+
+#panelIzquierdo {
+
+    width: 45%;
+    height: 100vh;
+
+    overflow-y: auto;
+
+    padding: 20px;
+
+    background: #f4f4f4;
+}
+
+
+/* =========================================================
+   PANEL 3D
+========================================================= */
+
+#panel3D {
+
+    width: 55%;
+    height: 100vh;
+
+    position: relative;
+
+    background: #111;
+}
+
+
+#canvas3D {
+
+    width: 100%;
+    height: 100%;
+}
+
+
+/* =========================================================
+   MATRICES
+========================================================= */
+
+table {
+
+    border-collapse: collapse;
+
+    margin: 10px 0;
+}
+
+
+td {
+
+    padding: 8px 12px;
+
+    text-align: center;
+
+    font-size: 17px;
+}
+
+
+.matrix-wrapper {
+
+    display: flex;
+
+    align-items: center;
+
+    margin-bottom: 10px;
+}
+
+
+.bracket-svg {
+
+    width: 15px;
+
+    height: 100%;
+}
+
+
+/* =========================================================
+   INPUTS
+========================================================= */
+
+textarea {
+
+    font-family: monospace;
+
+    padding: 8px;
+}
+
+
+input {
+
+    padding: 7px;
+
+    margin: 4px;
+}
+
+
+button {
+
+    padding: 8px 14px;
+
+    margin: 5px 0;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   OPERACIONES
+========================================================= */
+
+#operacionesAplicadas {
+
+    background: white;
+
+    border: 1px solid #ccc;
+
+    padding: 10px;
+
+    margin-top: 15px;
+
+    max-height: 180px;
+
+    overflow-y: auto;
+}
+
+
+.log {
+
+    padding: 5px;
+
+    border-bottom: 1px solid #ddd;
+}
+
+
+/* =========================================================
+   INFORMACIÓN DEL 3D
+========================================================= */
+
+#info3D {
+
+    position: absolute;
+
+    top: 15px;
+    left: 15px;
+
+    background: rgba(0,0,0,0.78);
+
+    color: white;
+
+    padding: 12px;
+
+    border-radius: 8px;
+
+    font-size: 14px;
+
+    max-width: 340px;
+}
+
+
+#info3D h3 {
+
+    margin-top: 0;
+}
+
+
+/* =========================================================
+   ECUACIONES
+========================================================= */
+
+.ecuacion {
+
+    margin: 7px 0;
+
+    font-weight: bold;
+}
+
+
+/* =========================================================
+   LEYENDA
+========================================================= */
+
+#leyenda {
+
+    position: absolute;
+
+    bottom: 15px;
+    left: 15px;
+
+    background: rgba(0,0,0,0.78);
+
+    color: white;
+
+    padding: 10px;
+
+    border-radius: 8px;
+
+    font-size: 13px;
+}
+
+
+.colorBox {
+
+    display: inline-block;
+
+    width: 13px;
+    height: 13px;
+
+    margin-right: 6px;
+}
+
+
+/* =========================================================
+   BOTÓN DE LIMPIAR
+========================================================= */
+
+#limpiarOperacion {
+
+    margin-left: 5px;
+}
+
+
+/* =========================================================
+   MENSAJE
+========================================================= */
+
+#mensaje3D {
+
+    margin-top: 10px;
+
+    font-size: 12px;
+
+    color: #ccc;
+}
+
+</style>
+
+
+<!-- =========================================================
+     THREE.JS
+========================================================= -->
+
+<script src="https://cdn.jsdelivr.net/npm/three@0.126.1/build/three.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/three@0.126.1/examples/js/controls/OrbitControls.js"></script>
+
+</head>
+
+
+<body>
+
+
+<div id="app">
+
+
+<!-- =========================================================
+     PANEL IZQUIERDO
+========================================================= -->
+
+<div id="panelIzquierdo">
+
+
+<h1>MatrixGame</h1>
+
+
+<div id="preguntaInicial">
+
+
+<p>
+Ingresa la matriz aumentada.
+</p>
+
+
+<p>
+
+Las primeras tres columnas representan:
+
+<strong>x, y, z</strong>
+
+</p>
+
+
+<p>
+
+La última columna representa el término independiente.
+
+</p>
+
+
+<textarea
+    id="cambioUsuario"
+    rows="7"
+    cols="42">[[0, 3, -6, -4, -3, -5],
+[-2, 6, -20, -8, -8, -4],
+[4, -9, 34, 0, 1, -21],
+[2, -6, 20, 2, 8, -8]]</textarea>
+
+
+<br>
+
+
+<button
+    onclick="mostrarMatrizInicial()">
+
+Mostrar Matriz
+
+</button>
+
+
+</div>
+
+
+
+<!-- =========================================================
+     CICLO DE GAUSS
+========================================================= -->
+
+<div
+    id="ciclo"
+    style="display:none;"
+>
+
+
+<h2>Eliminación de Gauss</h2>
+
+
+<p>
+Operaciones permitidas:
+</p>
+
+
+<ul>
+
+<li>
+R1 &lt;-&gt; R2
+</li>
+
+<li>
+-0.5R1 -&gt; R1
+</li>
+
+<li>
+R3 - 4R1 -&gt; R3
+</li>
+
+</ul>
+
+
+
+<!-- =====================================================
+     MATRICES
+===================================================== -->
+
+<div id="matrices"></div>
+
+
+
+<!-- =====================================================
+     OPERACIÓN
+===================================================== -->
+
+<input
+    type="text"
+    id="operation"
+    placeholder="Ej: R1<->R2"
+    style="width:250px;"
+>
+
+
+<button
+    onclick="handleOperation()">
+
+Aplicar Operación
+
+</button>
+
+
+<button
+    id="limpiarOperacion"
+    onclick="limpiarOperacion()">
+
+Limpiar
+
+</button>
+
+
+
+<!-- =====================================================
+     OPERACIONES APLICADAS
+===================================================== -->
+
+<div id="operacionesAplicadas">
+
+<strong>
+Operaciones aplicadas
+</strong>
+
+<br><br>
+
+</div>
+
+
+<br>
+
+
+<!-- =====================================================
+     DATOS DEL ESTUDIANTE
+===================================================== -->
+
+<input
+    type="text"
+    id="nombre"
+    placeholder="Nombre"
+>
+
+
+<input
+    type="text"
+    id="codigo"
+    placeholder="Código"
+>
+
+
+<br>
+
+
+<button
+    onclick="enviarOperaciones()">
+
+Enviar Operaciones
+
+</button>
+
+
+</div>
+
+
+</div>
+
+
+
+<!-- =========================================================
+     PANEL DERECHO 3D
+========================================================= -->
+
+<div id="panel3D">
+
+
+<div id="canvas3D"></div>
+
+
+
+<!-- =====================================================
+     INFORMACIÓN
+===================================================== -->
+
+<div id="info3D">
+
+
+<h3>
+Planos de las ecuaciones
+</h3>
+
+
+<div id="ecuaciones3D">
+
+Primero muestra una matriz.
+
+</div>
+
+
+<div id="mensaje3D">
+
+Cada fila representa:
+
+<br>
+
+<strong>
+ax + by + cz = d
+</strong>
+
+<br><br>
+
+Los planos se actualizan después de cada operación de Gauss.
+
+</div>
+
+
+</div>
+
+
+
+<!-- =====================================================
+     LEYENDA
+===================================================== -->
+
+<div id="leyenda">
+
+
+<div>
+
+<span
+    class="colorBox"
+    style="background:#ff4444;">
+</span>
+
+Ecuación 1
+
+</div>
+
+
+<div>
+
+<span
+    class="colorBox"
+    style="background:#44ff44;">
+</span>
+
+Ecuación 2
+
+</div>
+
+
+<div>
+
+<span
+    class="colorBox"
+    style="background:#4488ff;">
+</span>
+
+Ecuación 3
+
+</div>
+
+
+<div>
+
+<span
+    class="colorBox"
+    style="background:#ffff44;">
+</span>
+
+Ecuación 4
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+<script>
+
+
+/* =========================================================
+   VARIABLES GLOBALES
+========================================================= */
+
+let matrixData = [];
+
+let operacionesAplicadas =
+    document.getElementById(
+        "operacionesAplicadas"
+    );
+
+
+/* =========================================================
+   THREE.JS
+========================================================= */
+
+const panel3D =
+    document.getElementById(
+        "panel3D"
+    );
+
+
+const scene =
+    new THREE.Scene();
+
+
+scene.background =
+    new THREE.Color(
+        0x111111
+    );
+
+
+const camera =
+    new THREE.PerspectiveCamera(
+
+        60,
+
+        panel3D.clientWidth /
+        panel3D.clientHeight,
+
+        0.1,
+
+        1000
+
+    );
+
+
+const renderer =
+    new THREE.WebGLRenderer({
+
+        antialias: true
+
+    });
+
+
+renderer.setPixelRatio(
+    window.devicePixelRatio
+);
+
+
+renderer.setSize(
+
+    panel3D.clientWidth,
+
+    panel3D.clientHeight
+
+);
+
+
+document
+    .getElementById("canvas3D")
+    .appendChild(
+        renderer.domElement
+    );
+
+
+/* =========================================================
+   CONTROLES
+========================================================= */
+
+const controls =
+    new THREE.OrbitControls(
+
+        camera,
+
+        renderer.domElement
+
+    );
+
+
+camera.position.set(
+
+    8,
+    7,
+    8
+
+);
+
+
+controls.target.set(
+
+    0,
+    0,
+    0
+
+);
+
+
+controls.update();
+
+
+/* =========================================================
+   EJES
+========================================================= */
+
+const axes =
+    new THREE.AxesHelper(
+        6
+    );
+
+
+scene.add(
+    axes
+);
+
+
+/* =========================================================
+   GRID
+========================================================= */
+
+const grid =
+    new THREE.GridHelper(
+
+        12,
+        12,
+
+        0x555555,
+        0x333333
+
+    );
+
+
+scene.add(
+    grid
+);
+
+
+/* =========================================================
+   GRUPO DE PLANOS
+========================================================= */
+
+let planosGroup =
+    new THREE.Group();
+
+
+scene.add(
+    planosGroup
+);
+
+
+/* =========================================================
+   COLORES
+========================================================= */
+
+const coloresPlanos = [
+
+    0xff4444,
+
+    0x44ff44,
+
+    0x4488ff,
+
+    0xffff44,
+
+    0xff44ff,
+
+    0x44ffff
+
+];
+
+
+/* =========================================================
+   CLASE MATRIX GAME
+========================================================= */
+
+class MatrixGame {
+
+
+    constructor(matrix) {
+
+        this.matrix = matrix;
+
+        this.suggestionStep = 0;
+
+    }
+
+
+    parseOperation(opStr) {
+
+
+        opStr =
+            opStr
+            .toLowerCase()
+            .replace(
+                /\s+/g,
+                ""
+            );
+
+
+        let swapMatch =
+            opStr.match(
+                /r(\d+)<->r(\d+)/
+            );
+
+
+        let scaleMatch =
+            opStr.match(
+                /(-?\d*\.?\d*)r(\d+)->r(\d+)/
+            );
+
+
+        let addMatch =
+            opStr.match(
+                /(-?\d*\.?\d*)r(\d+)([-+]\d*\.?\d*)r(\d+)->r(\d+)/
+            );
+
+
+
+        /* ============================
+           INTERCAMBIO
+        ============================ */
+
+        if (swapMatch) {
+
+
+            return {
+
+                type: "swap",
+
+                row1:
+                    parseInt(
+                        swapMatch[1]
+                    ) - 1,
+
+                row2:
+                    parseInt(
+                        swapMatch[2]
+                    ) - 1
+
+            };
+
+
+        }
+
+
+
+        /* ============================
+           COMBINACIÓN LINEAL
+        ============================ */
+
+        else if (addMatch) {
+
+
+            if (
+                addMatch[1] == "-"
+            )
+                addMatch[1] = "-1";
+
+
+            if (
+                addMatch[3] == "-"
+            )
+                addMatch[3] = "-1";
+
+
+            return {
+
+                type: "add",
+
+                scalar1:
+                    parseFloat(
+                        addMatch[1]
+                    ) || 1,
+
+                row1:
+                    parseInt(
+                        addMatch[2]
+                    ) - 1,
+
+                scalar2:
+                    parseFloat(
+                        addMatch[3]
+                    ) || 1,
+
+                row2:
+                    parseInt(
+                        addMatch[4]
+                    ) - 1,
+
+                targetRow:
+                    parseInt(
+                        addMatch[5]
+                    ) - 1
+
+            };
+
+
+        }
+
+
+
+        /* ============================
+           ESCALAMIENTO
+        ============================ */
+
+        else if (scaleMatch) {
+
+
+            if (
+                scaleMatch[1] == "-"
+            )
+                scaleMatch[1] = "-1";
+
+
+            return {
+
+                type: "scale",
+
+                scalar:
+                    parseFloat(
+                        scaleMatch[1]
+                    ) || 1,
+
+                row:
+                    parseInt(
+                        scaleMatch[2]
+                    ) - 1
+
+            };
+
+
+        }
+
+
+
+        else {
+
+
+            throw new Error(
+                "Operación no válida"
+            );
+
+
+        }
+
+    }
+
+
+
+    /* =====================================================
+       APLICAR OPERACIÓN
+    ===================================================== */
+
+    applyOperation(opStr) {
+
+
+        let op =
+            this.parseOperation(
+                opStr
+            );
+
+
+        let newMatrix =
+            this.matrix.map(
+                row => [...row]
+            );
+
+
+        /* ============================
+           SWAP
+        ============================ */
+
+        if (
+            op.type === "swap"
+        ) {
+
+
+            [
+                newMatrix[op.row1],
+                newMatrix[op.row2]
+
+            ] = [
+
+                newMatrix[op.row2],
+                newMatrix[op.row1]
+
+            ];
+
+        }
+
+
+
+        /* ============================
+           SCALE
+        ============================ */
+
+        else if (
+            op.type === "scale"
+        ) {
+
+
+            newMatrix[op.row] =
+                newMatrix[op.row].map(
+
+                    val =>
+                        round4(
+                            val *
+                            op.scalar
+                        )
+
+                );
+
+        }
+
+
+
+        /* ============================
+           ADD
+        ============================ */
+
+        else if (
+            op.type === "add"
+        ) {
+
+
+            for (
+                let i = 0;
+
+                i <
+                newMatrix[0].length;
+
+                i++
+            ) {
+
+
+                newMatrix[
+                    op.targetRow
+                ][i] =
+
+                    round4(
+
+                        op.scalar1 *
+                        newMatrix[
+                            op.row1
+                        ][i]
+
+                        +
+
+                        op.scalar2 *
+                        newMatrix[
+                            op.row2
+                        ][i]
+
+                    );
+
+            }
+
+        }
+
+
+        return newMatrix;
+
+    }
+
+}
+
+
+/* =========================================================
+   REDONDEO
+========================================================= */
+
+function round4(value) {
+
+    return Math.round(
+        value * 10000
+    ) / 10000;
+
+}
+
+
+/* =========================================================
+   BRACKETS
+========================================================= */
+
+function createBracketSVG(
+    isLeft
+) {
+
+
+    return `
+
+        <svg
+            class="bracket-svg"
+            viewBox="0 0 10 100"
+            preserveAspectRatio="none"
+        >
+
+            <path
+
+                d="
+                M${isLeft ? "0" : "10"},0
+                V100
+
+                M${isLeft ? "0" : "10"},0
+                H${isLeft ? "10" : "0"}
+
+                M${isLeft ? "0" : "10"},100
+                H${isLeft ? "10" : "0"}
+                "
+
+                stroke="black"
+                stroke-width="2"
+                fill="none"
+
+            />
+
+        </svg>
+
+    `;
+
+}
+
+
+/* =========================================================
+   CREAR MATRIZ HTML
+========================================================= */
+
+function createMatrixHTML(matrix) {
+
+
+    let html =
+        '<div class="matrix-wrapper">';
+
+
+    html +=
+        createBracketSVG(
+            true
+        );
+
+
+    html +=
+        "<table>";
+
+
+    matrix.forEach(
+        row => {
+
+
+            html +=
+                "<tr>";
+
+
+            row.forEach(
+                cell => {
+
+
+                    html +=
+                        `<td>${Number(cell).toFixed(2)}</td>`;
+
+
+                }
+            );
+
+
+            html +=
+                "</tr>";
+
+
+        }
+    );
+
+
+    html +=
+        "</table>";
+
+
+    html +=
+        createBracketSVG(
+            false
+        );
+
+
+    html +=
+        "</div>";
+
+
+    return html;
+
+}
+
+
+/* =========================================================
+   CREAR SUPERFICIE DEL PLANO
+========================================================= */
+
+/*
+
+    Ecuación:
+
+        ax + by + cz = d
+
+    Normal:
+
+        n = (a,b,c)
+
+    Un punto sobre el plano:
+
+        p = n * d / |n|
+
+*/
+
+
+function crearPlano(
+    a,
+    b,
+    c,
+    d,
+    color
+) {
+
+
+    const normalOriginal =
+        new THREE.Vector3(
+            a,
+            b,
+            c
+        );
+
+
+    const longitud =
+        normalOriginal.length();
+
+
+    /*
+       Si a=b=c=0,
+       no existe un plano.
+    */
+
+    if (
+        longitud <
+        0.000001
+    ) {
+
+        return null;
+
+    }
+
+
+    /*
+       Normal unitaria
+    */
+
+    const normal =
+        normalOriginal
+        .clone()
+        .normalize();
+
+
+    /*
+       Punto del plano más cercano
+       al origen.
+
+       MUY IMPORTANTE:
+
+       p = n * d / |n|
+
+    */
+
+    const punto =
+        normal
+        .clone()
+        .multiplyScalar(
+            d / longitud
+        );
+
+
+    /*
+       Elegimos un vector de referencia
+       que no sea paralelo a la normal.
+    */
+
+    let referencia;
+
+
+    if (
+        Math.abs(normal.z) < 0.9
+    ) {
+
+        referencia =
+            new THREE.Vector3(
+                0,
+                0,
+                1
+            );
+
+    }
+
+    else {
+
+        referencia =
+            new THREE.Vector3(
+                0,
+                1,
+                0
+            );
+
+    }
+
+
+    /*
+       Primer vector contenido
+       en el plano.
+    */
+
+    const u =
+        new THREE.Vector3()
+        .crossVectors(
+            normal,
+            referencia
+        )
+        .normalize();
+
+
+    /*
+       Segundo vector contenido
+       en el plano.
+    */
+
+    const v =
+        new THREE.Vector3()
+        .crossVectors(
+            normal,
+            u
+        )
+        .normalize();
+
+
+    /*
+       Tamaño del plano.
+    */
+
+    const tamaño =
+        8;
+
+
+    const geometry =
+        new THREE.PlaneGeometry(
+            tamaño,
+            tamaño,
+            1,
+            1
+        );
+
+
+    /*
+       Material transparente.
+    */
+
+    const material =
+        new THREE.MeshBasicMaterial({
+
+            color: color,
+
+            transparent: true,
+
+            opacity: 0.32,
+
+            side:
+                THREE.DoubleSide,
+
+            depthWrite: false
+
+        });
+
+
+    const mesh =
+        new THREE.Mesh(
+            geometry,
+            material
+        );
+
+
+    /*
+       PlaneGeometry originalmente
+       está en XY.
+
+       Lo orientamos utilizando
+       u, v y normal.
+    */
+
+    const matriz =
+        new THREE.Matrix4();
+
+
+    matriz.makeBasis(
+        u,
+        v,
+        normal
+    );
+
+
+    mesh.setRotationFromMatrix(
+        matriz
+    );
+
+
+    /*
+       Colocamos el plano
+       exactamente donde corresponde.
+    */
+
+    mesh.position.copy(
+        punto
+    );
+
+
+    /*
+       Guardamos información
+       útil para depuración.
+    */
+
+    mesh.userData = {
+
+        a: a,
+        b: b,
+        c: c,
+        d: d
+
+    };
+
+
+    return mesh;
+
+}
+
+
+/* =========================================================
+   ACTUALIZAR PLANOS
+========================================================= */
+
+function actualizarPlanos(
+    matrix
+) {
+
+
+    /*
+       Eliminar planos anteriores.
+    */
+
+    while (
+        planosGroup.children.length
+        > 0
+    ) {
+
+
+        const objeto =
+            planosGroup.children[0];
+
+
+        planosGroup.remove(
+            objeto
+        );
+
+
+        if (
+            objeto.geometry
+        ) {
+
+            objeto.geometry.dispose();
+
+        }
+
+
+        if (
+            objeto.material
+        ) {
+
+            objeto.material.dispose();
+
+        }
+
+    }
+
+
+
+    /*
+       Limpiar ecuaciones.
+    */
+
+    const ecuacionesDiv =
+        document.getElementById(
+            "ecuaciones3D"
+        );
+
+
+    ecuacionesDiv.innerHTML =
+        "";
+
+
+
+    /*
+       Cada fila:
+
+           [a,b,c,d]
+
+       significa:
+
+           ax + by + cz = d
+
+       Si existen más columnas,
+       utilizamos las primeras 3
+       y la ÚLTIMA como término
+       independiente.
+    */
+
+    matrix.forEach(
+        (fila, index) => {
+
+
+            if (
+                fila.length < 4
+            ) {
+
+                return;
+
+            }
+
+
+            const a =
+                Number(fila[0]);
+
+
+            const b =
+                Number(fila[1]);
+
+
+            const c =
+                Number(fila[2]);
+
+
+            const d =
+                Number(
+                    fila[
+                        fila.length - 1
+                    ]
+                );
+
+
+            const color =
+                coloresPlanos[
+                    index %
+                    coloresPlanos.length
+                ];
+
+
+
+            /*
+               Crear plano.
+            */
+
+            const plano =
+                crearPlano(
+                    a,
+                    b,
+                    c,
+                    d,
+                    color
+                );
+
+
+            if (
+                plano
+            ) {
+
+                planosGroup.add(
+                    plano
+                );
+
+            }
+
+
+
+            /*
+               Mostrar ecuación.
+            */
+
+            const div =
+                document.createElement(
+                    "div"
+                );
+
+
+            div.className =
+                "ecuacion";
+
+
+            div.style.color =
+                "#" +
+                color
+                    .toString(16)
+                    .padStart(
+                        6,
+                        "0"
+                    );
+
+
+            div.textContent =
+                `E${index + 1}: ` +
+                formatearEcuacion(
+                    a,
+                    b,
+                    c,
+                    d
+                );
+
+
+            ecuacionesDiv.appendChild(
+                div
+            );
+
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   FORMATEAR ECUACIÓN
+========================================================= */
+
+function formatearEcuacion(
+    a,
+    b,
+    c,
+    d
+) {
+
+
+    const variables = [
+
+        [a, "x"],
+
+        [b, "y"],
+
+        [c, "z"]
+
+    ];
+
+
+    let resultado = "";
+
+
+    let primero = true;
+
+
+
+    variables.forEach(
+        ([coef, variable]) => {
+
+
+            coef =
+                Number(coef);
+
+
+            if (
+                Math.abs(coef)
+                < 0.000001
+            ) {
+
+                return;
+
+            }
+
+
+            let signo = "";
+
+
+            if (
+                primero
+            ) {
+
+                if (
+                    coef < 0
+                ) {
+
+                    signo = "-";
+
+                }
+
+            }
+
+            else {
+
+                signo =
+                    coef < 0
+                        ? " - "
+                        : " + ";
+
+            }
+
+
+            const valor =
+                Math.abs(coef);
+
+
+            let numero = "";
+
+
+            if (
+                valor !== 1
+            ) {
+
+                numero =
+                    Number.isInteger(
+                        valor
+                    )
+                    ? valor
+                    : valor.toFixed(2);
+
+            }
+
+
+            resultado +=
+                signo +
+                numero +
+                variable;
+
+
+            primero = false;
+
+        }
+    );
+
+
+    if (
+        resultado === ""
+    ) {
+
+        resultado =
+            "0";
+
+    }
+
+
+    resultado +=
+        " = " + d;
+
+
+    return resultado;
+
+}
+
+
+/* =========================================================
+   MOSTRAR MATRIZ INICIAL
+========================================================= */
+
+function mostrarMatrizInicial() {
+
+
+    try {
+
+
+        const texto =
+            document.getElementById(
+                "cambioUsuario"
+            ).value;
+
+
+        matrixData =
+            JSON.parse(
+                texto
+            );
+
+
+        /*
+           Validaciones.
+        */
+
+        if (
+            !Array.isArray(
+                matrixData
+            )
+        ) {
+
+            throw new Error(
+                "La matriz debe ser un arreglo."
+            );
+
+        }
+
+
+        if (
+            matrixData.length === 0
+        ) {
+
+            throw new Error(
+                "La matriz está vacía."
+            );
+
+        }
+
+
+        matrixData.forEach(
+            fila => {
+
+
+                if (
+                    !Array.isArray(
+                        fila
+                    )
+                ) {
+
+                    throw new Error(
+                        "Cada fila debe ser un arreglo."
+                    );
+
+                }
+
+
+                if (
+                    fila.length < 4
+                ) {
+
+                    throw new Error(
+                        "Cada fila necesita al menos 4 valores."
+                    );
+
+                }
+
+
+            }
+        );
+
+
+        /*
+           Convertir todos los valores
+           a números.
+        */
+
+        matrixData =
+            matrixData.map(
+                fila =>
+                    fila.map(
+                        Number
+                    )
+            );
+
+
+
+        /*
+           Mostrar sección Gauss.
+        */
+
+        document.getElementById(
+            "preguntaInicial"
+        ).style.display =
+            "none";
+
+
+        document.getElementById(
+            "ciclo"
+        ).style.display =
+            "block";
+
+
+
+        /*
+           Mostrar matriz.
+        */
+
+        document.getElementById(
+            "matrices"
+        ).innerHTML =
+            createMatrixHTML(
+                matrixData
+            );
+
+
+
+        /*
+           Registrar matriz original.
+        */
+
+        operacionesAplicadas.innerHTML =
+
+            "<strong>" +
+            "Operaciones aplicadas" +
+            "</strong>" +
+
+            "<br><br>" +
+
+            "[[" +
+
+            matrixData
+                .map(
+                    row =>
+                        row.join(",")
+                )
+                .join("],[") +
+
+            "]]";
+
+
+
+        /*
+           Dibujar planos.
+        */
+
+        actualizarPlanos(
+            matrixData
+        );
+
+
+    }
+
+    catch (error) {
+
+
+        alert(
+            "Error en la matriz:\n" +
+            error.message
+        );
+
+
+    }
+
+}
+
+
+/* =========================================================
+   APLICAR OPERACIÓN
+========================================================= */
+
+function handleOperation() {
+
+
+    const input =
+        document.getElementById(
+            "operation"
+        );
+
+
+    const operation =
+        input.value.trim();
+
+
+    if (
+        operation === ""
+    ) {
+
+        return;
+
+    }
+
+
+    try {
+
+
+        const matrixGame =
+            new MatrixGame(
+                matrixData
+            );
+
+
+        const newMatrix =
+            matrixGame.applyOperation(
+                operation
+            );
+
+
+
+        /*
+           Mostrar operación.
+        */
+
+        const matricesDiv =
+            document.getElementById(
+                "matrices"
+            );
+
+
+        matricesDiv.innerHTML +=
+
+            `<p>
+                <strong>
+                    ${operation}
+                </strong>
+            </p>`;
+
+
+
+        /*
+           Mostrar nueva matriz.
+        */
+
+        matricesDiv.innerHTML +=
+
+            createMatrixHTML(
+                newMatrix
+            );
+
+
+
+        /*
+           Registrar.
+        */
+
+        operacionesAplicadas.innerHTML +=
+
+            `<div class="log">
+                ${operation}
+            </div>`;
+
+
+
+        /*
+           Actualizar matriz.
+        */
+
+        matrixData =
+            newMatrix;
+
+
+
+        /*
+           ACTUALIZAR PLANOS.
+        */
+
+        actualizarPlanos(
+            matrixData
+        );
+
+
+
+        /*
+           Limpiar campo.
+        */
+
+        input.value =
+            "";
+
+
+    }
+
+    catch (error) {
+
+
+        alert(
+            error.message
+        );
+
+
+    }
+
+}
+
+
+/* =========================================================
+   LIMPIAR INPUT DE OPERACIÓN
+========================================================= */
+
+function limpiarOperacion() {
+
+
+    document.getElementById(
+        "operation"
+    ).value =
+        "";
+
+}
+
+
+/* =========================================================
+   ENVIAR OPERACIONES
+========================================================= */
+
+function enviarOperaciones() {
+
+
+    const nombre =
+        document.getElementById(
+            "nombre"
+        ).value;
+
+
+    const codigo =
+        document.getElementById(
+            "codigo"
+        ).value;
+
+
+    const operacionesTexto =
+        operacionesAplicadas.innerHTML;
+
+
+    const formURL =
+
+        "https://docs.google.com/forms/d/e/1FAIpQLSdq-y90C6FZTOq10fkWvoz9spigyQ9R1z6r1nc-5Vm_DqVDdA/formResponse";
+
+
+    const formData =
+        new FormData();
+
+
+    formData.append(
+
+        "entry.155816829",
+
+        "Eliminación Gauss + Planos 3D"
+
+    );
+
+
+    formData.append(
+
+        "entry.516472959",
+
+        nombre
+
+    );
+
+
+    formData.append(
+
+        "entry.519404034",
+
+        codigo
+
+    );
+
+
+    formData.append(
+
+        "entry.1237481299",
+
+        operacionesTexto +
+
+        "<br><br>" +
+
+        "Matriz final:<br>" +
+
+        "[[" +
+
+        matrixData
+            .map(
+                row =>
+                    row.join(",")
+            )
+            .join("],[") +
+
+        "]]"
+
+    );
+
+
+    fetch(
+
+        formURL,
+
+        {
+
+            method: "POST",
+
+            mode: "no-cors",
+
+            body: formData
+
+        }
+
+    )
+
+    .then(
+        () => {
+
+            alert(
+                "Operaciones enviadas con éxito."
+            );
+
+        }
+    )
+
+    .catch(
+        error => {
+
+            console.error(
+                "Error al enviar operaciones:",
+                error
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   ANIMACIÓN
+========================================================= */
+
+function animate() {
+
+
+    requestAnimationFrame(
+        animate
+    );
+
+
+    controls.update();
+
+
+    renderer.render(
+        scene,
+        camera
+    );
+
+}
+
+
+animate();
+
+
+/* =========================================================
+   RESIZE
+========================================================= */
+
+window.addEventListener(
+
+    "resize",
+
+    () => {
+
+
+        const width =
+            panel3D.clientWidth;
+
+
+        const height =
+            panel3D.clientHeight;
+
+
+        camera.aspect =
+            width / height;
+
+
+        camera.updateProjectionMatrix();
+
+
+        renderer.setSize(
+            width,
+            height
+        );
+
+
+    }
+
+);
+
+</script>
+
+
+</body>
+
+</html>
+```
