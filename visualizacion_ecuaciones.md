@@ -102,3 +102,5 @@ Para un sistema consistente:
 
 ------------------------------------------------------------------------
 
+Para un sistema inconsistente:
+  El conjunto solución es vacío.
