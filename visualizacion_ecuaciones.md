@@ -1,5 +1,7 @@
 # Visualización de sistemas de ecuaciones y geometría en $\mathbb{R}^3$
 
+Vamos a visualizar geométricamente en $\mathbb{R}^3$ los conjuntos solución de diversos tipos de sistemas de ecuaciones con 3 variables ($x, y, z$). A estos conjuntos solución los llamaremos **conjuntos afines** de $R^3$ y corresponderán a puntos, rectas, planos, todo  $\mathbb{R}^3$ o incluso al conjunto vacío.
+
 ## 1. Visualización de sistemas de ecuaciones
 
 
