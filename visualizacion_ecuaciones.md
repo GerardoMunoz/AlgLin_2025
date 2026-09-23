@@ -76,7 +76,7 @@ https://gerardomunoz.github.io/AlgLin_2025/html/visual_gauss.html
 
 ------------------------------------------------------------------------
 
-## 6. Tres parámetros: todo (`\mathbb `{=tex}R\^3)
+## 6. Tres parámetros: todo $\mathbb {R}^3$
 
 * [[0,0,0,0],[0,0,0,0],[0,0,0,0]]
 
