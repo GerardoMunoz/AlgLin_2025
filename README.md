@@ -38,6 +38,7 @@
 9. Rectas y planos
   * https://github.com/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/Planos.pdf
   * https://github.com/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/Rectas.pdf
+  * https://github.com/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/visualizacion_ecuaciones.md
   * https://github.com/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/Rectas2D.md
   * https://github.com/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/Rectas3D.md
   * https://github.com/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/Planos3D.md
@@ -45,7 +46,7 @@
   * La intersección de rectas y planos se puede encontrar solucionando el sistema de ecuaciones lineales formado por la unión de ambos sistemas de ecuaciones
   * Otro forma es igualando las ecuaciones vectoriales manteniendo los parámetros diferentes ¿Qué sucede si un par de parámetros son iguales?
   * https://gerardomunoz.github.io/AlgLin_2025/html/Geom3D_Quiz.html
-  * * https://gerardomunoz.github.io/AlgLin_2025/html/visual_gauss.html
+  * https://gerardomunoz.github.io/AlgLin_2025/html/visual_gauss.html
 10. Espacio vectorial
     * Espacio Vectorial: Definición https://www.youtube.com/watch?v=GJFxGEDOJDc
     * Espacio Vectorial: Subespacios https://www.youtube.com/watch?v=t6FrWHtcRVY
