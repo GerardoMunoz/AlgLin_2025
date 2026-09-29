@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ejercicios 2.7 — Clases de respuestas</title>
+<style>
+:root{--bg:#f5f7fb;--card:#fff;--ink:#172033;--muted:#667085;--line:#d9dee8;--accent:#315efb;--ok:#087443;--bad:#b42318}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+main{max-width:1100px;margin:28px auto;padding:0 18px 70px}header,.card,.score{background:var(--card);border:1px solid var(--line);border-radius:15px}
+header{padding:22px 24px;margin-bottom:14px}h1{margin:0 0 5px;font-size:25px}p{color:var(--muted)}
+.student{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:15px}.field{display:flex;flex-direction:column;gap:5px;font-size:13px;color:var(--muted)}
+input{border:1px solid #cbd2df;border-radius:8px;padding:8px 9px;font:inherit;min-width:0}input[type=number]{width:82px;text-align:center}
+.card{padding:17px 18px;margin:12px 0}.item-head{display:flex;justify-content:space-between;gap:10px;margin-bottom:12px}.item-number{font-weight:750;font-size:17px}
+.badge{font-size:12px;padding:4px 8px;border-radius:999px;background:#eef2ff;color:#3047a7}
+.check-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.check{border:1px solid var(--line);border-radius:9px;padding:9px;background:#fafbfe}.check label{display:flex;gap:8px}
+.row,.eq{display:flex;align-items:center;flex-wrap:wrap;gap:6px;margin:8px 0}.parts{display:grid;gap:9px}.part{border:1px dashed var(--line);border-radius:9px;padding:10px}
+.result{margin-top:10px;font-size:13px;font-weight:650}.ok{color:var(--ok)}.bad{color:var(--bad)}
+.score{display:none;padding:18px 20px;margin:14px 0}.score strong{font-size:27px}.summary{display:grid;grid-template-columns:repeat(5,1fr);gap:7px;margin-top:10px}.summary div{background:#f5f7fb;padding:8px;border-radius:8px;font-size:13px}
+.actions{position:sticky;bottom:0;background:rgba(245,247,251,.94);padding:13px 0;border-top:1px solid var(--line);display:flex;gap:10px;flex-wrap:wrap}
+button{border:0;border-radius:9px;padding:11px 16px;font:inherit;font-weight:700;cursor:pointer}.primary{background:var(--accent);color:#fff}.secondary{background:#e9edf5;color:#24324a}
+.note{font-size:12px}@media(max-width:700px){.student{grid-template-columns:1fr}.check-grid,.summary{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<main>
+<header>
+<h1>Ejercicios 2.7 — Respuestas</h1>
+<p>Arquitectura orientada a objetos: cada tipo de respuesta sabe dibujarse, leer su respuesta y calificarse.</p>
+<div class="student">
+<label class="field">Nombre<input id="studentName" type="text"></label>
+<label class="field">Correo<input id="studentEmail" type="text"></label>
+</div>
+</header>
+
+<div id="score" class="score">
+<div>Calificación: <strong id="scoreText">0 / 28</strong></div>
+<div id="percentText"></div>
+<div id="summary" class="summary"></div>
+</div>
+<div id="exam"></div>
+<div class="actions">
+<button class="primary" id="checkBtn">Verificar y calificar</button>
+<button class="secondary" id="downloadBtn">Descargar resultado</button>
+<button class="secondary" id="sendBtn">Enviar respuestas y calificación</button>
+</div>
+<p class="note">Los ejercicios 7, 8, 30 y 32, correspondientes a demostraciones, no aparecen.</p>
+</main>
+
+<script>
+/* ==========================================================
+   CONFIGURACIÓN
+   ========================================================== */
+const SUBMIT_URL="";
+const EPS=1e-7;
+
+/* ==========================================================
+   UTILIDADES MATEMÁTICAS
+   ========================================================== */
+const dot=(a,b)=>a.reduce((s,v,i)=>s+v*b[i],0);
+const cross=(a,b)=>[
+  a[1]*b[2]-a[2]*b[1],
+  a[2]*b[0]-a[0]*b[2],
+  a[0]*b[1]-a[1]*b[0]
+];
+const norm=a=>Math.sqrt(dot(a,a));
+const parallel=(a,b)=>norm(cross(a,b))<EPS;
+const proportional=(a,b)=>parallel(a,b)&&norm(a)>EPS&&norm(b)>EPS;
+const sameSet=(a,b)=>a.length===b.length&&a.every(x=>b.includes(x));
+const planeContainsPoint=(p,x)=>Math.abs(dot(p.slice(0,3),x)+p[3])<EPS;
+const planeContainsLine=(p,L)=>planeContainsPoint(p,L.p)&&Math.abs(dot(p.slice(0,3),L.d))<EPS;
+const validPlane=p=>p.length===4&&p.every(Number.isFinite)&&norm(p.slice(0,3))>EPS;
+const planeEquivalent=(a,b)=>validPlane(a)&&validPlane(b)&&proportional(a.slice(0,3),b.slice(0,3))&&Math.abs(a[3]*b[0]-b[3]*a[0])<EPS;
+
+function lineEquivalent(a,b){
+  const d=[a.p[0]-b.p[0],a.p[1]-b.p[1],a.p[2]-b.p[2]];
+  return a.p.every(Number.isFinite)&&a.d.every(Number.isFinite)&&
+    norm(a.d)>EPS&&proportional(a.d,b.d)&&(norm(d)<EPS||proportional(d,b.d));
+}
+function safeName(s){return(s||"estudiante").replace(/[^a-z0-9áéíóúñ_-]+/gi,"_").replace(/^_+|_+$/g,"")||"estudiante"}
+
+/* ==========================================================
+   CLASE BASE
+   ========================================================== */
+class Response{
+  constructor(config={}){this.config=config;this.host=null}
+  mount(host){this.host=host;this.renderHTML(host)}
+  renderHTML(){throw Error("Debe implementarse renderHTML()")}
+  getAnswer(){throw Error("Debe implementarse getAnswer()")}
+  grade(){throw Error("Debe implementarse grade()")}
+  serialize(){return{type:this.constructor.name,answer:this.getAnswer()}}
+}
+
+/* ==========================================================
+   TIPOS DE RESPUESTA
+   ========================================================== */
+class MultipleBoolean extends Response{
+  renderHTML(h){h.innerHTML=`<div class="check-grid">${this.config.options.map(o=>`<div class="check"><label><input type="checkbox" data-v="${o}">${o}</label></div>`).join("")}</div>`}
+  getAnswer(){return[...this.host.querySelectorAll("input:checked")].map(x=>x.dataset.v)}
+  grade(){const a=this.getAnswer(),ok=sameSet(a,this.config.correct);return{score:ok?1:0,detail:`Seleccionado: ${a.join(", ")||"—"}`}}
+}
+
+class MultipleVector extends Response{
+  renderHTML(h){h.innerHTML=`<div class="parts">${Array.from({length:this.config.count},(_,i)=>`<div class="part"><b>${i+1}.</b> (${this.i()}, ${this.i()}, ${this.i()})</div>`).join("")}</div>`}
+  i(){return`<input type="number" step="any">`}
+  getAnswer(){return[...this.host.querySelectorAll(".part")].map(p=>[...p.querySelectorAll("input")].map(x=>Number(x.value)))}
+  grade(){let n=0;this.getAnswer().forEach((a,i)=>{const b=this.config.correct;if(a.length===3&&a.every(Number.isFinite)&&this.config.validator(a,b))n++});return{score:n/this.config.count,detail:`${n}/${this.config.count} puntos válidos`}}
+}
+
+class VectorLine extends Response{
+  renderHTML(h){h.innerHTML=`<div class="row">Punto: (${this.i()}, ${this.i()}, ${this.i()})</div><div class="row">Dirección: (${this.i()}, ${this.i()}, ${this.i()})</div>`}
+  i(){return`<input type="number" step="any">`}
+  getAnswer(){const v=[...this.host.querySelectorAll("input")].map(x=>Number(x.value));return{p:v.slice(0,3),d:v.slice(3,6)}}
+  grade(){const a=this.getAnswer(),ok=lineEquivalent(a,this.config.correct);return{score:ok?1:0,detail:ok?"Recta equivalente":"Revisar punto y dirección"}}
+}
+
+class SymmetricLine extends VectorLine{
+  renderHTML(h){h.innerHTML=`<div class="eq">(x − ${this.i()}) / ${this.i()} = (y − ${this.i()}) / ${this.i()} = (z − ${this.i()}) / ${this.i()}</div>`}
+}
+
+class PlaneEquation extends Response{
+  renderHTML(h){h.innerHTML=`<div class="eq">${this.i()}x + ${this.i()}y + ${this.i()}z + ${this.i()} = 0</div>`}
+  i(){return`<input type="number" step="any">`}
+  getAnswer(){return[...this.host.querySelectorAll("input")].map(x=>Number(x.value))}
+  grade(){const ok=planeEquivalent(this.getAnswer(),this.config.correct);return{score:ok?1:0,detail:ok?"Ecuación equivalente":"Revisar ecuación"}}
+}
+
+class ConstrainedPlane extends PlaneEquation{
+  grade(){const a=this.getAnswer(),ok=validPlane(a)&&this.config.validator(a);return{score:ok?1:0,detail:ok?"Plano válido":"Revisar ecuación y condiciones"}}
+}
+
+class NumericResponse extends Response{
+  renderHTML(h){h.innerHTML=`<input id="numberAnswer" type="text">`}
+  getAnswer(){return this.host.querySelector("#numberAnswer").value.trim()}
+  grade(){let x=Number(this.getAnswer());if(!Number.isFinite(x))try{x=Function('"use strict";return ('+this.getAnswer().replace(/sqrt/gi,"Math.sqrt")+')')()}catch(e){x=NaN}
+    const ok=Number.isFinite(x)&&Math.abs(x-this.config.correct)<(this.config.tolerance||1e-4);return{score:ok?1:0,detail:ok?"Valor válido":"Revisar valor"}}
+}
+
+class HyperplaneEquation extends Response{
+  renderHTML(h){h.innerHTML=`<div class="eq">${[1,2,3,4,5].map(i=>this.i()+`x${i}`).join(" + ")} + ${this.i()} = 0</div>`}
+  i(){return`<input type="number" step="any">`}
+  getAnswer(){return[...this.host.querySelectorAll("input")].map(x=>Number(x.value))}
+  grade(){const a=this.getAnswer(),b=this.config.correct,ok=a.length===6&&a.every(Number.isFinite)&&proportional(a.slice(0,5),b.slice(0,5))&&Math.abs(a[5]*b[0]-b[5]*a[0])<EPS;return{score:ok?1:0,detail:ok?"Ecuación equivalente":"Revisar ecuación"}}
+}
+
+/* Respuestas compuestas */
+class MultipleSymmetricLines extends Response{
+  renderHTML(h){h.innerHTML=`<div class="parts">${[1,2,3,4].map(i=>`<div class="part"><b>l${["₁","₂","₃","₄"][i-1]}:</b><div class="eq">(x − ${this.i()}) / ${this.i()} = (y − ${this.i()}) / ${this.i()} = (z − ${this.i()}) / ${this.i()}</div></div>`).join("")}</div>`}
+  i(){return`<input type="number" step="any">`}
+  getAnswer(){return[...this.host.querySelectorAll(".part")].map(p=>{const v=[...p.querySelectorAll("input")].map(x=>Number(x.value));return{p:v.slice(0,3),d:v.slice(3,6)}})}
+  grade(){let n=0;this.getAnswer().forEach((a,i)=>{if(lineEquivalent(a,LINES[i+1]))n++});return{score:n/4,detail:`${n}/4 rectas válidas`}}
+}
+
+class TwoPlanes extends Response{
+  renderHTML(h){h.innerHTML=`<div class="parts"><div class="part"><b>a.</b><span class="a">${this.eq()}</span></div><div class="part"><b>b.</b><span class="b">${this.eq()}</span></div></div>`}
+  eq(){return`<div class="eq">${this.i()}x + ${this.i()}y + ${this.i()}z + ${this.i()} = 0</div>`}
+  i(){return`<input type="number" step="any">`}
+  getAnswer(){return{a:[...this.host.querySelectorAll(".a input")].map(x=>Number(x.value)),b:[...this.host.querySelectorAll(".b input")].map(x=>Number(x.value))}}
+  grade(){const a=this.getAnswer(),x=planeEquivalent(a.a,PLANES["22a"]),y=planeEquivalent(a.b,PLANES["22b"]);return{score:(+x+ +y)/2,detail:`${x?1:0}/1 · ${y?1:0}/1`}}
+}
+
+class TwoPlanesForLines extends Response{
+  renderHTML(h){h.innerHTML=`<div class="parts">${[1,2,3,4].map(i=>`<div class="part"><b>l${["₁","₂","₃","₄"][i-1]}</b><div class="row">A: <span class="a">${this.eq()}</span></div><div class="row">B: <span class="b">${this.eq()}</span></div></div>`).join("")}</div>`}
+  eq(){return`<span class="eq">${this.i()}x + ${this.i()}y + ${this.i()}z + ${this.i()} = 0</span>`}
+  i(){return`<input type="number" step="any">`}
+  getAnswer(){return[...this.host.querySelectorAll(".part")].map(p=>({a:[...p.querySelector(".a").querySelectorAll("input")].map(x=>Number(x.value)),b:[...p.querySelector(".b").querySelectorAll("input")].map(x=>Number(x.value))}))}
+  grade(){let n=0;this.getAnswer().forEach((x,i)=>{const L=LINES[i+1];if(validPlane(x.a)&&validPlane(x.b)&&planeContainsLine(x.a,L)&&planeContainsLine(x.b,L)&&!parallel(x.a.slice(0,3),x.b.slice(0,3)))n++});return{score:n/4,detail:`${n}/4 rectas con dos planos válidos`}}
+}
+
+/* ==========================================================
+   EXERCISE Y EXAM
+   ========================================================== */
+class Exercise{
+  constructor(number,response,badge){this.number=number;this.response=response;this.badge=badge;this.card=null}
+  render(container){this.card=document.createElement("section");this.card.className="card";this.card.dataset.item=this.number;this.card.innerHTML=`<div class="item-head"><span class="item-number">${this.number}</span><span class="badge">${this.badge}</span></div><div class="response-host"></div>`;container.appendChild(this.card);this.response.mount(this.card.querySelector(".response-host"))}
+  grade(){const r=this.response.grade();let n=this.card.querySelector(".result");if(!n){n=document.createElement("div");n.className="result";this.card.appendChild(n)}n.className="result "+(r.score>=.999?"ok":r.score>0?"":"bad");n.textContent=r.detail;return{item:this.number,...r}}
+  serialize(){return{item:this.number,...this.response.serialize()}}
+}
+
+class Exam{
+  constructor(exercises){this.exercises=exercises;this.lastResults=[]}
+  render(container){this.exercises.forEach(e=>e.render(container))}
+  grade(){this.lastResults=this.exercises.map(e=>e.grade());const total=this.lastResults.reduce((s,r)=>s+r.score,0);return{results:this.lastResults,total,max:this.exercises.length,percent:100*total/this.exercises.length}}
+  serialize(){return this.exercises.map(e=>e.serialize())}
+}
+
+/* ==========================================================
+   BANCO DE DATOS DEL EXAMEN
+   ========================================================== */
+const PTS={P:[5,-4,2],Q:[2,-2,1],R:[1,-2,2],S:[9,-12,-2]};
+const LINES={
+  1:{p:[5,-4,2],d:[-3,2,-1]},
+  2:{p:[1,6,8],d:[6,-4,2]},
+  3:{p:[5,-7,11],d:[-1,1,1]},
+  4:{p:[14,-2,13],d:[1,2,3]}
+};
+const PLANES={
+  18:[-3,2,1,-23],
+  19:[-6,4,5,36],
+  20:[-3,2,1,-23],
+  21:[-6,4,5,36],
+  "22a":[2,-3,1,-9],
+  "22b":[1,-7,0,3]
+};
+
+const sameVector=(a,b)=>a.length===3&&b.length===3&&norm([a[0]-b[0],a[1]-b[1],a[2]-b[2]])<EPS;
+const pairs=["l₁–l₂","l₁–l₃","l₁–l₄","l₂–l₃","l₂–l₄","l₃–l₄"];
+
+function satisfiesLinearEquation(v, correct) {
+    const [x,y,z] = v;
+    const [a,b,c,d] = correct;
+
+    return Math.abs(a*x + b*y + c*z - d) < EPS;
+}
+
+const EXERCISES=[
+  new Exercise(1,new MultipleBoolean({options:["P","Q","R","S"],correct:["P","Q"]}),"P · Q · R · S"),
+  new Exercise(2,new MultipleBoolean({options:["P","Q","R","S"],correct:[]}),"P · Q · R · S"),
+  new Exercise(3,new MultipleVector({count:3,correct: [2,-3,1,7],validator:satisfiesLinearEquation}),"3 puntos"),
+  new Exercise(4,new MultipleVector({count:3,correct:[[16,-18,0],[-2,0,18],[0,-2,16]],validator:sameVector}),"3 puntos"),
+  new Exercise(5,new MultipleBoolean({options:pairs,correct:["l₁–l₂"]}),"pares paralelos"),
+  new Exercise(6,new MultipleBoolean({options:[...pairs,"NINGUNO"],correct:["NINGUNO"]}),"pares perpendiculares"),
+  new Exercise(9,new MultipleSymmetricLines(),"4 rectas simétricas"),
+  new Exercise(10,new TwoPlanesForLines(),"2 planos por recta"),
+  new Exercise(11,new VectorLine({correct:{p:[5,-4,2],d:[4,-3,1]}}),"recta vectorial"),
+  new Exercise(12,new VectorLine({correct:{p:[0,3,2],d:[-1,2,4]}}),"recta vectorial"),
+  new Exercise(13,new VectorLine({correct:LINES[1]}),"recta vectorial"),
+  new Exercise(14,new VectorLine({correct:{p:[2,-3,5],d:[-9,7,-4]}}),"recta vectorial"),
+  new Exercise(15,new VectorLine({correct:{p:[3,-1,-2],d:[-4,3,7]}}),"recta vectorial"),
+  new Exercise(16,new VectorLine({correct:{p:PTS.P,d:[-4,5,2]}}),"recta vectorial"),
+  new Exercise(17,new MultipleBoolean({options:["P","Q","R","S"],correct:["P","Q"]}),"P · Q · R · S"),
+  new Exercise(18,new PlaneEquation({correct:PLANES[18]}),"Ax + By + Cz + D = 0"),
+  new Exercise(19,new PlaneEquation({correct:PLANES[19]}),"Ax + By + Cz + D = 0"),
+  new Exercise(20,new PlaneEquation({correct:PLANES[20]}),"Ax + By + Cz + D = 0"),
+  new Exercise(21,new PlaneEquation({correct:PLANES[21]}),"Ax + By + Cz + D = 0"),
+  new Exercise(22,new TwoPlanes(),"2 planos"),
+  new Exercise(23,new ConstrainedPlane({validator:p=>[PTS.P,PTS.Q,PTS.R].every(x=>planeContainsPoint(p,x))}),"plano por P, Q y R"),
+  new Exercise(24,new ConstrainedPlane({validator:p=>planeContainsPoint(p,[2,-4,1])&&planeContainsLine(p,LINES[1])}),"plano por punto y recta"),
+  new Exercise(25,new ConstrainedPlane({validator:p=>planeContainsLine(p,LINES[1])&&planeContainsLine(p,LINES[4])}),"plano por dos rectas"),
+  new Exercise(26,new ConstrainedPlane({validator:p=>proportional(p.slice(0,3),[-2,4,1])&&planeContainsPoint(p,[2,3,-1])}),"plano paralelo"),
+  new Exercise(27,new ConstrainedPlane({validator:p=>proportional(p.slice(0,3),[1,-6,2])&&planeContainsPoint(p,[-1,-2,5])}),"plano paralelo"),
+  new Exercise(28,new VectorLine({correct:{p:[2,1,1],d:cross([1,-1,1],[-1,5,3])}}),"recta: punto + dirección"),
+  new Exercise(29,new NumericResponse({correct:6/Math.sqrt(114),tolerance:1e-4}),"valor numérico"),
+  new Exercise(31,new HyperplaneEquation({correct:[1,-3,-2,8,4,13]}),"hiperplano")
+];
+
+const exam=new Exam(EXERCISES);
+exam.render(document.getElementById("exam"));
+
+/* ==========================================================
+   verify()
+   Ya no contiene reglas específicas de ejercicios.
+   ========================================================== */
+function verify(){return exam.grade()}
+
+/* ==========================================================
+   RESULTADO / DESCARGA / ENVÍO
+   ========================================================== */
+function showScore(r){
+  document.getElementById("score").style.display="block";
+  document.getElementById("scoreText").textContent=`${r.total.toFixed(2)} / ${r.max}`;
+  document.getElementById("percentText").textContent=`Porcentaje: ${r.percent.toFixed(1)}%`;
+  document.getElementById("summary").innerHTML=r.results.map(x=>`<div><b>${x.item}</b>: ${(x.score*100).toFixed(0)}%</div>`).join("");
+}
+
+function buildPayload(r){
+  return{
+    timestamp:new Date().toISOString(),
+    examen:"Ejercicios 2.7",
+    nombre:document.getElementById("studentName").value.trim(),
+    correo:document.getElementById("studentEmail").value.trim(),
+    calificacion:Number(r.total.toFixed(2)),
+    maximo:r.max,
+    porcentaje:Number(r.percent.toFixed(1)),
+    respuestas:exam.serialize(),
+    detalle:r.results
+  };
+}
+
+function downloadPayload(payload){
+  const blob=new Blob([JSON.stringify(payload,null,2)],{type:"application/json;charset=utf-8"});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement("a");
+  a.href=url;
+  a.download=`ejercicios_2_7_${safeName(payload.nombre)}.json`;
+  a.style.display="none";
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(()=>{document.body.removeChild(a);URL.revokeObjectURL(url)},1000);
+}
+
+let lastResult=null;
+
+document.getElementById("checkBtn").onclick=()=>{
+  try{lastResult=verify();showScore(lastResult);window.scrollTo({top:0,behavior:"smooth"})}
+  catch(e){console.error(e);alert("Se produjo un error durante la calificación.")}
+};
+
+document.getElementById("downloadBtn").onclick=()=>{
+  try{lastResult=lastResult||verify();showScore(lastResult);downloadPayload(buildPayload(lastResult))}
+  catch(e){console.error(e);alert("No fue posible generar el archivo de resultado.")}
+};
+
+document.getElementById("sendBtn").onclick=async()=>{
+  try{
+    lastResult=lastResult||verify();showScore(lastResult);
+    const payload=buildPayload(lastResult);
+    if(!SUBMIT_URL){
+      downloadPayload(payload);
+      alert("No hay servidor configurado. Se descargó el JSON con las respuestas y la calificación.");
+      return;
+    }
+    const response=await fetch(SUBMIT_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)});
+    if(!response.ok)throw Error("HTTP "+response.status);
+    alert("Respuestas y calificación enviadas correctamente.");
+  }catch(e){
+    console.error(e);alert("No fue posible enviar. Se descargará una copia local.");
+    try{if(lastResult)downloadPayload(buildPayload(lastResult))}catch(_){}
+  }
+};
+</script>
+</body>
+</html>
