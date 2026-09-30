@@ -100,11 +100,64 @@ class MultipleBoolean extends Response{
   grade(){const a=this.getAnswer(),ok=sameSet(a,this.config.correct);return{score:ok?1:0,detail:`Seleccionado: ${a.join(", ")||"—"}`}}
 }
 
+// class MultipleVector extends Response{
+//   renderHTML(h){h.innerHTML=`<div class="parts">${Array.from({length:this.config.count},(_,i)=>`<div class="part"><b>${i+1}.</b> (${this.i()}, ${this.i()}, ${this.i()})</div>`).join("")}</div>`}
+//   i(){return`<input type="number" step="any">`}
+//   getAnswer(){return[...this.host.querySelectorAll(".part")].map(p=>[...p.querySelectorAll("input")].map(x=>Number(x.value)))}
+//   grade(){let n=0;this.getAnswer().forEach((a,i)=>{const b=this.config.correct;if(a.length===3&&a.every(Number.isFinite)&&this.config.validator(a,b))n++});return{score:n/this.config.count,detail:`${n}/${this.config.count} puntos válidos`}}
+// }
+
 class MultipleVector extends Response{
-  renderHTML(h){h.innerHTML=`<div class="parts">${Array.from({length:this.config.count},(_,i)=>`<div class="part"><b>${i+1}.</b> (${this.i()}, ${this.i()}, ${this.i()})</div>`).join("")}</div>`}
-  i(){return`<input type="number" step="any">`}
-  getAnswer(){return[...this.host.querySelectorAll(".part")].map(p=>[...p.querySelectorAll("input")].map(x=>Number(x.value)))}
-  grade(){let n=0;this.getAnswer().forEach((a,i)=>{const b=this.config.correct;if(a.length===3&&a.every(Number.isFinite)&&this.config.validator(a,b))n++});return{score:n/this.config.count,detail:`${n}/${this.config.count} puntos válidos`}}
+
+  renderHTML(h){
+    h.innerHTML=`
+      <div class="parts">
+        ${Array.from(
+          {length:this.config.count},
+          (_,i)=>`
+            <div class="part">
+              <b>${i+1}.</b>
+              (${this.i()}, ${this.i()}, ${this.i()})
+            </div>
+          `
+        ).join("")}
+      </div>
+    `;
+  }
+
+  i(){
+    return `<input type="number" step="any">`;
+  }
+
+  getAnswer(){
+    return [
+      ...this.host.querySelectorAll(".part")
+    ].map(p =>
+      [...p.querySelectorAll("input")]
+        .map(x => Number(x.value))
+    );
+  }
+
+  grade(){
+
+    const answers=this.getAnswer();
+
+    const validAnswers=answers.filter(
+      a =>
+        a.length===3 &&
+        a.every(Number.isFinite)
+    );
+
+    const n=this.config.validator(
+      validAnswers,
+      this.config.correct
+    );
+
+    return {
+      score:n/this.config.count,
+      detail:`${n}/${this.config.count} puntos válidos`
+    };
+  }
 }
 
 class VectorLine extends Response{
@@ -204,6 +257,42 @@ const PLANES={
 };
 
 const sameVector=(a,b)=>a.length===3&&b.length===3&&norm([a[0]-b[0],a[1]-b[1],a[2]-b[2]])<EPS;
+
+// function sameVectorList(inputs, correct) {
+//     console.log("sameVectorList",inputs, correct)
+//     let remaining = correct.map(v => [...v]);
+//     for (const input of inputs) {
+//         const index = remaining.findIndex(
+//             v => sameVector(input, v)
+//         );
+//         if (index !== -1) {
+//             remaining.splice(index, 1);
+//         }
+//         console.log('remaining',index,remaining)
+//     }
+//     return remaining.length === 0;
+// }
+
+function countMatchingVectors(inputs, correct) {
+
+    let remaining = correct.map(v => [...v]);
+    let matched = 0;
+
+    for (const input of inputs) {
+
+        const index = remaining.findIndex(
+            v => sameVector(input, v)
+        );
+
+        if (index !== -1) {
+            remaining.splice(index, 1);
+            matched++;
+        }
+    }
+
+    return matched;
+}
+
 const pairs=["l₁–l₂","l₁–l₃","l₁–l₄","l₂–l₃","l₂–l₄","l₃–l₄"];
 
 function satisfiesLinearEquation(v, correct) {
@@ -213,13 +302,33 @@ function satisfiesLinearEquation(v, correct) {
     return Math.abs(a*x + b*y + c*z - d) < EPS;
 }
 
+function satisfiesLinearSystem(v, correct) {
+    return correct.every(row => satisfiesLinearEquation(v, row));
+}
+
 const EXERCISES=[
   new Exercise(1,new MultipleBoolean({options:["P","Q","R","S"],correct:["P","Q"]}),"P · Q · R · S"),
   new Exercise(2,new MultipleBoolean({options:["P","Q","R","S"],correct:[]}),"P · Q · R · S"),
-  new Exercise(3,new MultipleVector({count:3,correct: [2,-3,1,7],validator:satisfiesLinearEquation}),"3 puntos"),
-  new Exercise(4,new MultipleVector({count:3,correct:[[16,-18,0],[-2,0,18],[0,-2,16]],validator:sameVector}),"3 puntos"),
+  new Exercise(3,new MultipleVector({count:3,correct: [[2,3,0,-2],[0,1,2,0]],validator:satisfiesLinearSystem}),"3 puntos"),
+//  new Exercise(4,new MultipleVector({count:3,correct:[[16,4,0],[-12,0,4],[0,-12,16]],validator:sameVectorList}),"3 puntos"),
+new Exercise(
+    4,
+    new MultipleVector({
+        count:3,
+
+        correct:[
+            [16,-18,0],
+            [-2,0,18],
+            [0,-2,16]
+        ],
+
+        validator:countMatchingVectors
+    }),
+
+    "3 puntos"
+),
   new Exercise(5,new MultipleBoolean({options:pairs,correct:["l₁–l₂"]}),"pares paralelos"),
-  new Exercise(6,new MultipleBoolean({options:[...pairs,"NINGUNO"],correct:["NINGUNO"]}),"pares perpendiculares"),
+  new Exercise(6,new MultipleBoolean({options:[...pairs,"NINGUNO"],correct:["l₁–l₃","l₂–l₃"]}),"pares perpendiculares"),
   new Exercise(9,new MultipleSymmetricLines(),"4 rectas simétricas"),
   new Exercise(10,new TwoPlanesForLines(),"2 planos por recta"),
   new Exercise(11,new VectorLine({correct:{p:[5,-4,2],d:[4,-3,1]}}),"recta vectorial"),
