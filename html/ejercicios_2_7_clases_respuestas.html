@@ -33,11 +33,11 @@ button{border:0;border-radius:9px;padding:11px 16px;font:inherit;font-weight:700
 </div>
 </header>
 
-<div id="score" class="score">
+<!--div id="score" class="score">
 <div>Calificación: <strong id="scoreText">0 / 28</strong></div>
 <div id="percentText"></div>
 <div id="summary" class="summary"></div>
-</div>
+</div-->
 <div id="exam"></div>
 <div class="actions">
 <button class="primary" id="checkBtn">Verificar y calificar</button>
@@ -226,7 +226,8 @@ class TwoPlanesForLines extends Response{
 class Exercise{
   constructor(number,response,badge){this.number=number;this.response=response;this.badge=badge;this.card=null}
   render(container){this.card=document.createElement("section");this.card.className="card";this.card.dataset.item=this.number;this.card.innerHTML=`<div class="item-head"><span class="item-number">${this.number}</span><span class="badge">${this.badge}</span></div><div class="response-host"></div>`;container.appendChild(this.card);this.response.mount(this.card.querySelector(".response-host"))}
-  grade(){const r=this.response.grade();let n=this.card.querySelector(".result");if(!n){n=document.createElement("div");n.className="result";this.card.appendChild(n)}n.className="result "+(r.score>=.999?"ok":r.score>0?"":"bad");n.textContent=r.detail;return{item:this.number,...r}}
+//  grade(){const r=this.response.grade();let n=this.card.querySelector(".result");if(!n){n=document.createElement("div");n.className="result";this.card.appendChild(n)}n.className="result "+(r.score>=.999?"ok":r.score>0?"":"bad");n.textContent=r.detail;return{item:this.number,...r}}
+  grade(){const r=this.response.grade();let n=this.card.querySelector(".result");if(!n){n=document.createElement("div");n.className="result";this.card.appendChild(n)}n.className="result "+(r.score>=.999?"ok":r.score>0?"":"bad");return{item:this.number,...r}}
   serialize(){return{item:this.number,...this.response.serialize()}}
 }
 
@@ -366,10 +367,10 @@ function verify(){return exam.grade()}
    RESULTADO / DESCARGA / ENVÍO
    ========================================================== */
 function showScore(r){
-  document.getElementById("score").style.display="block";
-  document.getElementById("scoreText").textContent=`${r.total.toFixed(2)} / ${r.max}`;
-  document.getElementById("percentText").textContent=`Porcentaje: ${r.percent.toFixed(1)}%`;
-  document.getElementById("summary").innerHTML=r.results.map(x=>`<div><b>${x.item}</b>: ${(x.score*100).toFixed(0)}%</div>`).join("");
+  //document.getElementById("score").style.display="block";
+  //document.getElementById("scoreText").textContent=`${r.total.toFixed(2)} / ${r.max}`;
+  //document.getElementById("percentText").textContent=`Porcentaje: ${r.percent.toFixed(1)}%`;
+  //document.getElementById("summary").innerHTML=r.results.map(x=>`<div><b>${x.item}</b>: ${(x.score*100).toFixed(0)}%</div>`).join("");
 }
 
 function buildPayload(r){
