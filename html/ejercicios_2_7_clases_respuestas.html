@@ -400,6 +400,79 @@ function downloadPayload(payload){
 
 let lastResult=null;
 
+document.getElementById("sendBtn").onclick = async () => {
+
+    try {
+
+        lastResult = lastResult || verify();
+
+        showScore(lastResult);
+
+        const payload = buildPayload(lastResult);
+
+        const formData = new FormData();
+
+        formData.append(
+            "entry.ID_TITULO",
+            payload.examen
+        );
+
+        formData.append(
+            "entry.ID_NOMBRE",
+            payload.nombre
+        );
+
+        formData.append(
+            "entry.ID_CORREO",
+            payload.correo
+        );
+
+        formData.append(
+            "entry.ID_CALIFICACION",
+            payload.calificacion
+        );
+
+        formData.append(
+            "entry.ID_MAXIMO",
+            payload.maximo
+        );
+
+        formData.append(
+            "entry.ID_PORCENTAJE",
+            payload.porcentaje
+        );
+
+        formData.append(
+            "entry.ID_RESPUESTAS",
+            JSON.stringify(payload.respuestas)
+        );
+
+        formData.append(
+            "entry.ID_DETALLE",
+            JSON.stringify(payload.detalle)
+        );
+
+        await fetch(
+            GOOGLE_FORM_URL,
+            {
+                method: "POST",
+                mode: "no-cors",
+                body: formData
+            }
+        );
+
+        alert("Respuestas enviadas correctamente.");
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert(
+            "No fue posible enviar las respuestas."
+        );
+    }
+};
+
 document.getElementById("checkBtn").onclick=()=>{
   try{lastResult=verify();showScore(lastResult);window.scrollTo({top:0,behavior:"smooth"})}
   catch(e){console.error(e);alert("Se produjo un error durante la calificación.")}
@@ -410,23 +483,64 @@ document.getElementById("downloadBtn").onclick=()=>{
   catch(e){console.error(e);alert("No fue posible generar el archivo de resultado.")}
 };
 
+    function enviarOperaciones() {
+      //let titleInput = document.getElementById("title");
+      let nombreInput = document.getElementById("studentName");
+      let codigoInput = document.getElementById("studentEmail");
+      let answerInput = document.getElementById("answer");
+
+      const formURL = "https://docs.google.com/forms/d/e/1FAIpQLSdq-y90C6FZTOq10fkWvoz9spigyQ9R1z6r1nc-5Vm_DqVDdA/formResponse";
+      const formData = new FormData();
+
+     lastResult=lastResult||verify();showScore(lastResult);
+     const payload=buildPayload(lastResult);
+
+
+      // IDs de entrada según Google Form
+      formData.append("entry.155816829", "Rectas_Planos_2.7"); 
+      formData.append("entry.516472959", nombreInput.value);
+      formData.append("entry.519404034", codigoInput.value);
+      formData.append("entry.1237481299",  JSON.stringify(payload)); 
+
+      fetch(formURL, {
+        method: "POST",
+        mode: "no-cors",
+        body: formData
+      }).then(() => {
+        alert("Operaciones enviadas con éxito.");
+        //document.getElementById("formulario").reset();
+      }).catch(error => {
+        console.error("Error al enviar operaciones:", error);
+        alert("Hubo un error al enviar los datos.");
+      });
+    }
 document.getElementById("sendBtn").onclick=async()=>{
   try{
-    lastResult=lastResult||verify();showScore(lastResult);
-    const payload=buildPayload(lastResult);
-    if(!SUBMIT_URL){
-      downloadPayload(payload);
-      alert("No hay servidor configurado. Se descargó el JSON con las respuestas y la calificación.");
-      return;
-    }
-    const response=await fetch(SUBMIT_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)});
-    if(!response.ok)throw Error("HTTP "+response.status);
-    alert("Respuestas y calificación enviadas correctamente.");
+    enviarOperaciones()
   }catch(e){
     console.error(e);alert("No fue posible enviar. Se descargará una copia local.");
     try{if(lastResult)downloadPayload(buildPayload(lastResult))}catch(_){}
   }
-};
+}
+
+
+// document.getElementById("sendBtn").onclick=async()=>{
+//   try{
+//     lastResult=lastResult||verify();showScore(lastResult);
+//     const payload=buildPayload(lastResult);
+//     if(!SUBMIT_URL){
+//       downloadPayload(payload);
+//       alert("No hay servidor configurado. Se descargó el JSON con las respuestas y la calificación.");
+//       return;
+//     }
+//     const response=await fetch(SUBMIT_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)});
+//     if(!response.ok)throw Error("HTTP "+response.status);
+//     alert("Respuestas y calificación enviadas correctamente.");
+//   }catch(e){
+//     console.error(e);alert("No fue posible enviar. Se descargará una copia local.");
+//     try{if(lastResult)downloadPayload(buildPayload(lastResult))}catch(_){}
+//   }
+// };
 </script>
 </body>
 </html>
