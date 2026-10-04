@@ -49,6 +49,7 @@
   * https://gerardomunoz.github.io/AlgLin_2025/html/Geom3D_Quiz.html
   * https://gerardomunoz.github.io/AlgLin_2025/html/visual_gauss.html
 10. Espacio vectorial
+    * Espacios Afín y Nulo en $\mathbb{R}^n$: https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/Afin_Nulo.ipynb
     * Espacio Vectorial: Definición https://www.youtube.com/watch?v=GJFxGEDOJDc
     * Espacio Vectorial: Subespacios https://www.youtube.com/watch?v=t6FrWHtcRVY
        * https://colab.research.google.com/github/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/Fasores.ipynb
