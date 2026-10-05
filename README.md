@@ -52,7 +52,19 @@
     * Espacios Afín y Nulo en $\mathbb{R}^n$: https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/Afin_Nulo.ipynb
     * $\mathbb{R}^n$: Coordenadas https://www.youtube.com/watch?v=5doHic1C9L0
       * https://colab.research.google.com/github/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/AL12_Coord.ipynb 
-11. Espacio vectorial de valor real
+11. Bases orotgonales
+    * $\mathbb{R}^n$: Gram Shmidt https://www.youtube.com/watch?v=Zs6Gd3iQPCM
+       * https://colab.research.google.com/github/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/Gram-Schmidt_video.ipynb  
+    * Visualización en $\mathbb{R}^2$ y $\mathbb{R}^3$: Subespacios Ortogonales https://www.youtube.com/watch?v=vBoksCOvlCA
+    * Quiz: Encontrar las coordenadas en una base, ortogonalizar la base y encontrar las coordenadas en la nueva base. Repetir para la nomalización
+12. Proyeccón y Pseudoinversas   
+    * $\mathbb{R}^n$: Proyección https://www.youtube.com/watch?v=j9zYnCVCtlw
+    * https://github.com/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/proy.pdf
+    * https://github.com/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/proy.ipynb
+    * https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/Inversa.ipynb
+    * https://colab.research.google.com/github/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/AL12_Inv.ipynb
+
+13. Espacio vectorial de valor real
     * Espacio Vectorial: Definición https://www.youtube.com/watch?v=GJFxGEDOJDc
     * Espacio Vectorial: Subespacios https://www.youtube.com/watch?v=t6FrWHtcRVY
        * https://colab.research.google.com/github/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/Fasores.ipynb
@@ -66,7 +78,7 @@
       * https://gerardomunoz.github.io/AlgLin_2025/html/Co_Nu_eval.html?matriz=1,2,3;4,5,6;7,8,9
       * https://gerardomunoz.github.io/AlgLin_2025/html/Pivotes_equiv.html
 
-12. Base
+14. Base
 
 En la versión algebraica, la base $\hat{i}, \hat{j}, \hat{k}$  corresponde a los ejes $x, y, z$ de la versión geométrica.
     * Espacio Vectorial: Base https://www.youtube.com/watch?v=e08JDxr0YgE
@@ -75,17 +87,6 @@ En la versión algebraica, la base $\hat{i}, \hat{j}, \hat{k}$  corresponde a lo
     * ![](https://raw.githubusercontent.com/GerardoMunoz/AlgLin_2025/main/imgs/Coord_R3.png)
     * ---
     * ![](https://raw.githubusercontent.com/GerardoMunoz/AlgLin_2025/main/imgs/Coord_R2.png)
-13. Bases orotgonales
-    * $\mathbb{R}^n$: Gram Shmidt https://www.youtube.com/watch?v=Zs6Gd3iQPCM
-       * https://colab.research.google.com/github/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/Gram-Schmidt_video.ipynb  
-    * Visualización en $\mathbb{R}^2$ y $\mathbb{R}^3$: Subespacios Ortogonales https://www.youtube.com/watch?v=vBoksCOvlCA
-    * Quiz: Encontrar las coordenadas en una base, ortogonalizar la base y encontrar las coordenadas en la nueva base. Repetir para la nomalización
-14. Proyeccón y Pseudoinversas   
-    * $\mathbb{R}^n$: Proyección https://www.youtube.com/watch?v=j9zYnCVCtlw
-    * https://github.com/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/proy.pdf
-    * https://github.com/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/proy.ipynb
-    * https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/Inversa.ipynb
-    * https://colab.research.google.com/github/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/AL12_Inv.ipynb
 15. Transformaciones Matriciales
     * https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/Transformaci%C3%B3n_Matricial.ipynb
     * Composición de transformaciones matriciales (al conmutar puede variar, pero el determinante (si lo hay) no varia)
