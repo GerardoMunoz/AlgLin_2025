@@ -48,9 +48,8 @@
   * Otro forma es igualando las ecuaciones vectoriales manteniendo los parámetros diferentes ¿Qué sucede si un par de parámetros son iguales?
   * https://gerardomunoz.github.io/AlgLin_2025/html/Geom3D_Quiz.html
   * https://gerardomunoz.github.io/AlgLin_2025/html/visual_gauss.html
-10. Espacio vectorial
+10a. Espacio vectorial en $\mathbb{R}^n$
     * Espacios Afín y Nulo en $\mathbb{R}^n$: https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/Afin_Nulo.ipynb
-    * Espacio Vectorial: Definición https://www.youtube.com/watch?v=GJFxGEDOJDc
     * Espacio Vectorial: Subespacios https://www.youtube.com/watch?v=t6FrWHtcRVY
        * https://colab.research.google.com/github/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/Fasores.ipynb
        * https://colab.research.google.com/github/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/AL11_SubespRn_Co_Nu.ipynb 
@@ -62,12 +61,15 @@
       * $\mathbb{R}^n$: Espacio nulo y espacios columna y generado https://www.youtube.com/watch?v=X89iuatAPKg
       * https://gerardomunoz.github.io/AlgLin_2025/html/Co_Nu_eval.html?matriz=1,2,3;4,5,6;7,8,9
       * https://gerardomunoz.github.io/AlgLin_2025/html/Pivotes_equiv.html
+    * $\mathbb{R}^n$: Coordenadas https://www.youtube.com/watch?v=5doHic1C9L0
+      * https://colab.research.google.com/github/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/AL12_Coord.ipynb 
+
+10b. Espacio vectorial de valor real
+    * Espacio Vectorial: Definición https://www.youtube.com/watch?v=GJFxGEDOJDc
 11. Base
 
 En la versión algebraica, la base $\hat{i}, \hat{j}, \hat{k}$  corresponde a los ejes $x, y, z$ de la versión geométrica.
     * Espacio Vectorial: Base https://www.youtube.com/watch?v=e08JDxr0YgE
-    * $\mathbb{R}^n$: Coordenadas https://www.youtube.com/watch?v=5doHic1C9L0
-      * https://colab.research.google.com/github/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/AL12_Coord.ipynb 
     * ![](https://raw.githubusercontent.com/GerardoMunoz/AlgLin_2025/main/imgs/Coord.png)
     * ---
     * ![](https://raw.githubusercontent.com/GerardoMunoz/AlgLin_2025/main/imgs/Coord_R3.png)
