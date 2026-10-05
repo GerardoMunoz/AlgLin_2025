@@ -36,19 +36,19 @@
    * Quiz: https://gerardomunoz.github.io/AlgLin_2025/html/cramer_solver.html
 
 9. Rectas y planos
-  * https://github.com/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/Planos.pdf
-  * https://github.com/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/Rectas.pdf
-  * https://github.com/GerardoMunoz/AlgLin_2025/blob/main/visualizacion_ecuaciones.md
-  * https://github.com/GerardoMunoz/AlgLin_2025/blob/main/Interseccion_rectas.md 
-  * https://github.com/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/Rectas2D.md
-  * https://github.com/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/Rectas3D.md
-  * https://github.com/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/Planos3D.md
-  * https://github.com/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/Distancias.md
-  * La intersección de rectas y planos se puede encontrar solucionando el sistema de ecuaciones lineales formado por la unión de ambos sistemas de ecuaciones
-  * Otro forma es igualando las ecuaciones vectoriales manteniendo los parámetros diferentes ¿Qué sucede si un par de parámetros son iguales?
-  * https://gerardomunoz.github.io/AlgLin_2025/html/Geom3D_Quiz.html
-  * https://gerardomunoz.github.io/AlgLin_2025/html/visual_gauss.html
-10a. Espacio vectorial en $\mathbb{R}^n$
+   * https://github.com/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/Planos.pdf
+   * https://github.com/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/Rectas.pdf
+   * https://github.com/GerardoMunoz/AlgLin_2025/blob/main/visualizacion_ecuaciones.md
+   * https://github.com/GerardoMunoz/AlgLin_2025/blob/main/Interseccion_rectas.md 
+   * https://github.com/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/Rectas2D.md
+   * https://github.com/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/Rectas3D.md
+   * https://github.com/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/Planos3D.md
+   * https://github.com/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/Distancias.md
+   * La intersección de rectas y planos se puede encontrar solucionando el sistema de ecuaciones lineales formado por la unión de ambos sistemas de ecuaciones
+   * Otro forma es igualando las ecuaciones vectoriales manteniendo los parámetros diferentes ¿Qué sucede si un par de parámetros son iguales?
+   * https://gerardomunoz.github.io/AlgLin_2025/html/Geom3D_Quiz.html
+   * https://gerardomunoz.github.io/AlgLin_2025/html/visual_gauss.html
+10. Espacio vectorial en $\mathbb{R}^n$
     * Espacios Afín y Nulo en $\mathbb{R}^n$: https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/Afin_Nulo.ipynb
     * Espacio Vectorial: Subespacios https://www.youtube.com/watch?v=t6FrWHtcRVY
        * https://colab.research.google.com/github/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/Fasores.ipynb
@@ -64,9 +64,9 @@
     * $\mathbb{R}^n$: Coordenadas https://www.youtube.com/watch?v=5doHic1C9L0
       * https://colab.research.google.com/github/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/AL12_Coord.ipynb 
 
-10b. Espacio vectorial de valor real
+11. Espacio vectorial de valor real
     * Espacio Vectorial: Definición https://www.youtube.com/watch?v=GJFxGEDOJDc
-11. Base
+12. Base
 
 En la versión algebraica, la base $\hat{i}, \hat{j}, \hat{k}$  corresponde a los ejes $x, y, z$ de la versión geométrica.
     * Espacio Vectorial: Base https://www.youtube.com/watch?v=e08JDxr0YgE
@@ -75,18 +75,18 @@ En la versión algebraica, la base $\hat{i}, \hat{j}, \hat{k}$  corresponde a lo
     * ![](https://raw.githubusercontent.com/GerardoMunoz/AlgLin_2025/main/imgs/Coord_R3.png)
     * ---
     * ![](https://raw.githubusercontent.com/GerardoMunoz/AlgLin_2025/main/imgs/Coord_R2.png)
-12. Bases orotgonales
+13. Bases orotgonales
     * $\mathbb{R}^n$: Gram Shmidt https://www.youtube.com/watch?v=Zs6Gd3iQPCM
        * https://colab.research.google.com/github/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/Gram-Schmidt_video.ipynb  
     * Visualización en $\mathbb{R}^2$ y $\mathbb{R}^3$: Subespacios Ortogonales https://www.youtube.com/watch?v=vBoksCOvlCA
     * Quiz: Encontrar las coordenadas en una base, ortogonalizar la base y encontrar las coordenadas en la nueva base. Repetir para la nomalización
-13. Proyeccón y Pseudoinversas   
+14. Proyeccón y Pseudoinversas   
     * $\mathbb{R}^n$: Proyección https://www.youtube.com/watch?v=j9zYnCVCtlw
     * https://github.com/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/proy.pdf
     * https://github.com/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/proy.ipynb
     * https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/Inversa.ipynb
     * https://colab.research.google.com/github/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/AL12_Inv.ipynb
-14. Transformaciones Matriciales
+15. Transformaciones Matriciales
     * https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/Transformaci%C3%B3n_Matricial.ipynb
     * Composición de transformaciones matriciales (al conmutar puede variar, pero el determinante (si lo hay) no varia)
     * https://www.youtube.com/watch?v=mSUGKNTg8bw&list=PL1mPu0A4F0dCqISAjxkhkVVQ4QEKmKAQj&index=16&pp=iAQB
@@ -98,14 +98,14 @@ En la versión algebraica, la base $\hat{i}, \hat{j}, \hat{k}$  corresponde a lo
     
    
 
-15. Transformaciones Lineales
+16. Transformaciones Lineales
     * https://colab.research.google.com/github/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/Clase15_Repr5_2_TransfLineales.ipynb
     * https://www.youtube.com/watch?v=b6YnZ31eW60&list=PL1mPu0A4F0dCqISAjxkhkVVQ4QEKmKAQj&index=27&pp=iAQB
     * https://www.youtube.com/watch?v=LPI90K-WutY&list=PL1mPu0A4F0dCqISAjxkhkVVQ4QEKmKAQj&index=29&pp=iAQB
     * https://www.youtube.com/watch?v=pN5sirpdH8A&list=PL1mPu0A4F0dCqISAjxkhkVVQ4QEKmKAQj&index=30&pp=iAQB
     * https://www.youtube.com/watch?v=klBoGhi68ho&list=PL1mPu0A4F0dCqISAjxkhkVVQ4QEKmKAQj&index=31&pp=iAQB
 
-16 Vectores propios, SVD y PCA 
+17 Vectores propios, SVD y PCA 
  * https://www.youtube.com/watch?v=1vslbOh_Kq4&list=PL1mPu0A4F0dCqISAjxkhkVVQ4QEKmKAQj&index=41&pp=iAQB
      
   
