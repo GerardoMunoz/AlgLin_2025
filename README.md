@@ -52,18 +52,19 @@
     * Espacios Afín y Nulo en $\mathbb{R}^n$: https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/Afin_Nulo.ipynb
     * $\mathbb{R}^n$: Coordenadas https://www.youtube.com/watch?v=5doHic1C9L0
       * https://colab.research.google.com/github/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/AL12_Coord.ipynb 
-11. Bases orotgonales
-    * $\mathbb{R}^n$: Gram Shmidt https://www.youtube.com/watch?v=Zs6Gd3iQPCM
-       * https://colab.research.google.com/github/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/Gram-Schmidt_video.ipynb  
-    * Visualización en $\mathbb{R}^2$ y $\mathbb{R}^3$: Subespacios Ortogonales https://www.youtube.com/watch?v=vBoksCOvlCA
-    * Quiz: Encontrar las coordenadas en una base, ortogonalizar la base y encontrar las coordenadas en la nueva base. Repetir para la nomalización
-12. Proyeccón y Pseudoinversas   
+11. Proyeccón y Pseudoinversas   
     * https://colab.research.google.com/github/GerardoMunoz/ML_2025/blob/main/Perceptron_4_Least_Squares.ipynb
     * $\mathbb{R}^n$: Proyección https://www.youtube.com/watch?v=j9zYnCVCtlw
     * https://github.com/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/proy.pdf
     * https://github.com/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/proy.ipynb
     * https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/Inversa.ipynb
     * https://colab.research.google.com/github/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/AL12_Inv.ipynb
+      
+12. Bases orotgonales
+    * $\mathbb{R}^n$: Gram Shmidt https://www.youtube.com/watch?v=Zs6Gd3iQPCM
+       * https://colab.research.google.com/github/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/Gram-Schmidt_video.ipynb  
+    * Visualización en $\mathbb{R}^2$ y $\mathbb{R}^3$: Subespacios Ortogonales https://www.youtube.com/watch?v=vBoksCOvlCA
+    * Quiz: Encontrar las coordenadas en una base, ortogonalizar la base y encontrar las coordenadas en la nueva base. Repetir para la nomalización
 
 13. Espacio vectorial de valor real
     * Espacio Vectorial: Definición https://www.youtube.com/watch?v=GJFxGEDOJDc
