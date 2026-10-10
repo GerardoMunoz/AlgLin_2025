@@ -6,6 +6,10 @@
    * Nakos pg 167-168, Ejercicios 3.1: 4,10,11
    * https://www.youtube.com/watch?v=GkM5XGaKCmc hasta el minuto 4:46
    * https://youtu.be/E4FOOJ0CBiY?t=363 desde el minuto 6:03
+   * Ejemplo en ML
+       *   https://colab.research.google.com/github/GerardoMunoz/ML_2025/blob/main/Perceptron_0_Gradient_Descent.ipynb
+       *   https://colab.research.google.com/github/GerardoMunoz/ML_2025/blob/main/Perceptron_1_Three_inputs.ipynb
+       *   https://colab.research.google.com/github/GerardoMunoz/ML_2025/blob/main/Perceptron_2_Two_outputs.ipynb
    * Practica https://gerardomunoz.github.io/AlgLin_2025/html/MatMul_noquiz.html
    * Quiz https://gerardomunoz.github.io/AlgLin_2025/html/MatMul.html
 2. https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/SistemaDeEcuaciones.ipynb
