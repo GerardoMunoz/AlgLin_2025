@@ -71,6 +71,9 @@
     * Quiz: Encontrar las coordenadas en una base, ortogonalizar la base y encontrar las coordenadas en la nueva base. Repetir para la nomalización
 
 13. Espacio vectorial de valor real
+    * https://github.com/GerardoMunoz/AlgebraLineal/blob/master/002_000_sis_lin.ipynb
+    * https://colab.research.google.com/github/GerardoMunoz/AlgebraLineal/blob/master/AL_101.000_Espacios_Vectoriales.ipynb
+    * https://colab.research.google.com/github/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/Fasores.ipynb
     * Espacio Vectorial: Definición https://www.youtube.com/watch?v=GJFxGEDOJDc
     * Espacio Vectorial: Subespacios https://www.youtube.com/watch?v=t6FrWHtcRVY
        * https://colab.research.google.com/github/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/Fasores.ipynb
