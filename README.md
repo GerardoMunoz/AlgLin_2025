@@ -86,6 +86,7 @@
       * $\mathbb{R}^n$: Espacio nulo y espacios columna y generado https://www.youtube.com/watch?v=X89iuatAPKg
       * https://gerardomunoz.github.io/AlgLin_2025/html/Co_Nu_eval.html?matriz=1,2,3;4,5,6;7,8,9
       * https://gerardomunoz.github.io/AlgLin_2025/html/Pivotes_equiv.html
+      * https://github.com/GerardoMunoz/AlgLin_2025/blob/main/cuestionarios/Taller_Representaciones_Sist_Ecu.pdf
 
 14. Base
 En la versión algebraica, la base $\hat{i}, \hat{j}, \hat{k}$  corresponde a los ejes $x, y, z$ de la versión geométrica.
