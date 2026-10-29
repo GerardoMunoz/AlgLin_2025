@@ -47,7 +47,9 @@ Cuyas columnas forman una base del subespacio $Co(B_1)\subseteq\mathbb{R}^3$.
 Considere el vector
 
 $$
-P=\begin{pmatrix}2\\1\\1\end{pmatrix}.
+P=\begin{pmatrix}2\\ 
+1\\ 
+1\end{pmatrix}.
 $$
 
 Responda los siguientes incisos:
