@@ -63,6 +63,7 @@
     * https://github.com/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/proy.ipynb
     * https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/Inversa.ipynb
     * https://colab.research.google.com/github/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/AL12_Inv.ipynb
+    * https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/ortogonal_ortonormal.ipynb
       
 12. Bases orotgonales
     * $\mathbb{R}^n$: Gram Shmidt https://www.youtube.com/watch?v=Zs6Gd3iQPCM
