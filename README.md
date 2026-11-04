@@ -71,7 +71,23 @@
     * Visualización en $\mathbb{R}^2$ y $\mathbb{R}^3$: Subespacios Ortogonales https://www.youtube.com/watch?v=vBoksCOvlCA
     * Quiz: Encontrar las coordenadas en una base, ortogonalizar la base y encontrar las coordenadas en la nueva base. Repetir para la nomalización
 
-13. Espacio vectorial de valor real
+13. Transformaciones Matriciales
+    * https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/Transformaci%C3%B3n_Matricial.ipynb
+    * Composición de transformaciones matriciales (al conmutar puede variar, pero el determinante (si lo hay) no varia)
+    * https://www.youtube.com/watch?v=mSUGKNTg8bw&list=PL1mPu0A4F0dCqISAjxkhkVVQ4QEKmKAQj&index=16&pp=iAQB
+    * https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/Obtener_Tr_Matricial.ipynb
+    * Funciones inyectivas, sobreyectivas, biyectivas.
+    * https://gerardomunoz.github.io/AlgLin_2025/html/ResumenRepresentaciones.html
+    * https://www.youtube.com/watch?v=43o5TGxo-lM&list=PL1mPu0A4F0dCqISAjxkhkVVQ4QEKmKAQj&index=21&pp=iAQB
+    * https://colab.research.google.com/github/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/PS10_TransfAfin.ipynb
+    
+14 Vectores propios, SVD y PCA 
+ * https://github.com/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/C34_Vectores%20Propios6.pdf
+ * https://www.youtube.com/watch?v=1vslbOh_Kq4&list=PL1mPu0A4F0dCqISAjxkhkVVQ4QEKmKAQj&index=41&pp=iAQB
+   
+
+
+15. Espacio vectorial de valor real
     * https://github.com/GerardoMunoz/AlgebraLineal/blob/master/002_000_sis_lin.ipynb
     * https://colab.research.google.com/github/GerardoMunoz/AlgebraLineal/blob/master/AL_101.000_Espacios_Vectoriales.ipynb
     * https://colab.research.google.com/github/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/Fasores.ipynb
@@ -89,7 +105,7 @@
       * https://gerardomunoz.github.io/AlgLin_2025/html/Pivotes_equiv.html
       * https://github.com/GerardoMunoz/AlgLin_2025/blob/main/cuestionarios/Taller_Representaciones_Sist_Ecu.pdf
 
-14. Base
+16. Base
 En la versión algebraica, la base $\hat{i}, \hat{j}, \hat{k}$  corresponde a los ejes $x, y, z$ de la versión geométrica.
     * Espacio Vectorial: Base https://www.youtube.com/watch?v=e08JDxr0YgE
     * ![](https://raw.githubusercontent.com/GerardoMunoz/AlgLin_2025/main/imgs/Coord.png)
@@ -98,28 +114,14 @@ En la versión algebraica, la base $\hat{i}, \hat{j}, \hat{k}$  corresponde a lo
     * ---
     * ![](https://raw.githubusercontent.com/GerardoMunoz/AlgLin_2025/main/imgs/Coord_R2.png)
 
-15. Transformaciones Matriciales
-    * https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/Transformaci%C3%B3n_Matricial.ipynb
-    * Composición de transformaciones matriciales (al conmutar puede variar, pero el determinante (si lo hay) no varia)
-    * https://www.youtube.com/watch?v=mSUGKNTg8bw&list=PL1mPu0A4F0dCqISAjxkhkVVQ4QEKmKAQj&index=16&pp=iAQB
-    * https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/Obtener_Tr_Matricial.ipynb
-    * Funciones inyectivas, sobreyectivas, biyectivas.
-    * https://gerardomunoz.github.io/AlgLin_2025/html/ResumenRepresentaciones.html
-    * https://www.youtube.com/watch?v=43o5TGxo-lM&list=PL1mPu0A4F0dCqISAjxkhkVVQ4QEKmKAQj&index=21&pp=iAQB
-    * https://colab.research.google.com/github/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/PS10_TransfAfin.ipynb
-    
-   
 
-16. Transformaciones Lineales
+17. Transformaciones Lineales
     * https://colab.research.google.com/github/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/Clase15_Repr5_2_TransfLineales.ipynb
     * https://www.youtube.com/watch?v=b6YnZ31eW60&list=PL1mPu0A4F0dCqISAjxkhkVVQ4QEKmKAQj&index=27&pp=iAQB
     * https://www.youtube.com/watch?v=LPI90K-WutY&list=PL1mPu0A4F0dCqISAjxkhkVVQ4QEKmKAQj&index=29&pp=iAQB
     * https://www.youtube.com/watch?v=pN5sirpdH8A&list=PL1mPu0A4F0dCqISAjxkhkVVQ4QEKmKAQj&index=30&pp=iAQB
     * https://www.youtube.com/watch?v=klBoGhi68ho&list=PL1mPu0A4F0dCqISAjxkhkVVQ4QEKmKAQj&index=31&pp=iAQB
 
-17 Vectores propios, SVD y PCA 
- * https://github.com/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/C34_Vectores%20Propios6.pdf
- * https://www.youtube.com/watch?v=1vslbOh_Kq4&list=PL1mPu0A4F0dCqISAjxkhkVVQ4QEKmKAQj&index=41&pp=iAQB
      
   
 ---
