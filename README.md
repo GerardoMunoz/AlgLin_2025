@@ -84,6 +84,7 @@
 14 Vectores propios, SVD y PCA 
  * https://github.com/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/C34_Vectores%20Propios6.pdf
  * https://www.youtube.com/watch?v=1vslbOh_Kq4&list=PL1mPu0A4F0dCqISAjxkhkVVQ4QEKmKAQj&index=41&pp=iAQB
+ * https://colab.research.google.com/github/GerardoMunoz/ML_2025/blob/main/Hopfield_Covariance.ipynb
    
 
 
