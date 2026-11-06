@@ -54,9 +54,19 @@
    * https://gerardomunoz.github.io/AlgLin_2025/html/visual_gauss.html
 10. Espacio vectorial en $\mathbb{R}^n$
     * Espacios Afín y Nulo en $\mathbb{R}^n$: https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/Afin_Nulo.ipynb
-    * $\mathbb{R}^n$: Coordenadas https://www.youtube.com/watch?v=5doHic1C9L0
+      * $\mathbb{R}^n$: Subespacio, Dimensión, Rango, Nulidad, Independencia lineal
+      * https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/SubespaciosCoNu_Base.ipynb   
+      * ![](https://raw.githubusercontent.com/GerardoMunoz/AlgLin_2025/main/imgs/Generado.PNG)
+      * ![](https://raw.githubusercontent.com/GerardoMunoz/AlgLin_2025/main/imgs/Nulo.PNG)
+      * https://www.youtube.com/watch?v=ogbzmgje0x0
+      * $\mathbb{R}^n$: Espacio nulo y espacios columna y generado https://www.youtube.com/watch?v=X89iuatAPKg
+      * https://gerardomunoz.github.io/AlgLin_2025/html/Co_Nu_eval.html?matriz=1,2,3;4,5,6;7,8,9
+      * https://gerardomunoz.github.io/AlgLin_2025/html/Pivotes_equiv.html
+      * https://github.com/GerardoMunoz/AlgLin_2025/blob/main/cuestionarios/Taller_Representaciones_Sist_Ecu.pdf
+11. Coordenadas
+      * $\mathbb{R}^n$: Coordenadas https://www.youtube.com/watch?v=5doHic1C9L0
       * https://colab.research.google.com/github/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/AL12_Coord.ipynb 
-11. Proyeccón y Pseudoinversas   
+12. Proyeccón y Pseudoinversas   
     * https://colab.research.google.com/github/GerardoMunoz/ML_2025/blob/main/Perceptron_4_Least_Squares.ipynb
     * $\mathbb{R}^n$: Proyección https://www.youtube.com/watch?v=j9zYnCVCtlw
     * https://github.com/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/proy.pdf
@@ -65,13 +75,13 @@
     * https://colab.research.google.com/github/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/AL12_Inv.ipynb
     * https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/ortogonal_ortonormal.ipynb
       
-12. Bases orotgonales
+13. Bases orotgonales
     * $\mathbb{R}^n$: Gram Shmidt https://www.youtube.com/watch?v=Zs6Gd3iQPCM
        * https://colab.research.google.com/github/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/Gram-Schmidt_video.ipynb  
     * Visualización en $\mathbb{R}^2$ y $\mathbb{R}^3$: Subespacios Ortogonales https://www.youtube.com/watch?v=vBoksCOvlCA
     * Quiz: Encontrar las coordenadas en una base, ortogonalizar la base y encontrar las coordenadas en la nueva base. Repetir para la nomalización
 
-13. Transformaciones Matriciales
+14. Transformaciones Matriciales
     * https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/Transformaci%C3%B3n_Matricial.ipynb
     * Composición de transformaciones matriciales (al conmutar puede variar, pero el determinante (si lo hay) no varia)
     * https://www.youtube.com/watch?v=mSUGKNTg8bw&list=PL1mPu0A4F0dCqISAjxkhkVVQ4QEKmKAQj&index=16&pp=iAQB
@@ -81,32 +91,22 @@
     * https://www.youtube.com/watch?v=43o5TGxo-lM&list=PL1mPu0A4F0dCqISAjxkhkVVQ4QEKmKAQj&index=21&pp=iAQB
     * https://colab.research.google.com/github/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/PS10_TransfAfin.ipynb
     
-14 Vectores propios, SVD y PCA 
+15 Vectores propios, SVD y PCA 
  * https://github.com/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/C34_Vectores%20Propios6.pdf
  * https://www.youtube.com/watch?v=1vslbOh_Kq4&list=PL1mPu0A4F0dCqISAjxkhkVVQ4QEKmKAQj&index=41&pp=iAQB
  * https://colab.research.google.com/github/GerardoMunoz/ML_2025/blob/main/Hopfield_Covariance.ipynb
    
 
 
-15. Espacio vectorial de valor real
+16. Espacio vectorial de valor real
     * https://github.com/GerardoMunoz/AlgebraLineal/blob/master/002_000_sis_lin.ipynb
     * https://colab.research.google.com/github/GerardoMunoz/AlgebraLineal/blob/master/AL_101.000_Espacios_Vectoriales.ipynb
     * https://colab.research.google.com/github/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/Fasores.ipynb
     * Espacio Vectorial: Definición https://www.youtube.com/watch?v=GJFxGEDOJDc
     * Espacio Vectorial: Subespacios https://www.youtube.com/watch?v=t6FrWHtcRVY
        * https://colab.research.google.com/github/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/Fasores.ipynb
-       * https://colab.research.google.com/github/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/AL11_SubespRn_Co_Nu.ipynb 
-    * $\mathbb{R}^n$: Subespacio, Dimensión, Rango, Nulidad, Independencia lineal
-      * https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/SubespaciosCoNu_Base.ipynb   
-      * ![](https://raw.githubusercontent.com/GerardoMunoz/AlgLin_2025/main/imgs/Generado.PNG)
-      * ![](https://raw.githubusercontent.com/GerardoMunoz/AlgLin_2025/main/imgs/Nulo.PNG)
-      * https://www.youtube.com/watch?v=ogbzmgje0x0
-      * $\mathbb{R}^n$: Espacio nulo y espacios columna y generado https://www.youtube.com/watch?v=X89iuatAPKg
-      * https://gerardomunoz.github.io/AlgLin_2025/html/Co_Nu_eval.html?matriz=1,2,3;4,5,6;7,8,9
-      * https://gerardomunoz.github.io/AlgLin_2025/html/Pivotes_equiv.html
-      * https://github.com/GerardoMunoz/AlgLin_2025/blob/main/cuestionarios/Taller_Representaciones_Sist_Ecu.pdf
 
-16. Base
+17. Base
 En la versión algebraica, la base $\hat{i}, \hat{j}, \hat{k}$  corresponde a los ejes $x, y, z$ de la versión geométrica.
     * Espacio Vectorial: Base https://www.youtube.com/watch?v=e08JDxr0YgE
     * ![](https://raw.githubusercontent.com/GerardoMunoz/AlgLin_2025/main/imgs/Coord.png)
@@ -116,7 +116,7 @@ En la versión algebraica, la base $\hat{i}, \hat{j}, \hat{k}$  corresponde a lo
     * ![](https://raw.githubusercontent.com/GerardoMunoz/AlgLin_2025/main/imgs/Coord_R2.png)
 
 
-17. Transformaciones Lineales
+18. Transformaciones Lineales
     * https://colab.research.google.com/github/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/Clase15_Repr5_2_TransfLineales.ipynb
     * https://www.youtube.com/watch?v=b6YnZ31eW60&list=PL1mPu0A4F0dCqISAjxkhkVVQ4QEKmKAQj&index=27&pp=iAQB
     * https://www.youtube.com/watch?v=LPI90K-WutY&list=PL1mPu0A4F0dCqISAjxkhkVVQ4QEKmKAQj&index=29&pp=iAQB
