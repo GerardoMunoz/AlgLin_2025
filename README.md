@@ -117,6 +117,7 @@ En la versión algebraica, la base $\hat{i}, \hat{j}, \hat{k}$  corresponde a lo
 
 
 18. Transformaciones Lineales
+    * Repaso: https://colab.research.google.com/github/GerardoMunoz/AlgLin_2025/blob/main/BasesEstandar.ipynb
     * https://colab.research.google.com/github/GerardoMunoz/PresentacionesAlgebraLineal/blob/main/Clase15_Repr5_2_TransfLineales.ipynb
     * https://www.youtube.com/watch?v=b6YnZ31eW60&list=PL1mPu0A4F0dCqISAjxkhkVVQ4QEKmKAQj&index=27&pp=iAQB
     * https://www.youtube.com/watch?v=LPI90K-WutY&list=PL1mPu0A4F0dCqISAjxkhkVVQ4QEKmKAQj&index=29&pp=iAQB
